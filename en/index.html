@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tesselo · Public data, made readable</title>
+    <meta name="description" content="Tesselo brings together France’s official public data (company registers, census, property sales) and turns it into products that are easy to read, every number explained." />
+    <link rel="alternate" hreflang="fr" href="../" />
+    <link rel="alternate" hreflang="en" href="../en/" />
+    <link rel="stylesheet" href="../assets/theme.css" />
+    <style>
+      .hero { padding: 72px 0 40px; max-width: 760px; }
+      .hero h1 { font-size: 46px; margin-bottom: 16px; }
+      .hero h1 em { font-style: normal; color: var(--accent); }
+      .hero .lead { font-size: 18px; color: var(--muted); margin: 0 0 28px; }
+      section h2 { margin: 48px 0 16px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+      .product { border-top: 4px solid var(--product); display: flex; flex-direction: column; }
+      .product p { color: var(--muted); margin: 6px 0 0; flex: 1; }
+      .product .ts-actions { justify-content: space-between; align-items: center; }
+      .principle p { color: var(--muted); margin: 6px 0 0; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="./">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          
+          <span class="lang-switch"><a href="../" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <section class="hero">
+        <p class="eyebrow">Official public data · France</p>
+        <h1>Public data, <em>made readable.</em></h1>
+        <p class="lead">Companies, shops, residents, property sales: we bring the official registers together once, and each Tesselo product shows what you need from them, with its source.</p>
+        <form class="ts-search big" role="search" action="https://search.tesselo.eu/" method="get">
+          <input type="search" name="q" placeholder="Town, address, company, SIREN number, shop…" aria-label="Search" required />
+          <input type="hidden" name="lang" value="en" />
+          <button type="submit">Search</button>
+        </form>
+      </section>
+      <section>
+        <h2>Our products</h2>
+        <div class="grid"><article class="ts-card product" style="--product:#1f4fd1"><h3>Search</h3><p>Find a town, an address, a company or a shop, and what our products say about it.</p>
+          <div class="ts-actions"><span class="ts-tag">All of France</span><a class="ts-btn product" href="https://search.tesselo.eu/?lang=en">Open Search →</a></div></article>
+<article class="ts-card product" style="--product:#0b5d55"><h3>Pignon</h3><p>Where to open your shop: competition, residents and passers-by in every neighbourhood.</p>
+          <div class="ts-actions"><span class="ts-tag">Paris for now</span><a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Open Pignon →</a></div></article></div>
+      </section>
+      <section>
+        <h2>How we work</h2>
+        <div class="grid">
+          <div class="ts-card principle"><h3>Official sources</h3><p>INSEE, IGN, DGFiP, the SIRENE and BODACC registers, under the Licence Ouverte. No bought or scraped data.</p></div>
+          <div class="ts-card principle"><h3>Every number explained</h3><p>Every figure shows its source, date and method. Estimates are labelled as such.</p></div>
+          <div class="ts-card principle"><h3>No personal data</h3><p>We keep no director’s or sole trader’s name, and honour records not open for distribution.</p></div>
+        </div>
+      </section>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.0 · 5a6718a</small>
+      </div>
+    </footer>
+  </body>
+</html>

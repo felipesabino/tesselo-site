@@ -1,0 +1,84 @@
+/*
+ * Tesselo's shared look (docs/design.md): one header, footer, type scale, spacing, cards and search box
+ * for the hub site and every product. A product keeps its own logo and accent: it sets --accent and
+ * --accent-soft on :root after importing this file. Plain CSS, no build step: React apps import it,
+ * static sites copy it into public/assets.
+ */
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --ink: #16201d;
+  --muted: #5f6b66;
+  --line: #e4e4df;
+  --accent: #1f4fd1;
+  --accent-soft: #eaf0fd;
+  --good: #1d7a46;
+  --bad: #a3361f;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgba(22, 32, 29, 0.05), 0 2px 8px rgba(22, 32, 29, 0.04);
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --wide: 1040px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.5 var(--font); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { line-height: 1.2; margin: 0; }
+h1 { font-size: 34px; letter-spacing: -0.02em; }
+h2 { font-size: 20px; letter-spacing: -0.01em; }
+h3 { font-size: 16px; }
+.muted { color: var(--muted); }
+.eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; margin: 0 0 8px; }
+.wrap { max-width: var(--wide); margin: 0 auto; padding: 0 20px; }
+
+/* Header: Tesselo mark, the product's name, language switch. */
+.ts-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.ts-header .wrap { display: flex; align-items: center; gap: 16px; height: 60px; }
+.ts-brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.ts-brand:hover { text-decoration: none; }
+.ts-mark { width: 26px; height: 26px; flex: none; }
+.ts-product { color: var(--muted); font-weight: 500; padding-left: 10px; border-left: 1px solid var(--line); }
+.ts-header nav { margin-left: auto; display: flex; align-items: center; gap: 18px; font-size: 14px; }
+.ts-header nav a { color: var(--ink); }
+
+/* Footer: sources, links, version. */
+.ts-footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 24px 0 32px; font-size: 13px; color: var(--muted); }
+.ts-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; }
+.ts-footer .version-note { margin: 0 0 0 auto !important; }
+
+/* Search box: one field and one button, large on the home page. */
+.ts-search { display: flex; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.ts-search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.ts-search input { flex: 1; min-width: 0; border: 0; outline: 0; font: inherit; font-size: 17px; padding: 14px 16px; background: transparent; color: var(--ink); }
+.ts-search button { border: 0; background: var(--accent); color: #fff; font: inherit; font-weight: 600; padding: 0 22px; cursor: pointer; }
+.ts-search.big input { font-size: 19px; padding: 18px 20px; }
+
+/* Cards. */
+.ts-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+.ts-card h3 { margin-bottom: 4px; }
+.ts-facts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--muted); margin: 6px 0 0; padding: 0; list-style: none; }
+.ts-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.ts-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: var(--surface); }
+.ts-btn:hover { text-decoration: none; border-color: var(--ink); }
+.ts-btn.product { border-color: transparent; background: var(--product, var(--accent)); color: #fff; }
+.ts-btn.product:hover { filter: brightness(1.08); }
+.ts-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 99px; background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.ts-tag.good { color: var(--good); }
+.ts-tag.bad { color: var(--bad); }
+
+/* Tabs (result types). */
+.ts-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.ts-tabs button { border: 0; background: none; font: inherit; font-size: 14px; color: var(--muted); padding: 10px 12px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+.ts-tabs button.on { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); }
+.ts-tabs .count { color: var(--muted); font-weight: 400; margin-left: 4px; }
+
+/* Language switch (LangSwitch). */
+.lang-switch { display: flex; gap: 4px; }
+.lang-switch button, .lang-switch a { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 2px 8px; cursor: pointer; display: flex; gap: 4px; align-items: center; font: inherit; font-size: 12px; color: var(--ink); }
+.lang-switch .on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.flag { width: 16px; height: 11px; }
+
+/* Info tip (InfoTip). */
+.info { position: relative; display: inline-block; margin-left: 6px; }
+.info-btn { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); font-size: 11px; cursor: pointer; color: var(--muted); }
+.info-pop { position: absolute; left: 0; top: 24px; width: 260px; background: var(--ink); color: #fff; font-size: 13px; padding: 8px 10px; border-radius: 6px; z-index: 2; }
