@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quatre Paris du commerce : ce que l’on trouve en regroupant les rues par leurs boutiques · Tesselo</title>
+    <meta name="description" content="Paris découpé en 879 carrés de 250 mètres, regroupés d’après leurs seules boutiques : rues de mode, sorties, courses du quotidien, services de quartier. Une carte, sept graphiques, et pourquoi quatre groupes tiennent quand six ne tiennent pas." />
+    <meta property="og:title" content="Quatre Paris du commerce : ce que l’on trouve en regroupant les rues par leurs boutiques · Tesselo" />
+    <meta property="og:description" content="Paris découpé en 879 carrés de 250 mètres, regroupés d’après leurs seules boutiques : rues de mode, sorties, courses du quotidien, services de quartier. Une carte, sept graphiques, et pourquoi quatre groupes tiennent quand six ne tiennent pas." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/four-kinds-shopping-area-paris/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <link rel="stylesheet" href="../../assets/vendor/maplibre-gl.css" />
+    <script src="../../assets/vendor/maplibre-gl.js" defer></script>
+    <script src="../../assets/postmap.js" defer></script>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/four-kinds-shopping-area-paris/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Quatre Paris du commerce : ce que l’on trouve en regroupant les rues par leurs boutiques</h1><p class="lead">Paris découpé en 879 carrés de 250 mètres, regroupés d’après leurs seules boutiques : rues de mode, sorties, courses du quotidien, services de quartier. Une carte, sept graphiques, et pourquoi quatre groupes tiennent quand six ne tiennent pas.</p></header>
+        <p>On dit d’une rue qu’elle est « commerçante », comme s’il n’en existait qu’une sorte. Nous avons posé la question aux données : si l’on découpe Paris en carrés de 250 mètres et que l’on regroupe ceux dont les boutiques se ressemblent, sans rien dire à l’ordinateur des arrondissements ni des quartiers, combien de sortes trouve-t-on ? La réponse tient en <strong>quatre groupes</strong>, qui dessinent une carte que tout Parisien reconnaîtra. Et en un avertissement : au-delà de quatre, les groupes ne tiennent plus.</p>
+
+<figure class="postmap" data-src="../../assets/data/shop-areas.json" data-label="Carte de Paris : 879 carrés de 250 mètres, colorés selon leur groupe de commerces">
+  <p class="chart-title">Les quatre groupes, carré par carré</p>
+  <figcaption class="note">879 carrés de 250 m comptant au moins 20 commerces ouverts ; survolez ou touchez un carré pour lire son nombre de commerces et ses trois premiers types. Le groupe d’un carré vient du mélange de ses commerces et de ceux des huit carrés voisins. Les noms des groupes sont les nôtres. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0), commerces ouverts en novembre 2026.</figcaption>
+</figure>
+
+<p>Personne n’a tracé de frontière sur cette carte. Chaque carré a été classé d’après ses seules boutiques, et pourtant les groupes forment des blocs : le centre, l’ouest, le nord-est, et, autour du centre, un anneau qui va du Quartier latin au 9<sup>e</sup> et au 11<sup>e</sup> arrondissement.</p>
+
+<h2>Comment lire les groupes</h2>
+
+<p>Partout à Paris, les restaurants et la restauration rapide dominent : ensemble, quatre commerces sur dix. Ce qui distingue un groupe n’est donc pas son type le plus fréquent, mais <strong>ce qu’il a de plus, ou de moins, que la moyenne</strong>. Les graphiques qui suivent comparent la part de quelques types dans le groupe à leur part dans l’ensemble des carrés.</p>
+
+<h2>1. Rues de mode : le centre et les grands boulevards</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces du groupe, par type : rues de mode</p>
+  <script type="application/json">{"type": "bars", "labels": ["Vêtements", "Restaurants", "Opticiens", "Pressings et laveries", "Boucheries", "Primeurs"], "series": [{"name": "Rues de mode", "values": [17.0, 28.0, 2.3, 0.8, 0.4, 0.2]}, {"name": "Ensemble des carrés", "values": [8.9, 24.0, 2.1, 1.9, 1.3, 0.8]}], "unit": " %"}</script>
+  <figcaption class="note">164 carrés, 14 705 commerces. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Un commerce sur six y vend des vêtements (17,0 %, contre 8,9 % en moyenne). C’est le groupe le plus dense, avec 81 commerces par carré (valeur médiane), et celui où les chaînes pèsent le plus : 24,0 % des commerces. Les commerces de bouche du quotidien y sont rares : environ trois fois moins de boucheries et de primeurs que la moyenne.</p>
+<p>Les commerces du 1<sup>er</sup> et du 3<sup>e</sup> arrondissement sont tous, ou presque, dans ce groupe, comme 93 % des commerces du 2<sup>e</sup>, 92 % du 4<sup>e</sup> et 65 % du 6<sup>e</sup> et du 8<sup>e</sup>.</p>
+
+<h2>2. Sorties : restaurants, bars, livres</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces du groupe, par type : sorties</p>
+  <script type="application/json">{"type": "bars", "labels": ["Restaurants", "Restauration rapide", "Bars et cafés", "Librairies", "Vêtements", "Pressings et laveries"], "series": [{"name": "Sorties", "values": [28.2, 18.8, 5.4, 1.4, 5.5, 1.5]}, {"name": "Ensemble des carrés", "values": [24.0, 16.5, 4.4, 0.9, 8.9, 1.9]}], "unit": " %"}</script>
+  <figcaption class="note">221 carrés, 16 416 commerces. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>C’est le plus grand groupe en nombre de commerces (29,0 %). Restaurants, restauration rapide et bars y font plus d’un commerce sur deux (52,4 %). Le type le plus surreprésenté est moins attendu : les librairies, une fois et demie plus présentes qu’ailleurs. Les vêtements, eux, y sont plus rares que la moyenne (5,5 % contre 8,9 %) : c’est ce qui sépare ce groupe des rues de mode, alors que les deux ont autant de restaurants.</p>
+<p>Les commerces du 5<sup>e</sup> en font tous partie, ou presque, comme 69 % des commerces du 11<sup>e</sup>, 63 % du 9<sup>e</sup> et 49 % du 10<sup>e</sup>.</p>
+
+<h2>3. Courses du quotidien : le nord-est et le sud-est</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces du groupe, par type : courses du quotidien</p>
+  <script type="application/json">{"type": "bars", "labels": ["Épiceries", "Coiffeurs", "Boucheries", "Primeurs", "Restaurants", "Vêtements"], "series": [{"name": "Courses du quotidien", "values": [9.9, 7.8, 2.4, 1.3, 19.2, 4.3]}, {"name": "Ensemble des carrés", "values": [5.9, 6.1, 1.3, 0.8, 24.0, 8.9]}], "unit": " %"}</script>
+  <figcaption class="note">287 carrés, 14 837 commerces. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Un commerce sur dix y est une épicerie, et les boucheries y sont presque deux fois plus présentes qu’ailleurs. C’est le groupe qui compte le plus de carrés (287) et le moins de chaînes : 10,3 % des commerces, soit plus de deux fois moins que dans les rues de mode. Les vêtements y pèsent moitié moins que la moyenne.</p>
+<p>Le 19<sup>e</sup> (97 % de ses commerces) et le 20<sup>e</sup> (93 %) y sont presque en entier, le 18<sup>e</sup> aux deux tiers (70 %), le 12<sup>e</sup> et le 13<sup>e</sup> pour moitié (51 %).</p>
+
+<h2>4. Services de quartier : l’ouest et le sud-ouest</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces du groupe, par type : services de quartier</p>
+  <script type="application/json">{"type": "bars", "labels": ["Instituts de beauté", "Pressings et laveries", "Fleuristes et animaleries", "Cordonniers", "Restaurants", "Bars et cafés"], "series": [{"name": "Services de quartier", "values": [11.4, 2.9, 1.9, 0.5, 18.8, 2.5]}, {"name": "Ensemble des carrés", "values": [7.2, 1.9, 1.3, 0.3, 24.0, 4.4]}], "unit": " %"}</script>
+  <figcaption class="note">207 carrés, 10 698 commerces. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Ici, ce sont les services à la personne et à la maison qui ressortent : instituts de beauté (11,4 % contre 7,2 %), pressings, cordonniers, fleuristes. On y sort moins : les bars et cafés y sont presque deux fois plus rares que la moyenne. Les chaînes y sont nombreuses (20,4 %), deux fois plus que dans les courses du quotidien.</p>
+<p>Trois arrondissements portent 70 % des commerces du groupe : le 15<sup>e</sup>, le 16<sup>e</sup> et le 17<sup>e</sup>. Il couvre 77 % des commerces du 16<sup>e</sup>, 67 % du 15<sup>e</sup>, 61 % du 17<sup>e</sup> et 59 % du 7<sup>e</sup>.</p>
+
+<h2>Ce qui change d’un groupe à l’autre, au-delà des types</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces rattachés à une chaîne, par groupe</p>
+  <script type="application/json">{"type": "bars", "labels": ["Rues de mode", "Services de quartier", "Sorties", "Courses du quotidien"], "series": [{"name": "", "values": [24.0, 20.4, 15.4, 10.3]}], "unit": " %"}</script>
+  <figcaption class="note">Chaîne : enseigne reconnue par les règles de Pignon (réseau, franchise ou société à plusieurs boutiques). Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<figure class="chart">
+  <p class="chart-title">Commerces ouverts par carré de 250 m, valeur médiane</p>
+  <script type="application/json">{"type": "bars", "labels": ["Rues de mode", "Sorties", "Services de quartier", "Courses du quotidien"], "series": [{"name": "", "values": [81, 66, 46, 42]}]}</script>
+  <figcaption class="note">Carrés d’au moins 20 commerces ouverts. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Deux choses, en revanche, ne changent pas. La part des commerces ouverts depuis 2020 est presque la même partout, entre 42,6 % et 45,8 % : aucun groupe ne se renouvelle nettement plus vite que les autres. Et aucun arrondissement n’est d’un seul bloc en dehors du centre : le 14<sup>e</sup> se partage en trois tiers presque égaux entre services de quartier, courses du quotidien et sorties.</p>
+
+<h2>Pourquoi quatre groupes, et pas six</h2>
+
+<p>La méthode (les k-moyennes, un classique de la statistique) donne toujours le nombre de groupes qu’on lui demande. Rien dans les données n’impose un nombre : Paris est un dégradé, pas une mosaïque. Nous avons donc cherché le nombre de groupes qui <strong>résiste quand on déplace le quadrillage</strong>. Si l’on décale tous les carrés de 125 mètres, un commerce devrait rester dans le même groupe.</p>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces qui restent dans le même groupe quand le quadrillage est décalé de 125 m</p>
+  <script type="application/json">{"type": "bars", "labels": ["2 groupes", "3 groupes", "4 groupes", "5 groupes", "6 groupes"], "series": [{"name": "Carré décrit avec ses huit voisins", "values": [94.2, 91.1, 86.2, 77.0, 74.0]}, {"name": "Carré décrit seul", "values": [78.9, 66.6, 52.4, 52.7, 44.4]}], "unit": " %"}</script>
+  <figcaption class="note">Les groupes des deux quadrillages sont appariés un à un par leur plus grand recouvrement. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0), calcul Pignon.</figcaption>
+</figure>
+
+<p>Notre premier essai classait chaque carré d’après ses seules boutiques, en six groupes. Il donnait de beaux noms, et il ne tenait pas : décalé de 125 mètres, plus d’un commerce sur deux changeait de groupe (44,4 % restaient). Un carré de 250 mètres compte quelques dizaines de commerces répartis entre 28 types ; c’est trop peu pour que son mélange soit autre chose qu’en partie du hasard.</p>
+<p>Décrire chaque carré avec ses huit voisins, soit environ 750 mètres de côté, change le résultat : avec quatre groupes, 86,2 % des commerces gardent leur groupe quand le quadrillage est décalé, 83,6 % avec des carrés de 200 mètres et 87,7 % avec des carrés de 300 mètres. Les limites entre groupes bougent ; les blocs restent.</p>
+<p>Il faut aussi dire ce que ces groupes laissent de côté. Ils rendent compte de 34,6 % des différences de mélange entre carrés. Les deux tiers restants sont propres à chaque rue.</p>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+<ul>
+  <li><strong>Les noms sont les nôtres.</strong> L’ordinateur rend des groupes numérotés ; « rues de mode » ou « services de quartier » sont une lecture, pas un résultat.</li>
+  <li><strong>Un groupe est une moyenne.</strong> Un carré de « courses du quotidien » peut avoir une rue de restaurants. Le groupe décrit environ 750 mètres autour du carré, pas une adresse.</li>
+  <li><strong>Les limites sont floues.</strong> Près d’un commerce sur sept change de groupe quand le quadrillage bouge : un carré en bordure de deux blocs peut appartenir à l’un comme à l’autre.</li>
+  <li><strong>Les choix sont les nôtres :</strong> carrés de 250 m, au moins 20 commerces ouverts, huit voisins, quatre groupes. Les carrés retenus contiennent 94 % des 60 189 commerces ouverts ; les rues peu commerçantes ne sont pas sur la carte.</li>
+  <li><strong>Un commerce « ouvert » l’est d’après le répertoire.</strong> Les fermetures y arrivent tard, et parfois jamais.</li>
+  <li><strong>Le type vient du code d’activité déclaré par l’exploitant,</strong> et les entrepreneurs individuels sans enseigne ne sont pas comptés. Mêmes commerces et mêmes règles que la <a href="../commerces-paris-ouvertures-fermetures/">carte animée</a>.</li>
+  <li><strong>Le mélange des commerces ne dit rien des clients.</strong> Revenus, passage, loyers : ces groupes n’en tiennent pas compte.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et autour de votre adresse ?</h2>
+  <p>Un groupe décrit un morceau de ville. Pignon lit le même répertoire autour d’une adresse précise : les commerces de votre type à quelques minutes à pied, les habitants, le passage. Ce sont des signaux, avec le chiffre et la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

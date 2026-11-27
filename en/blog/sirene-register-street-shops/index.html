@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What the SIRENE register knows about a street · Tesselo</title>
+    <meta name="description" content="Two streets of the 14th arrondissement, rue Daguerre and rue d’Alésia, read through the public business register: what a record holds, seventeen years of openings and closures, takeovers, chains, and where the register stops." />
+    <meta property="og:title" content="What the SIRENE register knows about a street · Tesselo" />
+    <meta property="og:description" content="Two streets of the 14th arrondissement, rue Daguerre and rue d’Alésia, read through the public business register: what a record holds, seventeen years of openings and closures, takeovers, chains, and where the register stops." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/repertoire-sirene-rue-commerces/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/repertoire-sirene-rue-commerces/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>What the SIRENE register knows about a street</h1><p class="lead">Two streets of the 14th arrondissement, rue Daguerre and rue d’Alésia, read through the public business register: what a record holds, seventeen years of openings and closures, takeovers, chains, and where the register stops.</p></header>
+        <p>INSEE’s SIRENE register is the official register of French businesses. It is public, free, and it underlies almost everything Pignon shows about shops. Rather than describe it in general, we opened it on two streets of the 14th arrondissement, where Pignon started: <strong>rue Daguerre</strong>, a partly pedestrian market street, and <strong>rue d’Alésia</strong>, which crosses the arrondissement from east to west. Here is what it knows about them, and what it does not. No shop name or street number appears here: only counts.</p>
+
+<h2>One record per establishment</h2>
+
+<p>The register does not know “shops” but establishments: an address where a business carries out an activity. For the 28 types of shop we follow, it holds <strong>240 records on rue Daguerre</strong> and <strong>400 on rue d’Alésia</strong>, open and closed. Each record fits in a few lines.</p>
+<ul>
+  <li><strong>An establishment number</strong> of 14 digits (the SIRET), whose first nine identify the company.</li>
+  <li><strong>An address</strong>, as the operator declared it.</li>
+  <li><strong>An activity code</strong>: bakery, hairdressing, fast food… This is what gives the type of shop.</li>
+  <li><strong>A shop sign or trading name</strong>, when there is one.</li>
+  <li><strong>A creation date</strong>, a state (open or closed) and the date of the last change of state.</li>
+  <li><strong>The link to the company:</strong> how many establishments it runs, and who directs it.</li>
+</ul>
+<p>The register is updated every day, and INSEE publishes a full file for the whole of France on the 1st of each month. Closed records are not erased: that is what makes it possible to go back in time. The figures in this article come from our copy of November 2026.</p>
+<p>From each record, Pignon uses the position, the type, the two dates and a “chain or independent” flag. The map shows no shop’s name, and directors’ names are never stored.</p>
+
+<h2>Today: two streets, two mixes</h2>
+
+<figure class="chart">
+  <p class="chart-title">Shops registered as open, by family</p>
+  <script type="application/json">{"type": "bars", "labels": ["Restaurants, fast food, caterers", "Food shops", "Hair and beauty", "Clothing", "Bars and cafés", "Other shops and services"], "series": [{"name": "Rue Daguerre", "values": [54, 33, 4, 11, 6, 17]}, {"name": "Rue d’Alésia", "values": [50, 31, 41, 22, 2, 47]}]}</script>
+  <figcaption class="note">125 shops on rue Daguerre, 193 on rue d’Alésia, November 2026. Food shops: bakeries, butchers, fishmongers, greengrocers, cheese and fine food, wine shops, grocery shops. Source: INSEE, SIRENE register (Licence Ouverte 2.0). Same shops and same rules as the <a href="../paris-shops-openings-closures/">animated map</a>.</figcaption>
+</figure>
+
+<p>The register counts <strong>125 open shops on rue Daguerre</strong> and <strong>193 on rue d’Alésia</strong>. The mix is not the same.</p>
+<ul>
+  <li><strong>Rue Daguerre is for eating.</strong> 87 shops out of 125 (70%) are restaurants, fast food, caterers or food shops: 26 restaurants, 25 fast food places, 7 greengrocers, 6 bakeries, 6 wine shops, 5 butchers.</li>
+  <li><strong>On rue d’Alésia the share falls to 42%</strong> (81 out of 193). The street has 22 clothing shops, 21 hairdressers and 20 beauty salons. On rue Daguerre, hair and beauty make 4 shops in all.</li>
+</ul>
+<p>These totals are upper bounds. A shop that pulls down its shutter without any formality stays “open” in the register.</p>
+
+<h2>Seventeen years of openings and closures</h2>
+
+<figure class="chart">
+  <p class="chart-title">Rue Daguerre and rue d’Alésia: openings and closures per year</p>
+  <script type="application/json">{"type": "line", "x": [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "Openings", "values": [20, 26, 17, 20, 24, 20, 19, 24, 20, 27, 19, 27, 22, 35, 27, 31, 28]}, {"name": "Closures", "values": [11, 20, 12, 17, 19, 16, 8, 15, 20, 15, 16, 20, 12, 19, 20, 20, 20]}]}</script>
+  <figcaption class="note">Both streets together. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>From 2009 to 2025, the two streets together count <strong>406 openings</strong> and <strong>280 closures</strong>: 147 and 101 on rue Daguerre, 259 and 179 on rue d’Alésia. Each year, between 17 and 35 records open, and between 8 and 20 close. At the scale of a street the numbers are small: one year says nothing, the series says something.</p>
+
+<figure class="chart">
+  <p class="chart-title">Rue d’Alésia: openings and closures from 2009 to 2025, by family</p>
+  <script type="application/json">{"type": "bars", "labels": ["Restaurants, fast food, caterers", "Hair and beauty", "Food shops", "Other shops and services", "Clothing", "Bars and cafés"], "series": [{"name": "Openings", "values": [62, 61, 54, 45, 34, 3]}, {"name": "Closures", "values": [40, 32, 28, 23, 53, 3]}]}</script>
+  <figcaption class="note">Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>On rue d’Alésia, only one family closes more than it opens: clothing, with 53 closures for 34 openings in seventeen years. Hair and beauty do the opposite: 61 openings, 32 closures. On rue Daguerre the slope leans towards the plate: 113 of the 147 openings (77%) are restaurants, fast food, caterers or food shops.</p>
+<p>This is what the register does best: not a snapshot, but the direction a street is taking.</p>
+
+<h2>The walls stay, the operators change</h2>
+
+<figure class="chart">
+  <p class="chart-title">Street numbers by the number of records they have held</p>
+  <script type="application/json">{"type": "bars", "labels": ["1 record", "2 records", "3 or 4 records", "5 records or more"], "series": [{"name": "Rue Daguerre", "values": [21, 16, 20, 19]}, {"name": "Rue d’Alésia", "values": [41, 23, 37, 28]}]}</script>
+  <figcaption class="note">76 street numbers on rue Daguerre, 129 on rue d’Alésia. Open and closed records, all dates. One street number can hold several premises. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>The 240 records of rue Daguerre sit on 76 street numbers, the 400 of rue d’Alésia on 129. On rue Daguerre, 19 numbers have held five records or more, and one of them eleven. Not all are successions in the same premises: a corner building or a courtyard can hold several shops, and 33 numbers on rue Daguerre today have at least two shops registered as open.</p>
+<p>The register still makes takeovers visible. When a shop changes operator, the old record closes and a new one opens at the same address.</p>
+<ul>
+  <li><strong>One closure in three is followed by a shop of the same type at the same number.</strong> Of the 280 closures from 2009 to 2025, 95 (34%) are in that case, within the following year or the four months before. These are most probably takeovers, not shutters pulled down.</li>
+  <li><strong>One in two</strong> (139) is followed by a shop of one of the 28 types we follow, whichever it is.</li>
+  <li><strong>Three years after opening,</strong> 43 of the 263 records opened from 2009 to 2020 were closed (16%), and 83 after five years (32%). Of the 43, 18 were followed by a shop of the same type at the same number.</li>
+</ul>
+<p>A closed record is therefore not a shop that vanished. That is why Pignon, when it measures how many shops lasted three years, counts a takeover as a shop that lasted.</p>
+
+<h2>The age of the shops</h2>
+
+<figure class="chart">
+  <p class="chart-title">Shops registered as open, by the creation date of their record</p>
+  <script type="application/json">{"type": "bars", "labels": ["Before 2000", "2000–2009", "2010–2019", "Since 2020"], "series": [{"name": "Rue Daguerre", "values": [10, 14, 31, 45]}, {"name": "Rue d’Alésia", "values": [12, 16, 22, 50]}], "unit": "%"}</script>
+  <figcaption class="note">Share of the 125 shops on rue Daguerre and of the 193 on rue d’Alésia. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Close to half of the open records date from 2020 or later: 45% on rue Daguerre, 50% on rue d’Alésia. Half of the shops on rue Daguerre have a record created after June 2018; on rue d’Alésia, after August 2019. About one in ten dates from before 2000.</p>
+<p>Two cautions. The date is that of the record, not of the shop: a bakery taken over in 2022 is “four years old”, even if bread has been sold there for a century. And five open records on these two streets carry the year 1900, the date the register writes when it does not know the origin.</p>
+
+<h2>Chains and independents</h2>
+
+<figure class="chart">
+  <p class="chart-title">Open shops counted as chains, by reason</p>
+  <script type="application/json">{"type": "bars", "labels": ["Known brand", "Company with 5 establishments or more", "Same directors, 3 shops of the type or more"], "series": [{"name": "Rue Daguerre", "values": [3, 5, 12]}, {"name": "Rue d’Alésia", "values": [15, 12, 13]}]}</script>
+  <figcaption class="note">20 shops out of 125 on rue Daguerre, 40 out of 193 on rue d’Alésia. Pignon’s classification, built from the register. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>The register has no “chain” box. We infer it from three clues: the sign is in our list of brands; the company runs at least five establishments; or several companies that share a director together run at least three shops of the same type. For that last clue, directors are compared in memory and no name is stored.</p>
+<p>The result: <strong>16% chains on rue Daguerre</strong> (20 out of 125), <strong>21% on rue d’Alésia</strong> (40 out of 193). On rue d’Alésia, 9 of the 22 clothing shops are chains, and 15 shops carry a known brand, against 3 on rue Daguerre. On rue Daguerre the most common form is less visible from the pavement: 12 shops belong to directors who run at least three of the same type under different companies.</p>
+<p>The thresholds (five establishments, three shops) are ours. And a franchisee is an independent company: the register ties it to its brand only through its sign.</p>
+
+<h2>Where the register stops</h2>
+<ul>
+  <li><strong>Closures arrive late, and sometimes never.</strong> The 125 and 193 “open” shops are upper bounds. Dated openings and closures are more reliable than these totals.</li>
+  <li><strong>A takeover or a move counts as one closure and one opening.</strong> On these two streets, that is the case for at least one closure in three.</li>
+  <li><strong>The history starts around 2009.</strong> Older closures are almost all missing: 13 records on rue Daguerre and 12 on rue d’Alésia carry a closure dated before 2009.</li>
+  <li><strong>The type comes from the declared activity code.</strong> It can be imprecise or out of date, and some trades have no code of their own.</li>
+  <li><strong>An address is not always a shop window.</strong> We leave out sole traders without a shop sign, whose address is often a home: 25 records on rue Daguerre, 29 on rue d’Alésia. We also leave out business address providers, which rent an administrative address to companies with no premises. The rule: a street number that holds 20 records or more, of 10 types of shop or more, with under 20% chains. In Paris it finds 97 street numbers and 6,326 records, 3,818 of them created since 2020; the busiest holds 763, of 24 different types. These records are left out of every count in the blog. None is on our two streets, where the maximum is 5 open shops at one number on rue Daguerre and 8 on rue d’Alésia. The rule keeps shopping centres and railway stations, where the shops exist, and does not see smaller address providers, under its thresholds.</li>
+  <li><strong>The register contains errors.</strong> One record on rue d’Alésia carries a closure date in the future.</li>
+  <li><strong>It says nothing about what happens inside:</strong> not the turnover, the rent, the floor area or the number of customers.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And on your street?</h2>
+  <p>Pignon does this reading around one precise address: the shops of your type within a few minutes’ walk, the chains among them, those that lasted three years, the nearby closures. These are signals, with the number and the source behind each.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

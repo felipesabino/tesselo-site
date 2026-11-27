@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paris le jour, Paris la nuit : où sont les clients à 13 h et à 20 h · Tesselo</title>
+    <meta name="description" content="Cinq emplois par habitant dans le 8e, moins d’un demi dans le 20e, et plus d’emplois dans le 15e que dans le 8e : six graphiques sur les habitants, les emplois et les stations de Paris, et ce que cela change selon le type de commerce." />
+    <meta property="og:title" content="Paris le jour, Paris la nuit : où sont les clients à 13 h et à 20 h · Tesselo" />
+    <meta property="og:description" content="Cinq emplois par habitant dans le 8e, moins d’un demi dans le 20e, et plus d’emplois dans le 15e que dans le 8e : six graphiques sur les habitants, les emplois et les stations de Paris, et ce que cela change selon le type de commerce." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/paris-day-night-residents-jobs/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/paris-day-night-residents-jobs/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Paris le jour, Paris la nuit : où sont les clients à 13 h et à 20 h</h1><p class="lead">Cinq emplois par habitant dans le 8e, moins d’un demi dans le 20e, et plus d’emplois dans le 15e que dans le 8e : six graphiques sur les habitants, les emplois et les stations de Paris, et ce que cela change selon le type de commerce.</p></header>
+        <p>À 13 h, une rue du 8e arrondissement est pleine de gens qui n’y dorment pas. À 20 h, une rue du 20e est pleine de gens qui n’y travaillent pas. La même vitrine n’a pas les mêmes clients selon l’heure, et le recensement permet de le mesurer : il compte les habitants là où ils vivent, et les emplois là où ils s’exercent. Voici ce que donnent ces deux comptages mis côte à côte, avec la fréquentation des stations.</p>
+
+<h2>Cinq emplois par habitant dans le 8e, moins d’un demi dans le 20e</h2>
+
+<figure class="chart">
+  <p class="chart-title">Emplois situés dans l’arrondissement pour 100 habitants</p>
+  <script type="application/json">{"type": "bars", "labels": ["8e", "1er", "2e", "9e", "7e", "4e", "6e", "10e", "3e", "5e", "12e", "15e", "16e", "13e", "17e", "14e", "11e", "19e", "18e", "20e"], "series": [{"name": "", "values": [497, 412, 302, 201, 147, 142, 113, 102, 97, 93, 86, 78, 75, 71, 68, 60, 58, 50, 45, 40]}], "unit": ""}</script>
+  <figcaption class="note">Emplois au lieu de travail : recensement de 2023. Habitants : recensement de 2022. Source : INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Paris compte 2 113 705 habitants et 1 811 254 emplois, soit 86 emplois pour 100 habitants. Mais la moyenne ne ressemble à aucun arrondissement. Le 8e a 176 116 emplois pour 35 418 habitants : cinq personnes y travaillent pour une qui y habite. Le 20e a 76 014 emplois pour 187 694 habitants : le rapport est douze fois plus faible.</p>
+<p>Huit arrondissements comptent plus d’emplois que d’habitants : les 1er, 2e, 4e, 6e, 7e, 8e, 9e et 10e. Ils réunissent 36 % des emplois de Paris et 16 % de ses habitants. À l’autre bout, les 18e, 19e et 20e logent 26 % des Parisiens et accueillent 14 % des emplois.</p>
+
+<h2>La surprise : le 15e a plus d’emplois que le 8e</h2>
+
+<p>Le rapport ne dit pas tout. En nombre d’emplois, le premier arrondissement de Paris n’est pas le 8e mais le 15e : 179 149 emplois contre 176 116. Suivent le 13e (126 704), le 12e (120 568) et le 16e (120 355). Ces arrondissements passent pour résidentiels parce qu’ils sont très peuplés. Ils sont les deux à la fois : il faut descendre à l’échelle du quartier pour savoir de quel côté tombe une rue.</p>
+
+<figure class="chart">
+  <p class="chart-title">Nombre de quartiers « de nuit » et « de jour » par arrondissement (estimation)</p>
+  <script type="application/json">{"type": "bars", "labels": ["1er", "2e", "3e", "4e", "5e", "6e", "7e", "8e", "9e", "10e", "11e", "12e", "13e", "14e", "15e", "16e", "17e", "18e", "19e", "20e"], "series": [{"name": "Moins de 50 emplois pour 100 habitants", "values": [0, 1, 2, 1, 7, 2, 6, 0, 8, 7, 30, 34, 42, 35, 54, 43, 34, 51, 53, 60]}, {"name": "Plus de 100 emplois pour 100 habitants", "values": [7, 7, 7, 7, 7, 5, 11, 12, 10, 12, 6, 8, 6, 9, 15, 13, 15, 4, 6, 3]}], "unit": ""}</script>
+  <figcaption class="note"><strong>Estimation.</strong> L’INSEE ne publie les emplois au lieu de travail que par arrondissement. Pignon répartit le total de chaque arrondissement entre ses quartiers selon les effectifs des employeurs qui y sont enregistrés (tranches d’effectifs du répertoire SIRENE). Quartiers d’au moins 1 000 habitants (871 sur 992). Sources : INSEE, recensements de 2022 et 2023, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Sur les 871 quartiers parisiens d’au moins 1 000 habitants, 171 seulement, soit un sur cinq, ont plus d’emplois estimés que d’habitants. Le quartier médian en a 44 pour 100 habitants, deux fois moins que la moyenne de la ville : les emplois sont bien plus concentrés que les logements.</p>
+<ul>
+  <li><strong>Le 15e compte 15 quartiers « de jour »,</strong> autant que le 17e et plus que le 8e (12 sur 14). Il compte aussi 54 quartiers « de nuit ». Deux villes dans le même arrondissement.</li>
+  <li><strong>Le 9e est coupé en deux :</strong> 201 emplois pour 100 habitants en moyenne, mais 8 de ses 26 quartiers en ont moins de 50.</li>
+  <li><strong>Le 20e a ses exceptions :</strong> 60 quartiers de nuit sur 72, et 3 quartiers où l’on travaille plus qu’on n’habite.</li>
+  <li><strong>Les extrêmes :</strong> un quartier de la Madeleine (8e) réunit 1 368 habitants et environ 17 000 emplois estimés, soit douze emplois par habitant. Un quartier de Saint-Fargeau (20e) a 1 856 habitants et une quarantaine d’emplois estimés.</li>
+</ul>
+
+<h2>Qui entre, qui sort</h2>
+
+<figure class="chart">
+  <p class="chart-title">Les actifs de Paris un jour de travail, recensement de 2023</p>
+  <script type="application/json">{"type": "bars", "labels": ["Travaillent à Paris sans y habiter", "Habitent et travaillent à Paris", "Habitent Paris, travaillent ailleurs"], "series": [{"name": "", "values": [1095474, 715780, 355118]}], "unit": ""}</script>
+  <figcaption class="note">Première ligne : emplois situés à Paris moins les Parisiens qui y travaillent. Source : INSEE, recensement de 2023, emplois au lieu de travail et déplacements domicile-travail (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Six emplois parisiens sur dix (60 %) sont occupés par des personnes qui n’habitent pas Paris : 1 095 474 personnes. Dans l’autre sens, 355 118 Parisiens quittent la ville pour travailler, soit un actif en emploi sur trois (33,2 %). Cette part a peu bougé : 32,0 % au recensement de 2012, 31,7 % à celui de 2017. Le solde est de 740 356 travailleurs en plus à Paris un jour de travail. Pour un commerce, ce sont des clients du midi plus que du soir.</p>
+
+<figure class="chart">
+  <p class="chart-title">Part des actifs en emploi qui travaillent hors de Paris, par arrondissement de résidence</p>
+  <script type="application/json">{"type": "bars", "labels": ["14e", "17e", "12e", "13e", "15e", "16e", "19e", "11e", "18e", "20e", "5e", "10e", "8e", "2e", "4e", "9e", "3e", "1er", "6e", "7e"], "series": [{"name": "", "values": [38, 37, 36, 35, 35, 33, 33, 32, 32, 32, 31, 31, 30, 29, 29, 29, 28, 27, 27, 26]}], "unit": " %"}</script>
+  <figcaption class="note">Source : INSEE, recensement de 2023, déplacements domicile-travail (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Les arrondissements du bord de Paris envoient plus d’actifs au-delà du périphérique : 38 % dans le 14e, 37 % dans le 17e, contre 26 % dans le 7e. L’écart reste modeste. Partout, au moins un actif sur quatre n’est pas dans Paris à l’heure du déjeuner. La façon dont ils s’y rendent a changé davantage que leur destination : voir <a href="../covid-paris-commerces-donnees-publiques/">notre article sur la période du Covid</a>.</p>
+
+<h2>Les stations suivent les emplois, pas les habitants</h2>
+
+<figure class="chart">
+  <p class="chart-title">Les douze stations les plus fréquentées de Paris : entrées sur un an, en millions</p>
+  <script type="application/json">{"type": "bars", "labels": ["Saint-Lazare (8e)", "Châtelet (1er)", "Gare de Lyon (12e)", "Gare du Nord (10e)", "Montparnasse-Bienvenüe (15e)", "Gare de l’Est (10e)", "Charles de Gaulle-Étoile (17e)", "Saint-Michel (5e)", "Les Halles (1er)", "République (10e)", "Gare d’Austerlitz (13e)", "Nation (12e)"], "series": [{"name": "", "values": [83, 53.4, 50.9, 50.4, 44.8, 32.1, 19.3, 17.7, 17.5, 16.8, 13.8, 13.7]}], "unit": " M"}</script>
+  <figcaption class="note">Validations à l’entrée du métro, du RER et du train, de juillet 2025 à juin 2026, toutes lignes d’une même station confondues. Les sorties ne sont pas comptées. Châtelet et Les Halles sont comptées séparément. Une station à cheval sur plusieurs arrondissements est rattachée à celui où tombe son centre. Source : Île-de-France Mobilités (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Saint-Lazare enregistre 83 millions d’entrées par an, soit 227 000 par jour en moyenne. Elle est dans le 8e, l’arrondissement le plus « de jour » de Paris, et Châtelet dans le 1er. Mais la suite du classement est ailleurs : Gare de Lyon, Gare du Nord, Montparnasse et Gare de l’Est sont dans des arrondissements où le rapport est proche de la moyenne (12e : 86, 10e : 102, 15e : 78). Les six stations de grande gare réunissent 275 millions d’entrées, soit 23 % des entrées comptées dans Paris (235 stations).</p>
+<p>À l’échelle des arrondissements, les entrées se répartissent comme les emplois plutôt que comme les habitants. Les huit arrondissements « de jour » réunissent 42 % des entrées, pour 36 % des emplois et 16 % des habitants. Les 18e, 19e et 20e en réunissent 13 %, pour 14 % des emplois et 26 % des habitants. Une explication possible : un habitant de banlieue qui travaille à Paris n’y valide qu’une fois, le soir, près de son bureau.</p>
+
+<h2>Ce que cela change selon le commerce</h2>
+
+<p>Un actif en journée n’est pas un client comme un habitant. Il déjeune, prend un café, dépose un vêtement au pressing. Il n’achète pas son poisson près du bureau. Pour comparer les adresses, Pignon additionne les habitants et les actifs en journée, en donnant à ces derniers un poids qui dépend du type de commerce.</p>
+
+<figure class="chart">
+  <p class="chart-title">Poids d’un actif en journée par rapport à un habitant, selon le type de commerce (hypothèses de Pignon)</p>
+  <script type="application/json">{"type": "bars", "labels": ["Papeterie", "Pressing", "Prêt-à-porter", "Café", "Restauration rapide", "Restaurant", "Salle de sport", "Institut de beauté", "Librairie", "Boulangerie", "Bar", "Coiffeur", "Fleuriste", "Caviste", "Primeur", "Pharmacie", "Boucherie", "Poissonnerie", "Laverie"], "series": [{"name": "", "values": [1.2, 1, 1, 0.9, 0.9, 0.8, 0.8, 0.7, 0.6, 0.5, 0.5, 0.5, 0.5, 0.4, 0.3, 0.25, 0.15, 0.15, 0.1]}], "unit": ""}</script>
+  <figcaption class="note"><strong>Hypothèses, pas mesures.</strong> Ces poids sont des choix de Pignon, appelés à être corrigés. Habitant = 1. Aucune source publique ne mesure la part des clients qui travaillent à proximité.</figcaption>
+</figure>
+
+<ul>
+  <li><strong>Commerces du midi :</strong> restauration rapide, café, restaurant, pressing, papeterie. Dans un quartier de la Madeleine, la clientèle de jour pèse bien plus que les habitants. Le signal inverse compte aussi : ces rues se vident le soir et le week-end.</li>
+  <li><strong>Commerces du soir et du samedi :</strong> boucherie, poissonnerie, primeur, laverie, pharmacie. On y fait ses courses près de chez soi. Dans un quartier de nuit, le nombre d’habitants est le chiffre qui compte, et la clientèle est absente à 13 h en semaine.</li>
+  <li><strong>Les stations brouillent le classement.</strong> Le quartier de la Gare du Nord compte 687 habitants et environ 1 500 emplois estimés, pour 50 millions d’entrées par an dans sa station. Les voyageurs ne figurent dans aucun des deux comptages.</li>
+</ul>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+<ul>
+  <li><strong>Aucune de ces sources ne donne l’heure.</strong> « Jour » veut dire ici « là où sont les emplois », « nuit » veut dire « là où sont les logements ». La présence réelle à 13 h ou à 20 h n’est pas mesurée.</li>
+  <li><strong>Les emplois par quartier sont une estimation.</strong> Le total est celui de l’INSEE par arrondissement ; sa répartition vient des tranches d’effectifs des employeurs. Pour 21 % du poids, l’effectif d’un site est déduit de celui de l’entreprise entière, ce qui sous-estime les grands sites comme les hôpitaux.</li>
+  <li><strong>Touristes, étudiants, visiteurs et patients ne sont pas comptés.</strong> Un quartier de musée ou d’université est plus rempli le jour que ces chiffres ne le montrent.</li>
+  <li><strong>Un emploi n’est pas une présence.</strong> Temps partiel, télétravail, horaires décalés, chantiers : une personne dont l’emploi est situé dans le 8e n’y est pas tous les jours.</li>
+  <li><strong>Les deux recensements n’ont pas la même année :</strong> 2022 pour les habitants par quartier, 2023 pour les emplois. Et un recensement est une moyenne de cinq années d’enquêtes.</li>
+  <li><strong>Les entrées en station ne comptent ni les sorties ni les bus.</strong> Les arrêts de tramway sont laissés hors du classement des stations (leurs validations ne sont publiées que par ligne) ; ils sont inclus, avec une part estimée, dans les parts par arrondissement. Les stations desservies par un tramway y pèsent 15 % des entrées.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et autour de votre adresse ?</h2>
+  <p>Pignon fait ce calcul pour une adresse précise : les habitants et les actifs en journée à quelques minutes à pied, les stations proches et leur fréquentation, avec le poids de chacun pour votre type de commerce. Ce sont des signaux, avec le chiffre et la source derrière chacun, et la mention « estimation » là où c’en est une.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

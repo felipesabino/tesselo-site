@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les règles d’une rue : ce que les données ouvertes de Paris disent avant de signer un bail · Tesselo</title>
+    <meta name="description" content="Rues protégées par le PLU, terrasses, marchés, dossiers d’urbanisme, ouverture le dimanche : deux cartes et sept graphiques tirés de cinq fichiers de la Ville de Paris sur ce qu’un commerce peut faire dans une rue." />
+    <meta property="og:title" content="Les règles d’une rue : ce que les données ouvertes de Paris disent avant de signer un bail · Tesselo" />
+    <meta property="og:description" content="Rues protégées par le PLU, terrasses, marchés, dossiers d’urbanisme, ouverture le dimanche : deux cartes et sept graphiques tirés de cinq fichiers de la Ville de Paris sur ce qu’un commerce peut faire dans une rue." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/paris-street-rules-shop-open-data/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <link rel="stylesheet" href="../../assets/vendor/maplibre-gl.css" />
+    <script src="../../assets/vendor/maplibre-gl.js" defer></script>
+    <script src="../../assets/postmap.js" defer></script>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/paris-street-rules-shop-open-data/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Les règles d’une rue : ce que les données ouvertes de Paris disent avant de signer un bail</h1><p class="lead">Rues protégées par le PLU, terrasses, marchés, dossiers d’urbanisme, ouverture le dimanche : deux cartes et sept graphiques tirés de cinq fichiers de la Ville de Paris sur ce qu’un commerce peut faire dans une rue.</p></header>
+        <p>Avant de signer un bail, on visite le local, on compte les passants, on regarde les voisins. On pense moins aux règles de la rue elle-même : ce que le plan d’urbanisme y protège, ce que le trottoir autorise, les jours où un marché s’installe devant la vitrine, les travaux à déclarer, le droit d’ouvrir le dimanche. À Paris, la Ville publie tout cela en données ouvertes. Voici cinq fichiers, ce que chacun dit, et ce qu’il ne dit pas.</p>
+
+<h2>1. La rue est-elle protégée pour le commerce ?</h2>
+
+<p>Le PLU (plan local d’urbanisme, les règles d’urbanisme de la Ville, dont la version « bioclimatique » a été votée le 20 novembre 2024) trace des lignes le long de certaines rues. Sur ces lignes, un commerce en rez-de-chaussée ne peut pas être transformé en logement ou en bureau. Pour un fondateur, c’est un signal sur la rue plus que sur le local : les vitrines voisines ont vocation à rester des vitrines.</p>
+
+<p>Le fichier compte 5 185 lignes, soit <strong>361 km de rues protégées</strong>. Il distingue trois niveaux :</p>
+<ul>
+  <li><strong>commerce et artisanat</strong>, le cas général : 323 km, soit 89 % du total ;</li>
+  <li><strong>commerce artisanal</strong>, des lignes qui visent l’artisanat en particulier : 29,5 km ;</li>
+  <li><strong>commerce culturel</strong> (librairies, galeries…) : 9,2 km, dont 7,0 km dans les seuls 5<sup>e</sup> et 6<sup>e</sup> arrondissements. Treize arrondissements n’en ont aucun.</li>
+</ul>
+
+<figure class="postmap" data-src="../../assets/data/protected-streets.json" data-label="Carte de Paris : les rues où le PLU protège les commerces en rez-de-chaussée, selon le niveau de protection">
+  <p class="chart-title">Les rues où le PLU protège les commerces en rez-de-chaussée</p>
+  <figcaption class="note">Les 5 185 lignes du fichier, selon leur niveau de protection. Tracé publié à titre informatif. Source : Ville de Paris, PLU bioclimatique, prescriptions linéaires, fichier du 3 juin 2025 (ODbL).</figcaption>
+</figure>
+
+<p><strong>La protection suit les rues commerçantes, pas la taille de l’arrondissement.</strong> En kilomètres, les grands arrondissements sont en tête : 32,5 km dans le 15<sup>e</sup>, 30,7 km dans le 11<sup>e</sup>. Rapporté à la surface, l’ordre change.</p>
+
+<figure class="chart">
+  <p class="chart-title">Kilomètres de rues protégées par km², par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["6e", "10e", "11e", "9e", "2e", "1er", "5e", "3e", "18e", "20e", "8e", "12e", "15e", "17e", "14e", "19e", "13e", "4e", "16e", "7e"], "series": [{"name": "", "values": [10.1, 8.6, 8.5, 7.8, 7.4, 6.8, 6.7, 5.9, 4.7, 4.7, 4.6, 3.9, 3.9, 3.8, 3.2, 2.5, 2.4, 2.3, 1.6, 1.2]}], "unit": " km/km²"}</script>
+  <figcaption class="note">Les trois niveaux de protection réunis, pour 4,2 km par km² sur l’ensemble de Paris. Chaque ligne est comptée dans l’arrondissement où se trouve son milieu. Surface : somme des contours de quartiers, hors bois de Vincennes (12<sup>e</sup>) et bois de Boulogne (16<sup>e</sup>). Sources : Ville de Paris, PLU bioclimatique, prescriptions linéaires, fichier du 3 juin 2025 (ODbL) ; IGN, contours des quartiers (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Le 6<sup>e</sup> compte 10,1 km de rues protégées par km², devant le 10<sup>e</sup> (8,6) et le 11<sup>e</sup> (8,5). Le 15<sup>e</sup>, premier en kilomètres, passe sous la moyenne parisienne (3,9 contre 4,2). En bas du classement, le 7<sup>e</sup> (1,2) et le 16<sup>e</sup> (1,6) : hors bois, le 16<sup>e</sup> est trois fois et demie plus étendu que le 6<sup>e</sup> (7,6 km² contre 2,1 km²) et compte presque deux fois moins de rues protégées (12,0 km contre 21,6 km). Le centre n’est pas uniforme : 7,4 km par km² dans le 2<sup>e</sup>, 2,3 dans le 4<sup>e</sup>, qui n’a que 3,7 km de rues protégées.</p>
+
+<p>La Ville publie ce fichier « à titre informatif, sans valeur réglementaire ». Pour une adresse donnée, c’est le PLU officiel et le service d’urbanisme de la Ville qui font foi.</p>
+
+<h2>2. Peut-on s’installer sur le trottoir ?</h2>
+
+<p>Une terrasse ou un étalage sur le trottoir demande une autorisation de la Ville. Deux points comptent avant de reprendre un local. D’abord, à Paris, cette autorisation est personnelle et précaire : elle ne se cède pas avec le fonds de commerce, le nouvel exploitant doit la redemander. Ensuite, elle dépend de la largeur du trottoir et du règlement des terrasses de la Ville : une terrasse chez le voisin n’en garantit pas une chez vous.</p>
+
+<p>Le registre compte 13 396 terrasses à l’année, 4 975 terrasses estivales (du printemps à l’automne, nées du Covid : voir <a href="../covid-paris-commerces-donnees-publiques/">notre article sur cette période</a>) et 4 690 étalages. Ce qui frappe, c’est leur taille.</p>
+
+<figure class="chart">
+  <p class="chart-title">Surface des terrasses autorisées à Paris</p>
+  <script type="application/json">{"type": "bars", "labels": ["Moins de 5 m²", "De 5 à 10 m²", "De 10 à 20 m²", "20 m² et plus"], "series": [{"name": "Terrasses à l’année", "values": [37, 31, 22, 11]}, {"name": "Terrasses estivales", "values": [22, 36, 33, 9]}], "unit": " %"}</script>
+  <figcaption class="note">Part des autorisations de chaque catégorie, selon la surface déclarée (longueur × largeur). Source : Ville de Paris, autorisations de terrasses et d’étalages, fichier du 25 octobre 2026 (ODbL).</figcaption>
+</figure>
+
+<p><strong>La terrasse parisienne type tient sur 6,6 m²</strong> : c’est la médiane des terrasses à l’année, à peu près une rangée de tables le long de la vitrine. Plus d’une sur trois (37 %) fait moins de 5 m², une sur dix seulement fait 20 m² ou plus. Les terrasses estivales sont un peu plus grandes (médiane 8,5 m²), les étalages plus petits (3,8 m²).</p>
+
+<figure class="chart">
+  <p class="chart-title">Terrasses autorisées par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["10e", "11e", "15e", "17e", "12e", "8e", "9e", "18e", "14e", "20e", "5e", "16e", "13e", "1er", "4e", "19e", "2e", "6e", "7e", "3e"], "series": [{"name": "À l’année", "values": [987, 938, 929, 928, 856, 714, 778, 748, 693, 669, 745, 660, 612, 590, 504, 491, 452, 426, 351, 325]}, {"name": "Estivales", "values": [390, 382, 294, 287, 270, 397, 319, 344, 262, 254, 160, 235, 228, 129, 191, 154, 152, 167, 214, 146]}]}</script>
+  <figcaption class="note">Source : Ville de Paris, autorisations de terrasses et d’étalages, fichier du 25 octobre 2026 (ODbL).</figcaption>
+</figure>
+
+<p>Le 10<sup>e</sup> (1 377 terrasses) et le 11<sup>e</sup> (1 320) sont en tête. La part des terrasses estivales varie du simple au double : 18 % dans le 1<sup>er</sup> et le 5<sup>e</sup>, 36 % dans le 8<sup>e</sup>, 38 % dans le 7<sup>e</sup>, pour 27 % sur l’ensemble de Paris. Dans le 8<sup>e</sup>, on compte plus de terrasses estivales (397) que dans n’importe quel autre arrondissement.</p>
+
+<figure class="chart">
+  <p class="chart-title">Commerces titulaires d’une autorisation de terrasse, hors restaurants</p>
+  <script type="application/json">{"type": "bars", "labels": ["Bars et cafés", "Boulangeries", "Cavistes", "Fromageries et épiceries fines", "Épiceries", "Boucheries", "Librairies", "Coiffeurs"], "series": [{"name": "", "values": [901, 328, 74, 68, 61, 15, 12, 11]}]}</script>
+  <figcaption class="note">Commerces ouverts du répertoire SIRENE dont l’établissement détient au moins une terrasse (hors étalages). Les restaurants, restauration rapide comprise, en comptent 6 905. Sources : Ville de Paris, autorisations de terrasses et d’étalages, fichier du 25 octobre 2026 (ODbL) ; INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p><strong>La terrasse n’est pas réservée aux cafés.</strong> Sur les 8 394 commerces que nous avons pu rattacher à une autorisation de terrasse, 82 % sont des restaurants. Mais on y trouve aussi 328 boulangeries, soit environ 17 % des boulangeries ouvertes à Paris, et davantage que les cavistes, fromageries et épiceries réunis (203). Ces chiffres sont des planchers : une autorisation déposée sous le numéro du siège de l’entreprise, ou sous un ancien numéro, nous échappe.</p>
+
+<h2>3. Y a-t-il un marché devant la porte, et quels jours ?</h2>
+
+<p>Un marché n’est pas une règle, mais il change une rue les jours où il se tient : des étals devant les vitrines, des clients en plus ou des concurrents en plus selon ce que vous vendez. Le fichier de la Ville recense 80 marchés découverts, dont 72 alimentaires (4 d’entre eux bio), plus des marchés aux fleurs, aux puces, aux timbres et de création.</p>
+
+<figure class="chart">
+  <p class="chart-title">Marchés alimentaires découverts ouverts chaque jour de la semaine, à Paris</p>
+  <script type="application/json">{"type": "bars", "labels": ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"], "series": [{"name": "", "values": [0, 24, 27, 22, 23, 31, 25]}]}</script>
+  <figcaption class="note">Sur 72 marchés alimentaires. Les marchés couverts ne sont pas dans ce fichier. Source : Ville de Paris, marchés découverts, fichier du 17 avril 2024 (ODbL).</figcaption>
+</figure>
+
+<p><strong>Aucun marché alimentaire découvert ne se tient le lundi.</strong> Le samedi est le jour le plus chargé (31 marchés), et les autres jours se valent, entre 22 et 27. Le rythme est presque toujours le même : 56 marchés sur 72 se tiennent deux jours par semaine. Leurs étals mis bout à bout font 26,8 km, pour une médiane de 289 m par marché ; le plus long dépasse le kilomètre (1 182 m).</p>
+
+<figure class="postmap" data-src="../../assets/data/street-markets.json" data-label="Carte de Paris : les 80 marchés découverts, alimentaires et autres">
+  <p class="chart-title">Les marchés découverts de Paris</p>
+  <figcaption class="note">Un point par marché, au milieu de son emprise ; survolez ou touchez un point pour lire son nom et ses jours. Les marchés couverts ne sont pas dans ce fichier. Source : Ville de Paris, marchés découverts, fichier du 17 avril 2024 (ODbL).</figcaption>
+</figure>
+
+<p>La répartition est inégale : 8 marchés alimentaires dans le 13<sup>e</sup>, 7 dans le 12<sup>e</sup>, le 15<sup>e</sup> et le 16<sup>e</sup>, aucun dans le 3<sup>e</sup> ni le 7<sup>e</sup> (hors marchés couverts).</p>
+
+<h2>4. Quels travaux passent par la Ville, et en combien de temps ?</h2>
+
+<p>La Ville publie les dossiers d’urbanisme déposés chez elle : décisions des six derniers mois et dossiers en cours d’instruction. Nous en retenons trois sortes, d’après les mots de leur description, hors dossiers refusés : 1 199 dossiers de <strong>travaux de devanture</strong>, 592 <strong>changements de destination</strong> (le passage d’un usage à un autre, par exemple d’un bureau à un commerce ; 271 nomment un commerce) et 531 <strong>ravalements</strong> de façade côté rue.</p>
+
+<p>Ce que le fichier enregistre, sans que nous disions ici ce que la loi impose : 1 118 des 1 199 dossiers de devanture sont des déclarations préalables, le dossier le plus léger. Les changements de destination passent plus souvent par un permis de construire (346 sur 592). La différence se voit dans les délais.</p>
+
+<figure class="chart">
+  <p class="chart-title">Dossiers déjà accordés au 9 novembre 2026, selon le mois de dépôt</p>
+  <script type="application/json">{"type": "bars", "labels": ["Mai 2026", "Juin 2026", "Juillet 2026", "Août 2026", "Septembre 2026", "Octobre 2026"], "series": [{"name": "Déclarations préalables", "values": [100, 99, 94, 78, 32, 2]}, {"name": "Permis de construire", "values": [46, 34, 11, 0, 0, 0]}], "unit": " %"}</script>
+  <figcaption class="note">Dossiers de devanture, de changement de destination et de ravalement côté rue, accordés ou en cours d’instruction ; les dossiers refusés ne sont pas comptés. Source : Ville de Paris, dossiers récents d’urbanisme, fichier du 9 novembre 2026 (ODbL).</figcaption>
+</figure>
+
+<p><strong>Deux à trois mois pour la plupart des déclarations, plus de cinq pour la plupart des permis.</strong> Parmi les déclarations préalables déposées en août, 78 % étaient accordées début novembre ; pour celles de juillet, 94 %. Pour les permis de construire, aucun de ceux déposés depuis août n’est accordé, et moins de la moitié de ceux de mai (46 %, sur 28 dossiers). Près d’un permis en cours d’instruction sur deux (48 %) attend depuis plus de 90 jours, contre 5 % des déclarations.</p>
+
+<p>Pour un projet, le signal est simple : des travaux de vitrine et un changement d’usage du local ne s’inscrivent pas dans le même calendrier. Le service d’urbanisme de la Ville dit quel dossier s’applique à une adresse.</p>
+
+<h2>5. Peut-on ouvrir le dimanche ?</h2>
+
+<p>Paris compte 12 zones touristiques internationales, fixées par arrêtés ministériels en 2015 et 2016. Les commerces y sont autorisés à ouvrir le dimanche et le soir jusqu’à minuit. Les contours sont tracés rue par rue.</p>
+
+<figure class="chart">
+  <p class="chart-title">Commerces ouverts dans chaque zone touristique internationale</p>
+  <script type="application/json">{"type": "bars", "labels": ["Les Halles", "Le Marais", "Saint-Honoré Vendôme", "Haussmann", "Rennes Saint-Sulpice", "Champs-Élysées Montaigne", "Saint-Germain", "Olympiades", "Montmartre", "Maillot-Ternes", "Beaugrenelle", "Saint-Émilion Bibliothèque"], "series": [{"name": "", "values": [1696, 1459, 1200, 1043, 978, 774, 491, 416, 372, 235, 118, 58]}]}</script>
+  <figcaption class="note">Commerces ouverts des types suivis par Pignon, hors entrepreneurs individuels sans enseigne et sociétés de domiciliation. Sources : Ville de Paris, zones touristiques internationales, fichier du 27 juillet 2016 (ODbL) ; INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p><strong>5 % de la surface de Paris, un commerce sur sept.</strong> Les douze zones couvrent 571 hectares, soit 5,5 % de la ville, bois compris. On y trouve pourtant 8 840 des 60 189 commerces ouverts que nous comptons (14,7 %), et plus d’un magasin de vêtements sur trois (1 748 sur 5 158, soit 34 %). Les tailles n’ont rien de comparable : près de 1 700 commerces aux Halles, 58 à Saint-Émilion Bibliothèque.</p>
+
+<p>La zone est un contour légal, pas une mesure de fréquentation. Elle dit ce qui est permis, pas ce que font les commerces voisins ni le nombre de visiteurs.</p>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+<ul>
+  <li><strong>La surface des arrondissements</strong> est la somme des contours de quartiers de l’IGN, sans les bois de Vincennes et de Boulogne. Les parcs, les voies ferrées et la Seine restent comptés.</li>
+  <li><strong>Un fichier n’est pas le règlement.</strong> Le tracé des rues protégées est publié à titre informatif. Pour une adresse, le PLU officiel et le service d’urbanisme de la Ville font foi.</li>
+  <li><strong>Une autorisation de terrasse ne prouve pas que la terrasse est utilisée</strong>, et la surface est celle déclarée. Le lien entre terrasses et commerces passe par le numéro d’établissement (SIRET) : les chiffres par type sont des planchers.</li>
+  <li><strong>Le fichier des marchés date d’avril 2024</strong> et ne contient pas les marchés couverts. Un marché déplacé ou supprimé depuis peut encore y figurer.</li>
+  <li><strong>Les dossiers d’urbanisme sont une fenêtre glissante</strong> de six mois, sans date de décision. Les délais sont lus à l’envers : la part des dossiers déjà accordés selon le mois de dépôt, hors refus. Les sortes de dossier sont reconnues par les mots de leur description, et les ravalements qui ne précisent pas le côté rue manquent.</li>
+  <li><strong>Les commerces comptés</strong> sont ceux du répertoire SIRENE pour les types suivis par Pignon, sans les entrepreneurs individuels sans enseigne ni les adresses de sociétés de domiciliation, où des centaines d’entreprises partagent une adresse sans y tenir boutique. Les bars et les cafés forment un seul type.</li>
+  <li><strong>Un dossier n’est pas un chantier</strong> : des travaux autorisés ne sont pas toujours réalisés.</li>
+  <li><strong>Les zones touristiques datent de 2015 et 2016.</strong> Ouvrir le dimanche dépend aussi d’autres règles, pour les salariés notamment, que ce fichier ne décrit pas.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et dans votre rue ?</h2>
+  <p>Pignon lit ces mêmes fichiers pour un quartier ou une adresse : les mètres de rue protégés par le PLU, les terrasses autorisées à moins de 20 m, les marchés à quelques minutes à pied et leurs jours. Ce sont des signaux, avec le chiffre et la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

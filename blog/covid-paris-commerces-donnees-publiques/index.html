@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Covid à Paris : ce que les données publiques en ont gardé · Tesselo</title>
+    <meta name="description" content="Moins de bars, plus de coursiers, des faillites reportées, deux fois plus de vélos : dix graphiques tirés de cinq sources publiques sur le commerce parisien pendant et après le Covid." />
+    <meta property="og:title" content="Covid à Paris : ce que les données publiques en ont gardé · Tesselo" />
+    <meta property="og:description" content="Moins de bars, plus de coursiers, des faillites reportées, deux fois plus de vélos : dix graphiques tirés de cinq sources publiques sur le commerce parisien pendant et après le Covid." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/covid-paris-shops-public-data/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/covid-paris-shops-public-data/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Covid à Paris : ce que les données publiques en ont gardé</h1><p class="lead">Moins de bars, plus de coursiers, des faillites reportées, deux fois plus de vélos : dix graphiques tirés de cinq sources publiques sur le commerce parisien pendant et après le Covid.</p></header>
+        <p>Le premier confinement a commencé le 17 mars 2020. Les commerces dits non essentiels ont rouvert pour de bon le 19 mai 2021. Entre ces deux dates, les répertoires publics ont continué d’enregistrer : chaque ouverture, chaque fermeture, chaque jugement de tribunal. Cinq ans plus tard, voici ce qu’ils en ont gardé, à Paris.</p>
+
+<h2>Un trou d’air, puis la reprise</h2>
+
+<figure class="chart">
+  <p class="chart-title">Ouvertures et fermetures de commerces à Paris, par an</p>
+  <script type="application/json">{"type": "line", "x": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "Ouvertures", "values": [5287, 5174, 5424, 4189, 5195, 5718, 5426, 5517, 5434]}, {"name": "Fermetures", "values": [3638, 3807, 3782, 3378, 3586, 3380, 3992, 4184, 4072]}], "band": [2020, 2021], "bandLabel": "Covid"}</script>
+  <figcaption class="note">Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0). Mêmes commerces et mêmes règles que la <a href="../commerces-paris-ouvertures-fermetures/">carte animée</a>.</figcaption>
+</figure>
+
+<p>En 2020, Paris a compté <strong>4 189 ouvertures</strong> de commerces contre 5 424 l’année précédente, soit 23 % de moins. Le plus surprenant est l’autre courbe : les fermetures ont baissé elles aussi, de 11 %. Aides publiques, loyers reportés, tribunaux au ralenti : en 2020, on ouvrait peu, mais on fermait peu aussi. Dès 2021, les ouvertures remontent (5 195), et 2022 dépasse 2019.</p>
+
+<h2>Qui a ralenti, qui a accéléré</h2>
+
+<figure class="chart">
+  <p class="chart-title">Ouvertures en 2020 par rapport à 2019, par type de commerce</p>
+  <script type="application/json">{"type": "bars", "labels": ["Bars et cafés", "Restaurants", "Pharmacies", "Cavistes", "Restauration rapide", "Salles de sport", "Vêtements", "Fromageries, épiceries fines", "Instituts de beauté", "Écoles de loisirs", "Traiteurs", "Fleuristes, animaleries", "Boulangeries", "Opticiens", "Coiffeurs", "Épiceries", "Boucheries", "Crèches", "Pressings, laveries"], "series": [{"name": "", "values": [-47, -34, -31, -28, -26, -26, -26, -20, -17, -17, -14, -14, -13, -11, -10, -5, 4, 12, 27]}], "unit": " %", "signed": true}</script>
+  <figcaption class="note">Types de commerce comptant au moins 50 ouvertures en 2019. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0). Mêmes commerces et mêmes règles que la <a href="../commerces-paris-ouvertures-fermetures/">carte animée</a>.</figcaption>
+</figure>
+
+<p>Les bars et cafés (−47 %) et les restaurants (−34 %) sont en tête, sans surprise : ils sont restés fermés plus longtemps que tous les autres. Trois lignes sont moins attendues.</p>
+<ul>
+  <li><strong>Les pharmacies, −31 %.</strong> Elles n’ont jamais fermé. Mais le nombre de pharmacies est plafonné par la loi : une « ouverture » y est presque toujours une reprise, et les ventes de fonds de commerce ont chuté en 2020 (voir plus bas).</li>
+  <li><strong>Les pressings et laveries, +27 %.</strong> Le type le plus nettement en hausse parmi les plus courants, sur de petits nombres (51 ouvertures, puis 65). Les crèches progressent aussi (68, puis 76).</li>
+  <li><strong>Les coiffeurs, −10 % seulement.</strong> Fermés pendant les confinements, ils ont pourtant ouvert presque autant de salons qu’en 2019, quand le vêtement, fermé aux mêmes dates, perdait 26 %.</li>
+</ul>
+<p>Parmi les types plus rares, les chiffres sont trop petits pour un graphique, mais ils vont dans le sens du confinement : vélos et sport (26 ouvertures en 2019, 39 en 2020), quincailleries (15, puis 25), librairies (25, puis 31).</p>
+
+<figure class="chart">
+  <p class="chart-title">Ouvertures en 2020 par rapport à 2019, par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["4e", "5e", "12e", "9e", "2e", "14e", "6e", "10e", "17e", "15e", "3e", "16e", "11e", "13e", "18e", "19e", "8e", "20e", "7e", "1er"], "series": [{"name": "", "values": [-40, -38, -33, -29, -28, -28, -28, -27, -27, -25, -24, -23, -20, -17, -16, -15, -15, -12, -11, 4]}], "unit": " %", "signed": true}</script>
+  <figcaption class="note">Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0). Mêmes commerces et mêmes règles que la <a href="../commerces-paris-ouvertures-fermetures/">carte animée</a>.</figcaption>
+</figure>
+
+<p>La géographie ne raconte pas une histoire simple. La baisse touche 19 arrondissements sur 20, du 4e (−40 %) au 7e (−11 %), sans opposition nette entre centre et périphérie, ni entre quartiers de bureaux et quartiers d’habitation. Le 1er est le seul en hausse, de 128 à 133 ouvertures.</p>
+
+<h2>Deux ans après : qui est revenu</h2>
+
+<figure class="chart">
+  <p class="chart-title">Ouvertures en 2022 par rapport à 2019, par type de commerce</p>
+  <script type="application/json">{"type": "bars", "labels": ["Traiteurs", "Instituts de beauté", "Épiceries", "Cavistes", "Restauration rapide", "Fromageries, épiceries fines", "Fleuristes, animaleries", "Coiffeurs", "Pressings, laveries", "Crèches", "Restaurants", "Boulangeries", "Pharmacies", "Vêtements", "Opticiens", "Boucheries", "Bars et cafés"], "series": [{"name": "", "values": [56, 31, 11, 8, 8, 7, 3, 2, 0, -4, -6, -7, -17, -18, -19, -26, -27]}], "unit": " %", "signed": true}</script>
+  <figcaption class="note">Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0). Mêmes commerces et mêmes règles que la <a href="../commerces-paris-ouvertures-fermetures/">carte animée</a>.</figcaption>
+</figure>
+
+<p>En 2022, le total a dépassé celui de 2019, mais pas avec les mêmes commerces. Les traiteurs (+56 %) et les instituts de beauté (+31 %) ouvrent bien plus qu’avant, les épiceries (+11 %) et la restauration rapide (+8 %) suivent. Les bars et cafés, eux, ne sont pas revenus : 27 % d’ouvertures en moins qu’en 2019. Le vêtement (−18 %) non plus.</p>
+<p>Deux types manquent à ce graphique : les écoles de loisirs et les salles de sport. Notre comptage ne garde que les établissements qui déclarent une enseigne, et à partir de 2021 les cours de sport et de loisirs en déclarent quatre à cinq fois plus souvent qu’avant (8 % en 2020, 33 % en 2021 pour l’enseignement culturel). Leur hausse apparente, +90 % et +66 %, vient donc surtout du registre. Toutes créations confondues, la hausse entre 2019 et 2022 est de 26 % pour l’enseignement culturel et de 18 % pour l’enseignement sportif.</p>
+
+<h2>Hors des vitrines : les coursiers et la vente en ligne</h2>
+
+<p>Le répertoire SIRENE ne contient pas que des commerces. Tous types d’entreprise confondus, les créations à Paris n’ont baissé que de 5 % en 2020 (104 615 contre 109 699), quand celles des commerces baissaient de 23 %. Certaines activités ont même connu leur meilleure année.</p>
+
+<figure class="chart">
+  <p class="chart-title">Créations en 2020 par rapport à 2019, toutes entreprises de Paris, par activité</p>
+  <script type="application/json">{"type": "bars", "labels": ["Coursiers et livreurs", "Vente en ligne spécialisée", "Vente en ligne généraliste", "Traiteurs", "Organisateurs de salons", "Autres loisirs", "Taxis et VTC", "Massage, spa", "Restaurants", "Guides et réservation touristique", "Bars", "Boutiques d’informatique"], "series": [{"name": "", "values": [74, 57, 39, 25, -25, -29, -33, -33, -35, -44, -46, -49]}], "unit": " %", "signed": true}</script>
+  <figcaption class="note">Source : INSEE, fichier mensuel du répertoire SIRENE au 1er octobre 2026 (Licence Ouverte 2.0). Tous les établissements, y compris les indépendants déclarés à leur domicile.</figcaption>
+</figure>
+
+<ul>
+  <li><strong>7 909 coursiers et livreurs</strong> se sont enregistrés à Paris en 2020, contre 4 539 en 2019. C’est plus de trois fois le nombre de restaurants, de points de restauration rapide et de bars ouverts la même année (2 272). Le repas a continué de circuler, mais à vélo.</li>
+  <li><strong>La vente en ligne</strong> a gagné 57 % en un an, et n’a jamais ralenti depuis : 835 créations en 2019, 7 186 en 2025.</li>
+  <li><strong>Les perdants moins visibles :</strong> les guides et services de réservation touristique (−44 %), les chauffeurs de taxi et de VTC (−33 %), les organisateurs de salons (−25 %). Leurs clients étaient les touristes et les voyageurs d’affaires.</li>
+  <li><strong>Les boutiques d’informatique, −49 %,</strong> l’année où tout le monde s’équipait pour travailler à la maison. Les achats sont passés en ligne.</li>
+</ul>
+<p>Le pic des coursiers a une suite : 7 403 de ces établissements ont fermé en 2023, puis plus de 7 500 par an. Beaucoup de ces enregistrements n’ont duré que le temps de la demande.</p>
+
+<h2>Ouvrir en 2020 : un mauvais pari ?</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces fermés dans les trois ans, selon l’année d’ouverture</p>
+  <script type="application/json">{"type": "line", "x": [2016, 2017, 2018, 2019, 2020, 2021, 2022], "series": [{"name": "", "values": [30.8, 27.2, 27.6, 25.9, 24.6, 28.6, 27.7]}], "unit": " %", "band": [2020, 2020], "bandLabel": "Ouverts en 2020"}</script>
+  <figcaption class="note">Restaurants, restauration rapide, bars, vêtements, coiffeurs et boulangeries (3 340 ouvertures en 2020). Source : INSEE, fichier mensuel du répertoire SIRENE.</figcaption>
+</figure>
+
+<p>Les commerces ouverts en 2020 ont tenu au moins aussi bien que les autres : 24,6 % ont fermé dans les trois ans, contre 25,9 % pour ceux de 2019 et 27 à 31 % pour les années précédentes. Ils étaient moins nombreux, les aides ont couvert leurs premiers mois, et ceux qui ont signé un bail en plein confinement avaient sans doute un projet solide. Ce n’est pas une preuve, c’est un signal : ouvrir à contre-courant n’a pas été pénalisé.</p>
+
+<h2>Les faillites, reportées plutôt qu’évitées</h2>
+
+<figure class="chart">
+  <p class="chart-title">Liquidations judiciaires de sociétés exploitant un commerce parisien, par an</p>
+  <script type="application/json">{"type": "line", "x": [2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "", "values": [716, 734, 531, 783, 885, 858, 686]}], "band": [2020, 2021], "bandLabel": "Covid"}</script>
+  <figcaption class="note">Source : BODACC (DILA), annonces de liquidation judiciaire rattachées aux commerces fermés du répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Le BODACC, le bulletin officiel où les tribunaux de commerce publient leurs décisions, montre le même mécanisme. En 2021, au plus fort des prêts garantis par l’État et du fonds de solidarité, les liquidations tombent à 531, un quart de moins qu’en 2019. Puis elles remontent : 783 en 2022, 885 en 2023, le plus haut de la série. C’est aussi à partir de 2023 que les fermetures de commerces atteignent leur maximum.</p>
+<p>Les ventes de fonds de commerce racontent l’autre moitié : 2 310 annonces en 2019, 1 628 en 2020, soit 30 % de moins. Qui voulait vendre a attendu, qui voulait reprendre aussi.</p>
+
+<h2>Ce qui est resté dans la rue</h2>
+
+<p>Trois autres sources publiques portent encore la marque de la période. Aucune ne permet d’isoler l’effet du Covid : elles montrent ce qui a changé autour.</p>
+
+<figure class="chart">
+  <p class="chart-title">Façon d’aller au travail des Parisiens : évolution entre les recensements de 2017 et de 2023</p>
+  <script type="application/json">{"type": "bars", "labels": ["Vélo", "Marche", "Pas de trajet (travail à domicile)", "Deux-roues motorisé", "Voiture", "Transports en commun"], "series": [{"name": "", "values": [59284, 11101, 1624, -12170, -24760, -43761]}], "unit": "", "signed": true}</script>
+  <figcaption class="note">Nombre d’actifs en emploi habitant Paris. Source : INSEE, recensement de la population.</figcaption>
+</figure>
+
+<p><strong>Le vélo a doublé.</strong> 51 800 Parisiens allaient travailler à vélo au recensement de 2017, 111 100 à celui de 2023. Les pistes provisoires de mai 2020 sont devenues définitives. Les transports en commun ont perdu 43 800 usagers quotidiens et la voiture 24 800. Pour un commerce, le passage devant la vitrine n’a plus la même vitesse.</p>
+
+<figure class="chart">
+  <p class="chart-title">Autorisations de terrasse en vigueur à Paris</p>
+  <script type="application/json">{"type": "bars", "labels": ["Terrasses à l’année", "Terrasses estivales"], "series": [{"name": "", "values": [13396, 4975]}], "unit": "", "signed": false}</script>
+  <figcaption class="note">Source : Ville de Paris, autorisations de terrasses et d’étalages, fichier du 25 octobre 2026 (ODbL).</figcaption>
+</figure>
+
+<p><strong>Les terrasses estivales sont nées du Covid.</strong> Au déconfinement de 2020, la Ville a laissé les cafés et restaurants s’installer gratuitement sur les places de stationnement. En 2021, l’autorisation est devenue une catégorie à part entière, du printemps à l’automne. Elle compte aujourd’hui 4 975 autorisations pour 53 000 m² : plus d’une terrasse parisienne sur quatre.</p>
+
+<figure class="chart">
+  <p class="chart-title">Naissances à Paris, par an</p>
+  <script type="application/json">{"type": "line", "x": [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "", "values": [30623, 31063, 31447, 30094, 29291, 28945, 29134, 28266, 28384, 27419, 27367, 27373, 26157, 25810, 23785, 21775, 21484, 21189]}], "band": [2020, 2021], "bandLabel": "Covid"}</script>
+  <figcaption class="note">Naissances selon l’arrondissement de domicile de la mère. Source : INSEE, état civil.</figcaption>
+</figure>
+
+<p><strong>Les naissances baissaient avant, elles baissent plus vite depuis.</strong> Paris perdait environ 450 naissances par an entre 2010 et 2019. Depuis 2019, c’est un millier par an : 27 373 naissances en 2019, 21 189 en 2025, soit 23 % de moins. Le Covid n’explique pas tout, mais la rupture de pente date de là. Pour une crèche ou un magasin de jouets, c’est un signal plus durable que les confinements.</p>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+<ul>
+  <li><strong>Une date dans un registre n’est pas une cause.</strong> Ces données montrent ce qui s’est passé pendant et après le Covid, pas ce que le Covid a provoqué à lui seul.</li>
+  <li><strong>Les fermetures arrivent tard dans le répertoire</strong>, et parfois jamais. Les ouvertures sont datées plus sûrement.</li>
+  <li><strong>Une reprise compte pour une fermeture et une ouverture.</strong> Les « ouvertures » de pharmacies, de boulangeries ou de bars sont souvent des changements d’exploitant.</li>
+  <li><strong>Une enseigne déclarée n’est pas une boutique.</strong> Notre comptage écarte les indépendants sans enseigne. Quand une activité se met à en déclarer davantage, comme les cours de sport et de loisirs depuis 2021, ses « ouvertures » montent sans qu’il y ait plus de lieux.</li>
+  <li><strong>Les sociétés de domiciliation sont écartées.</strong> 97 adresses où des centaines d’entreprises sans rapport entre elles sont enregistrées sans y tenir boutique (6 326 établissements) ne sont pas comptées comme des commerces.</li>
+  <li><strong>Les petits nombres bougent beaucoup.</strong> Les graphiques par type ne gardent que les types comptant au moins 50 ouvertures en 2019.</li>
+  <li><strong>Les annonces du BODACC</strong> ne couvrent ici que les sociétés rattachées à un commerce fermé, depuis fin 2016. Les entrepreneurs individuels y apparaissent peu.</li>
+  <li><strong>Le recensement est une moyenne sur cinq ans</strong> d’enquêtes : celui de 2023 mêle des réponses de 2021 à 2025.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et autour de votre adresse ?</h2>
+  <p>Pignon lit ces mêmes sources pour une adresse précise : les commerces de votre type à quelques minutes à pied, ceux qui ont tenu trois ans, les raisons connues des fermetures voisines, les terrasses de la rue. Ce sont des signaux, avec le chiffre et la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

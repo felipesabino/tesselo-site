@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How long does a shop last in Paris? · Tesselo</title>
+    <meta name="description" content="38.5% of Paris shops close within five years, but the first year is not the riskiest, and one closure in seven is a takeover. Seven charts from the SIRENE register, by type of shop and by arrondissement." />
+    <meta property="og:title" content="How long does a shop last in Paris? · Tesselo" />
+    <meta property="og:description" content="38.5% of Paris shops close within five years, but the first year is not the riskiest, and one closure in seven is a takeover. Seven charts from the SIRENE register, by type of shop and by arrondissement." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/duree-de-vie-commerce-paris/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/duree-de-vie-commerce-paris/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>How long does a shop last in Paris?</h1><p class="lead">38.5% of Paris shops close within five years, but the first year is not the riskiest, and one closure in seven is a takeover. Seven charts from the SIRENE register, by type of shop and by arrondissement.</p></header>
+        <p>How many shops make it to five years? INSEE’s SIRENE register, which records every opening and every closure of a business establishment, lets us count for Paris. We followed the <strong>52,812 shops opened between 2010 and 2020</strong>, the same types as on the <a href="../paris-shops-openings-closures/">animated map</a>: 6.6% closed within a year, 23.6% within three years, <strong>38.5% within five years</strong>. And of those opened from 2010 to 2015, 60.4% had closed before turning ten; half had closed after 6 years and 11 months.</p>
+<p>These figures come with a caution you will meet throughout this article: in the register, a “closure” is the end of an establishment, not always of the shop. A change of operator or a move counts too.</p>
+
+<h2>The first year is not the riskiest</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of shops still open that close during each year of life</p>
+  <script type="application/json">{"type": "bars", "labels": ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6", "Year 7", "Year 8", "Year 9", "Year 10"], "series": [{"name": "", "values": [6.8, 9.5, 10.7, 11.1, 10.0, 10.1, 9.0, 7.5, 7.2, 6.5]}], "unit": "%"}</script>
+  <figcaption class="note">27,610 Paris shops opened from 2010 to 2015, followed for ten years. How to read it: of the shops still open on their third birthday, 11.1% close during the fourth year. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Of the shops opened from 2010 to 2015, 6.8% closed during their first year. The risk then rises: 9.5% of those left close in the second year, 10.7% in the third, <strong>11.1% in the fourth</strong>, the peak. It stays around 10% until the sixth year and only comes down clearly after the seventh.</p>
+<p>So the delicate period is not the launch but years two to six. One possible explanation: the standard French commercial lease, known as 3-6-9, only lets the tenant leave at the end of each three-year period, and start-up cash covers the first months. The register does not say why a shop closes; this is a signal, not proof.</p>
+<p>Passing five years is no shelter: of the shops still open at five years, 34.4% closed before ten, against 39.7% closing during the first five years. The risk falls with age, but slowly.</p>
+
+<h2>One day a year: 31 December</h2>
+
+<figure class="chart">
+  <p class="chart-title">Shop closures in Paris by the month written in the register, 2010–2025</p>
+  <script type="application/json">{"type": "bars", "labels": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], "series": [{"name": "", "values": [8.5, 6.3, 7.9, 6.3, 6.9, 10.0, 7.8, 5.0, 9.4, 8.5, 7.8, 15.7]}], "unit": "%"}</script>
+  <figcaption class="note">54,295 closures dated 2010 to 2025. An even spread would give 8.3% a month. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>December carries 15.7% of closures, almost twice an ordinary month. A single day explains the gap: <strong>4,514 closures, 8.3% of the total, are dated 31 December</strong>, as many as a whole month. June and September, two other quarter ends, are above average too.</p>
+<p>The date in the register is the one the operator declares. It probably follows the closing of the accounts more than the last day of trading: the shutter may have come down weeks earlier. One more reason to read these lifespans to the year, not to the month.</p>
+
+<h2>The types that last, the types that churn</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of shops closed within a year and within five years, by type of shop</p>
+  <script type="application/json">{"type": "bars", "labels": ["Pharmacies", "Dry cleaners, laundromats", "Hobby schools", "Nurseries", "Bakeries", "Bookshops", "Butchers", "Hairdressers", "Bars and cafés", "Wine shops", "Fitness studios", "Opticians", "Restaurants", "Cheese and fine food", "Greengrocers", "Bikes and sports", "Grocery shops", "Fast food", "Florists and pet shops", "Clothing", "Beauty salons", "Caterers"], "series": [{"name": "Within a year", "values": [2.6, 2.6, 4.1, 5.2, 6.0, 7.3, 4.9, 5.0, 4.4, 8.1, 7.2, 7.2, 5.7, 6.6, 6.5, 6.7, 7.8, 6.8, 6.6, 9.0, 7.6, 9.9]}, {"name": "Within five years", "values": [13.7, 24.3, 26.7, 28.2, 30.1, 30.1, 30.7, 31.5, 31.8, 33.6, 35.7, 35.8, 36.1, 37.1, 37.3, 38.4, 41.1, 41.6, 42.9, 45.5, 48.9, 50.9]}], "unit": "%"}</script>
+  <figcaption class="note">Shops opened in Paris from 2010 to 2020; types with at least 300 openings over the period. Source: INSEE, SIRENE register (Licence Ouverte 2.0). Same shops and same rules as the <a href="../paris-shops-openings-closures/">animated map</a>.</figcaption>
+</figure>
+
+<p>The gap between types is wide: from 13.7% closed within five years for pharmacies to 50.9% for caterers.</p>
+<ul>
+  <li><strong>Those that last:</strong> pharmacies (13.7%), dry cleaners and laundromats (24.3%), hobby schools (26.7%), nurseries (28.2%), then a tight group between 30 and 32%: bakeries, bookshops, butchers, hairdressers, bars and cafés. The number of pharmacies is capped by law, which sets them apart.</li>
+  <li><strong>Those that churn:</strong> caterers (50.9%), beauty salons (48.9%), clothing (45.5%), florists and pet shops (42.9%), fast food (41.6%).</li>
+  <li><strong>Restaurants and fast food are not alike:</strong> 36.1% against 41.6%. Sit-down restaurants close less than the Paris average (38.5%).</li>
+  <li><strong>The first year does not predict the rest.</strong> Wine shops (8.1%) and bookshops (7.3%) close more than average in the first year (6.6%), and less than average over five years; florists and pet shops are at the average in the first year (6.6%) and well above it over five years (42.9%). At three years, however, the order is already close to the five-year one: 8.2% for pharmacies, 17.1% for bakeries, 21.1% for restaurants, 29.9% for clothing, 30.7% for beauty salons, 34.8% for caterers.</li>
+</ul>
+<p>At ten years, for shops opened from 2010 to 2015, the order barely changes: 23.6% of pharmacies have closed, 52.6% of bakeries, 60.2% of restaurants, 64.8% of clothing shops, 70.1% of beauty salons, 72.5% of caterers.</p>
+
+<h2>One closure in seven is a takeover</h2>
+
+<p>When a shop is sold, the seller’s establishment closes and the buyer’s opens: the register counts a closure although the shop never pulled down its shutter. To measure this, we checked, for each closure before five years, whether a shop of the same type was registered at the same address between four months before and one year after. This is the rule Pignon applies in its three-year survival indicator.</p>
+
+<figure class="chart">
+  <p class="chart-title">Share of closures before five years followed by a shop of the same type at the same address</p>
+  <script type="application/json">{"type": "bars", "labels": ["Beauty salons", "Bakeries", "Grocery shops", "Nurseries", "Restaurants", "Butchers", "Opticians", "Hairdressers", "Fast food", "Dry cleaners, laundromats", "Pharmacies", "Caterers", "Bars and cafés", "Cheese and fine food", "Clothing", "Florists and pet shops", "Greengrocers", "Wine shops", "Bookshops", "Hobby schools", "Fitness studios", "Bikes and sports"], "series": [{"name": "", "values": [25.7, 21.8, 20.4, 18.4, 17.3, 16.7, 15.7, 15.5, 14.9, 13.8, 11.8, 10.5, 9.6, 8.5, 6.8, 5.1, 4.1, 3.4, 3.3, 1.4, 1.4, 0.8]}], "unit": "%"}</script>
+  <figcaption class="note">Shops opened in Paris from 2010 to 2020 and closed before five years; types with at least 300 openings. Takeover: a shop of the same type registered at the same address from 120 days before to 365 days after the closure. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Of the 20,356 closures before five years, <strong>2,999, or 14.7%, are followed by a shop of the same type at the same address</strong>. Without them, the share of shops closed within five years goes from 38.5% to 32.9%.</p>
+<p>The effect depends a lot on the type. A bakery is taken over with its oven and its customers: 21.8% of closures there are takeovers, and the share closed within five years goes from 30.1% to 23.6%. For beauty salons it goes from 48.9% to 36.3%. By contrast, a bookshop, a wine shop or a bike shop that closes is very rarely replaced by a shop of the same type: fewer than 4% of cases.</p>
+
+<h2>No better and no worse than fifteen years ago</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of shops closed within a year and within five years, by opening year</p>
+  <script type="application/json">{"type": "line", "x": [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020], "series": [{"name": "Within five years", "values": [38.0, 38.4, 39.1, 39.0, 42.7, 40.8, 40.3, 38.1, 35.2, 34.9, 38.3]}, {"name": "Within a year", "values": [6.2, 7.1, 6.2, 6.5, 7.5, 7.3, 6.6, 7.0, 6.0, 6.2, 6.3]}], "unit": "%"}</script>
+  <figcaption class="note">Every type of shop on the animated map, from 4,189 to 5,424 openings a year. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>The share of shops closed within five years moves between 34.9% (opened in 2019) and 42.7% (opened in 2014), with no trend. The first year is steadier still: between 6.0% and 7.6% for every opening year from 2010 to 2024.</p>
+<p>Shops opened in 2018 and 2019 have the best figures. Their years two to five, usually the riskiest, fell during Covid, when closures dropped everywhere (see <a href="../covid-paris-shops-public-data/">our article on the period</a>). That is a match of dates, not an established cause.</p>
+
+<h2>From one arrondissement to the next</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of shops closed within five years, by arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["7th", "6th", "1st", "14th", "5th", "4th", "3rd", "12th", "19th", "9th", "13th", "18th", "17th", "11th", "15th", "20th", "16th", "2nd", "10th", "8th"], "series": [{"name": "", "values": [32.5, 33.9, 34.1, 35.7, 36.3, 36.5, 36.9, 37.3, 37.4, 37.5, 37.7, 38.9, 39.2, 39.4, 39.4, 39.9, 40.0, 40.9, 41.6, 43.5]}], "unit": "%"}</script>
+  <figcaption class="note">Shops opened from 2010 to 2020, from 1,185 openings (4th) to 4,341 (11th). Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>From the 7th (32.5%) to the 8th (43.5%), the gap is eleven points. Yet sixteen arrondissements out of twenty sit between 35% and 42%.</p>
+<ul>
+  <li><strong>The types of shop explain almost nothing.</strong> If each type closed everywhere at its Paris rate, every arrondissement would fall between 37.3% and 39.8%. The 7th, 6th and 1st do five to six points better than their types suggested; the 8th nearly four points worse, the 10th three.</li>
+  <li><strong>The 8th comes first, without being a case apart.</strong> 43.5% of its shops close within five years, two points more than in the 10th (41.6%). 25.0% of its openings are at a street number that saw at least five openings in eleven years, against 15.1% for Paris; the 10th (21.3%) and the 9th (20.0%) are close to it, and yet the 9th closes less than average (37.5%): so these churning addresses do not explain everything. In the 8th as in the 16th, 9.0% of shops close in their first year, the highest figure in Paris.</li>
+  <li><strong>Takeovers narrow the gap without removing it.</strong> Without the closures followed by a shop of the same type at the same address, the range runs from 29.1% (6th) to 35.5% (8th).</li>
+</ul>
+
+<h2>Known brands last longer, except in groceries</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of shops closed within five years: known brands and other shops</p>
+  <script type="application/json">{"type": "bars", "labels": ["Nurseries", "Clothing", "Fast food", "Cheese and fine food", "Grocery shops"], "series": [{"name": "Known brand", "values": [7.7, 30.7, 29.3, 32.0, 48.4]}, {"name": "Other shops", "values": [33.2, 46.6, 41.9, 38.1, 39.5]}], "unit": "%"}</script>
+  <figcaption class="note">Shops opened from 2010 to 2020; types with at least 100 openings under a brand on our list. Known brand: the shop’s name contains a network brand (a list kept by hand by Pignon). Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>In four types out of five, shops opened under a network brand close less within five years than the others: 30.7% against 46.6% for clothing, 29.3% against 41.9% for fast food, 7.7% against 33.2% for nurseries. The exception is groceries: 48.4% under a brand, 39.5% for the others. One lead: network convenience stores often change operator, and each change is a closure in the register.</p>
+<p>Two reservations. Our list holds the brands active today: a network that disappeared since 2010 is not on it, which favours brands. And “other shops” mixes independents with networks we have not listed.</p>
+
+<h2>On the street today: four shops in ten are over ten years old</h2>
+
+<p>The register counts 60,170 shops open in Paris in early November 2026. <strong>42.2% are over ten years old, 18.6% over twenty.</strong> Some types are young: 21.3% of caterers and 27.0% of beauty salons have passed ten years. Clothing shops show a paradox: almost half of openings close within five years (45.5%), and yet 60.5% of the shops open today are over ten years old. A core of old houses, and around it a fast turnover of newcomers.</p>
+<p>These shares are a ceiling: the register keeps as “open” shops that closed without declaring it, and they are by nature among the oldest.</p>
+
+<h2>What these figures do not say</h2>
+<ul>
+  <li><strong>A closure in the register is the end of an establishment, not always of a shop.</strong> A sale, a change of company or a move creates a closure and an opening. Our search for takeovers only finds those of the same type at the same address written the same way: a bar taken over as a restaurant is not counted, and two shops in one building can be mistaken for each other.</li>
+  <li><strong>Closures reach the register late, and sometimes never.</strong> Recent opening years therefore look better than they are, and every closure share in this article is closer to a minimum.</li>
+  <li><strong>The closing date is declared.</strong> One in twelve falls on a 31 December.</li>
+  <li><strong>The register does not say why.</strong> Bankruptcy, retirement, a sale at a profit, the end of a lease: they all look the same. The explanations offered here are leads.</li>
+  <li><strong>Small numbers are left out.</strong> Charts by type keep the types with at least 300 openings from 2010 to 2020; cobblers, toy shops, hardware stores, stationers, fishmongers and phone repair shops fall below.</li>
+  <li><strong>Sole traders registered without a shop sign are left out</strong>, as on the animated map: their address is most often a home.</li>
+  <li><strong>Business address providers are left out</strong>: these street numbers where hundreds of unrelated companies are registered without trading there, 97 addresses and 6,326 records, are removed by a rule based on the number of records, the number of different types of shop and the share of network brands at one street number.</li>
+  <li><strong>An average is not an address.</strong> The same type of shop lasts more or less depending on the street, the rent and the neighbours.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And around your address?</h2>
+  <p>Pignon computes this survival for a precise address: of the shops of your type opened within a few minutes’ walk, how many lasted three years, takeovers counted apart, with the number of openings behind the figure. These are signals, with the source behind each one.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

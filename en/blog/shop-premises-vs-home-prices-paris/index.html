@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop premises or apartments: which costs more per square metre in Paris? · Tesselo</title>
+    <meta name="description" content="In Paris, shop premises sell for about 15% less per square metre than apartments, in all twenty arrondissements. But the gap runs from 7% to 27%, and the two prices do not move together: six charts from the property sales published by the tax administration. Sale prices, not rents." />
+    <meta property="og:title" content="Shop premises or apartments: which costs more per square metre in Paris? · Tesselo" />
+    <meta property="og:description" content="In Paris, shop premises sell for about 15% less per square metre than apartments, in all twenty arrondissements. But the gap runs from 7% to 27%, and the two prices do not move together: six charts from the property sales published by the tax administration. Sale prices, not rents." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/prix-murs-commerciaux-logements-paris/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/prix-murs-commerciaux-logements-paris/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>Shop premises or apartments: which costs more per square metre in Paris?</h1><p class="lead">In Paris, shop premises sell for about 15% less per square metre than apartments, in all twenty arrondissements. But the gap runs from 7% to 27%, and the two prices do not move together: six charts from the property sales published by the tax administration. Sale prices, not rents.</p></header>
+        <p>In Pignon, each neighbourhood’s panel shows two prices per square metre: that of apartments and that of shop premises. The question comes up often: are the walls of a shop worth more than those of a home? In Paris the answer is no, in every arrondissement. But the gap changes a lot from one arrondissement to the next, and the two prices do not move together.</p>
+<p>One point before the figures: these are <strong>sale prices, not rents</strong>. Most founders rent their premises. What this article follows is what the walls around an address are worth, not what is paid there each month.</p>
+
+<h2>Where these prices come from</h2>
+
+<p>The DVF database (“demandes de valeurs foncières”, property value records) is published by the French tax administration (DGFiP) twice a year, in April and October. It lists the property sales of the last five years, with the price, the floor area and the kind of property. Pignon reads two categories in it, sale by sale:</p>
+<ul>
+  <li><strong>apartments;</strong></li>
+  <li><strong>“industrial, commercial or similar premises”</strong>: shops, but also offices and workshops. The database does not tell them apart.</li>
+</ul>
+<p>We keep only sales of a single property (one apartment or one unit; a cellar or parking space sold with it does not count), of at least 9 m², at a plausible price per square metre. That gives 142,700 apartment sales and 10,334 sales of premises in Paris from 2021 to 2025. Every price below is a median price per square metre: half of the sales closed below it, the other half above.</p>
+
+<h2>In Paris, premises sell for about 15% less than an apartment</h2>
+
+<figure class="chart">
+  <p class="chart-title">Median sale price per m² in Paris, by year of sale</p>
+  <script type="application/json">{"type": "bars", "labels": ["2021", "2022", "2023", "2024", "2025"], "series": [{"name": "Apartments", "values": [10950, 10750, 10250, 9650, 9750]}, {"name": "Shop premises", "values": [8750, 9250, 8850, 8450, 8250]}], "unit": " €/m²"}</script>
+  <figcaption class="note">Medians to within €50/m². Source: DGFiP, demandes de valeurs foncières (DVF), files geolocated by Etalab (Licence Ouverte 2.0). Sale prices, not rents.</figcaption>
+</figure>
+
+<p>In 2025 a square metre of apartment sold for a median <strong>€9,750</strong>, a square metre of shop premises for <strong>€8,250</strong>: 15% less. Over five years, premises were always worth between 80% and 88% of the apartment price.</p>
+<p>The two series do not tell the same story. Apartments fell every year from 2021 to 2024, from €10,950 to €9,650/m², before a slight rebound in 2025. Premises first went up: +6% in 2022, to €9,250/m². Then they lost 11% in three years. Over the whole period apartments are down 11% and premises 6%.</p>
+
+<h2>Arrondissement by arrondissement</h2>
+
+<figure class="chart">
+  <p class="chart-title">Median sale price per m², by arrondissement, sales from 2023 to 2025</p>
+  <script type="application/json">{"type": "bars", "labels": ["6th", "7th", "4th", "1st", "8th", "3rd", "5th", "2nd", "16th", "9th", "17th", "11th", "15th", "10th", "14th", "12th", "18th", "13th", "20th", "19th"], "series": [{"name": "Apartments", "values": [14550, 14050, 12950, 12550, 12250, 12050, 11950, 11350, 11050, 10950, 10350, 10050, 9650, 9550, 9550, 9150, 8950, 8750, 8450, 8150]}, {"name": "Shop premises", "values": [11250, 10850, 11950, 11650, 10650, 9450, 9150, 9550, 9750, 9450, 9050, 7550, 7350, 7850, 7950, 7750, 6950, 6550, 6450, 5950]}], "unit": " €/m²"}</script>
+  <figcaption class="note">Three years of sales pooled: from 153 sales of premises (1st and 4th) to 479 (17th) per arrondissement. Medians to within €50/m². Source: DGFiP, demandes de valeurs foncières (DVF), files geolocated by Etalab (Licence Ouverte 2.0). Sale prices, not rents.</figcaption>
+</figure>
+
+<p>In all twenty arrondissements, premises sell for less than apartments. But the two rankings do not overlap. For apartments, the 6th (€14,550/m²) and the 7th (€14,050/m²) lead. For premises, it is the 4th (€11,950/m²) and the 1st (€11,650/m²). And the range is wider for premises: one to two between the 19th (€5,950/m²) and the 4th, against 1.8 times for apartments.</p>
+
+<figure class="chart">
+  <p class="chart-title">Price per m² of shop premises relative to apartments, by arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["1st", "4th", "16th", "8th", "17th", "9th", "12th", "2nd", "14th", "10th", "3rd", "18th", "5th", "6th", "7th", "15th", "20th", "11th", "13th", "19th"], "series": [{"name": "", "values": [-7, -8, -12, -13, -13, -14, -15, -16, -17, -18, -22, -22, -23, -23, -23, -24, -24, -25, -25, -27]}], "unit": "%", "signed": true}</script>
+  <figcaption class="note">Gap between the median for premises and the median for apartments, sales from 2023 to 2025. Source: DGFiP, demandes de valeurs foncières (DVF), files geolocated by Etalab (Licence Ouverte 2.0). Sale prices, not rents.</figcaption>
+</figure>
+
+<p>This is where the arrondissements part ways.</p>
+<ul>
+  <li><strong>In the 1st and the 4th, premises are worth almost as much as apartments</strong>: 7 to 8% less. These are the two arrondissements where commercial walls are the most expensive in Paris.</li>
+  <li><strong>In the 6th and the 7th, the gap is the widest in euros</strong>: €3,300 and €3,200/m² below apartments, which are the most expensive in the city there. Housing drives prices there, not shops.</li>
+  <li><strong>In the east and the south (11th, 13th, 19th, 20th, 15th), premises are worth a quarter less</strong> than apartments, down to −27% in the 19th.</li>
+</ul>
+<p>One possible reading: where footfall and offices make the value of an address, commercial walls come close to the price of housing; where people mostly come to live, they fall behind. The figures are consistent with that reading; they do not prove it.</p>
+
+<h2>Since 2021: where the two prices part</h2>
+
+<figure class="chart">
+  <p class="chart-title">Change in the median price per m² between 2021–2022 and 2024–2025, by arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["4th", "1st", "2nd", "18th", "5th", "16th", "9th", "12th", "17th", "7th", "15th", "8th", "20th", "3rd", "6th", "10th", "19th", "11th", "14th", "13th"], "series": [{"name": "Apartments", "values": [-3, -7, -7, -14, -9, -8, -9, -13, -11, -7, -11, -6, -12, -6, -5, -12, -14, -10, -11, -11]}, {"name": "Shop premises", "values": [7, -1, -2, -3, -3, -3, -4, -7, -8, -8, -9, -9, -12, -12, -12, -14, -18, -18, -21, -22]}], "unit": "%"}</script>
+  <figcaption class="note">Two years of sales pooled on each side, to count at least 97 sales of premises per arrondissement and per period. Source: DGFiP, demandes de valeurs foncières (DVF), files geolocated by Etalab (Licence Ouverte 2.0). Sale prices, not rents.</figcaption>
+</figure>
+
+<p>Apartments fell everywhere, from 3% (4th) to 14% (18th and 19th): one overall movement. Premises move in no set order. They held better than apartments in ten arrondissements, worse in nine, the same in the 20th. No general rule, then, but clear gaps.</p>
+<ul>
+  <li><strong>13th, 14th, 11th: premises lost twice as much as homes.</strong> −22% in the 13th, −21% in the 14th, −18% in the 11th, while apartments there fell by 10 to 11%.</li>
+  <li><strong>18th: the reverse.</strong> Apartments lost 14% there, premises only 3%.</li>
+  <li><strong>4th: the only arrondissement where premises went up</strong> (+7%), on about a hundred sales per period.</li>
+</ul>
+<p>For a founder the signal is this: the price of homes in a neighbourhood, which everyone knows, says little about the price of its commercial walls. The two markets have their own movements.</p>
+
+<h2>What these figures do not say</h2>
+
+<figure class="chart">
+  <p class="chart-title">Sales of shop premises kept in 2025, by arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["8th", "16th", "11th", "17th", "18th", "15th", "10th", "9th", "3rd", "14th", "2nd", "6th", "12th", "5th", "19th", "20th", "7th", "1st", "13th", "4th"], "series": [{"name": "", "values": [185, 168, 167, 163, 148, 146, 143, 131, 99, 95, 91, 90, 87, 75, 72, 71, 69, 61, 54, 52]}], "unit": ""}</script>
+  <figcaption class="note">2,167 sales of premises in Paris in 2025, against 28,264 apartment sales. Source: DGFiP, demandes de valeurs foncières (DVF), files geolocated by Etalab (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<ul>
+  <li><strong>Few sales.</strong> In Paris one unit of premises is sold for every thirteen apartments. Per arrondissement and per year, that makes 45 to 204 sales of premises over the period. With so few, a yearly median jumps: in the 4th it goes from €10,050/m² in 2023 to €12,450/m² in 2024, on 56 then 45 sales. That is why this article pools two or three years.</li>
+</ul>
+
+<figure class="chart">
+  <p class="chart-title">Half of the sales lie between these two prices per m², Paris, 2023 to 2025</p>
+  <script type="application/json">{"type": "bars", "labels": ["Apartments", "Shop premises"], "series": [{"name": "A quarter of sales below", "values": [8350, 5650]}, {"name": "A quarter of sales above", "values": [11650, 11450]}], "unit": " €/m²"}</script>
+  <figcaption class="note">First and third quartiles, to within €50/m²: 79,360 apartment sales, 5,949 sales of premises. Source: DGFiP, demandes de valeurs foncières (DVF), files geolocated by Etalab (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<ul>
+  <li><strong>Very different properties under one label.</strong> Expensive premises are worth as much as expensive apartments (€11,450 against €11,650/m²). The gap comes from the bottom: a quarter of premises sold for less than €5,650/m², against €8,350/m² for apartments. A shop on the street, an upstairs office and a workshop at the back of a courtyard are counted together, and the database does not say which is which.</li>
+  <li><strong>Buying the walls is not renting them.</strong> We found no open public source on commercial rents. The sale price of the walls places one neighbourhood against another. It does not allow a rent to be estimated, and we do not do so.</li>
+  <li><strong>The walls are not the business.</strong> Taking over a shop means buying its business (customers, equipment, right to the lease), not its premises. DVF says nothing about that.</li>
+  <li><strong>Bulk sales are left out</strong> (several units sold together, whole buildings), as are prices per square metre outside a plausible range: €3,000 to €30,000/m² for an apartment, €1,000 to €40,000/m² for premises.</li>
+  <li><strong>The data lags.</strong> Each release stops about six months before it comes out, and the database keeps five years only: there is no going back before 2021.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And in your neighbourhood?</h2>
+  <p>Pignon shows these two prices for every neighbourhood of Paris: the price of shop premises when the neighbourhood has enough sales, that of apartments, and the trend of both in the arrondissement since 2021. Always with the words “sale prices, not rents”. These are signals, with the number and the source behind each.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

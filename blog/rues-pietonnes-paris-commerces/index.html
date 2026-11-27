@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>939 rues où la voiture cède la place : ce que les fichiers de la Ville disent de leurs commerces · Tesselo</title>
+    <meta name="description" content="Aires piétonnes, rues aux écoles, zones de rencontre : 939 rues de Paris posées sur le répertoire des commerces. Une carte, six graphiques, près d’un commerce sur cinq, et une comparaison avant-après qui ne montre aucun écart visible." />
+    <meta property="og:title" content="939 rues où la voiture cède la place : ce que les fichiers de la Ville disent de leurs commerces · Tesselo" />
+    <meta property="og:description" content="Aires piétonnes, rues aux écoles, zones de rencontre : 939 rues de Paris posées sur le répertoire des commerces. Une carte, six graphiques, près d’un commerce sur cinq, et une comparaison avant-après qui ne montre aucun écart visible." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/car-free-streets-paris-shops/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <link rel="stylesheet" href="../../assets/vendor/maplibre-gl.css" />
+    <script src="../../assets/vendor/maplibre-gl.js" defer></script>
+    <script src="../../assets/postmap.js" defer></script>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/car-free-streets-paris-shops/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 13 novembre 2026</p><h1>939 rues où la voiture cède la place : ce que les fichiers de la Ville disent de leurs commerces</h1><p class="lead">Aires piétonnes, rues aux écoles, zones de rencontre : 939 rues de Paris posées sur le répertoire des commerces. Une carte, six graphiques, près d’un commerce sur cinq, et une comparaison avant-après qui ne montre aucun écart visible.</p></header>
+        <p>À Paris, une rue fermée aux voitures laisse une trace écrite : un arrêté, publié au bulletin officiel de la Ville. La Ville en tient deux fichiers ouverts, les aires piétonnes et les zones de rencontre, soit <strong>939 rues ou ensembles de rues</strong>, la plupart avec la date de leur arrêté. Nous les avons posés sur le répertoire des commerces. Ce que l’on y trouve tient en trois constats : près d’un commerce parisien sur cinq est dans une de ces rues, le rythme des arrêtés a changé en 2020, et le répertoire ne montre <strong>aucun écart visible</strong> entre ces rues et leurs voisines dans les trois ans qui suivent l’arrêté.</p>
+
+<figure class="postmap" data-src="../../assets/data/car-free-streets.json" data-label="Carte de Paris : 939 rues piétonnes, rues aux écoles et zones de rencontre">
+  <p class="chart-title">Les rues où la voiture cède la place, en novembre 2026</p>
+  <figcaption class="note">Survolez ou touchez une rue pour lire son nom, l’année de son arrêté et son nombre de commerces ouverts. Aire piétonne : réservée aux piétons, les véhicules autorisés y roulent au pas. Rue aux écoles : aire piétonne devant une école. Zone de rencontre : les voitures circulent à 20 km/h au plus et le piéton est prioritaire. Sources : Ville de Paris, « Aires piétonnes » et « Zones de rencontre » (ODbL), fichiers du 8 novembre 2026 ; INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<h2>Trois sortes de rues</h2>
+<ul>
+  <li><strong>521 aires piétonnes</strong>, du quartier Montorgueil à une impasse de quelques mètres.</li>
+  <li><strong>190 rues aux écoles</strong> : des aires piétonnes devant une école, souvent courtes.</li>
+  <li><strong>228 zones de rencontre</strong> : les voitures y passent encore, à 20 km/h au plus.</li>
+</ul>
+
+<h2>2020, l’année où le rythme change</h2>
+
+<figure class="chart">
+  <p class="chart-title">Arrêtés par année, d’après la date portée dans les fichiers</p>
+  <script type="application/json">{"type": "line", "x": [2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026], "series": [{"name": "Aires piétonnes et zones de rencontre", "values": [9, 16, 19, 9, 35, 8, 3, 8, 41, 20, 10, 10, 6, 20, 20, 14, 34, 29, 30, 51, 52, 46]}, {"name": "Rues aux écoles", "values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 40, 19, 9, 19, 30, 27]}]}</script>
+  <figcaption class="note">690 rues datées sur 939 ; 2026 s’arrête au début de novembre. Onze arrêtés portent une date antérieure à 2005 (le plus ancien : 1999). Source : Ville de Paris (ODbL).</figcaption>
+</figure>
+
+<p>Jusqu’en 2019, la Ville date entre 3 et 20 rues par an, avec deux exceptions : 35 en 2009 et 41 en 2013. Puis viennent les rues aux écoles : aucune avant 2020, 45 cette année-là, 40 en 2021. Depuis 2024, les trois sortes réunies font au moins 70 arrêtés par an.</p>
+<p>Le pic de 2013 dit autre chose. Cette année-là, 31 zones de rencontre reçoivent leur arrêté d’un coup : Aligre, la Butte-aux-Cailles, la rue du Commerce, la Gaîté. Ce ne sont pas 31 chantiers, c’est une mise en règle. Nous y revenons plus bas, car c’est la principale limite de ces dates.</p>
+
+<h2>Près d’un commerce sur cinq</h2>
+
+<figure class="chart">
+  <p class="chart-title">Commerces ouverts dans ces rues, par sorte de rue</p>
+  <script type="application/json">{"type": "bars", "labels": ["Aires piétonnes", "Zones de rencontre", "Rues aux écoles"], "series": [{"name": "", "values": [5140, 4576, 1184]}]}</script>
+  <figcaption class="note">Commerce « dans la rue » : son adresse est à 20 mètres au plus du tracé de la rue. 10 900 commerces sur les 60 189 ouverts à Paris. Sources : Ville de Paris (ODbL) ; INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>10 900 commerces ouverts ont leur adresse dans une de ces rues : 18,1 % des commerces de Paris. Ils sont très inégalement répartis. Le seul quartier Montorgueil-Saint-Denis en compte 549, les Halles 426, Beaubourg 198. À l’autre bout, 163 rues n’ont aucun commerce, et la rue médiane en a 4 pour une aire piétonne ou une rue aux écoles, 10 pour une zone de rencontre.</p>
+
+<h2>Ce que l’on y vend</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces ouverts, par type : aires piétonnes</p>
+  <script type="application/json">{"type": "bars", "labels": ["Restaurants", "Restauration rapide", "Bars et cafés", "Primeurs", "Poissonneries", "Instituts de beauté", "Salles de sport", "Pressings et laveries"], "series": [{"name": "Aires piétonnes", "values": [29.5, 19.0, 5.3, 1.2, 0.6, 4.5, 1.5, 1.0]}, {"name": "Tout Paris", "values": [24.0, 16.3, 4.4, 0.8, 0.2, 7.2, 2.8, 1.9]}], "unit": " %"}</script>
+  <figcaption class="note">5 140 commerces. Sources : Ville de Paris (ODbL) ; INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Dans une aire piétonne, on mange et on boit : restaurants, restauration rapide, bars et cafés font 53,8 % des commerces, contre 44,7 % dans tout Paris. Les commerces de marché y sont plus présents aussi, primeurs et poissonneries en tête, ce qui rappelle que beaucoup de ces rues sont d’anciennes rues de marché. Les services y sont rares : presque deux fois moins de pressings et de salles de sport.</p>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces ouverts, par type : rues aux écoles</p>
+  <script type="application/json">{"type": "bars", "labels": ["Écoles de loisirs", "Traiteurs", "Pressings et laveries", "Crèches", "Librairies", "Vêtements"], "series": [{"name": "Rues aux écoles", "values": [4.0, 3.2, 3.0, 2.1, 1.6, 5.4]}, {"name": "Tout Paris", "values": [2.4, 2.1, 1.9, 1.4, 0.9, 8.6]}], "unit": " %"}</script>
+  <figcaption class="note">1 184 commerces. Sources : Ville de Paris (ODbL) ; INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Les rues aux écoles ressemblent à ce que leur nom laisse attendre : plus d’écoles de loisirs, de crèches et de librairies qu’ailleurs, moins de vêtements. Ce sont aussi les rues où les enseignes de chaîne pèsent le moins.</p>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces qui appartiennent à une chaîne</p>
+  <script type="application/json">{"type": "bars", "labels": ["Zones de rencontre", "Aires piétonnes", "Tout Paris", "Rues aux écoles"], "series": [{"name": "", "values": [20.6, 19.9, 17.2, 11.5]}], "unit": " %"}</script>
+  <figcaption class="note">Chaîne : enseigne reconnue par les règles de Pignon (réseau, franchise ou société à plusieurs boutiques). Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<h2>Avant et après l’arrêté : pas d’écart visible</h2>
+
+<p>La question que tout le monde pose est celle de l’effet : une rue rendue aux piétons gagne-t-elle des commerces ? Les fichiers publics permettent une comparaison simple. Pour les 193 aires piétonnes et zones de rencontre datées de 2012 à 2023 qui avaient au moins un commerce, nous avons compté les ouvertures et les fermetures des trois années avant l’arrêté, puis des trois années après. Et nous avons fait le même compte pour les commerces voisins, entre 20 et 250 mètres de la rue.</p>
+
+<figure class="chart">
+  <p class="chart-title">Ouvertures et fermetures par an, pour 100 commerces ouverts le jour de l’arrêté</p>
+  <script type="application/json">{"type": "bars", "labels": ["Ouvertures, dans la rue", "Ouvertures, à côté", "Fermetures, dans la rue", "Fermetures, à côté"], "series": [{"name": "Trois ans avant", "values": [9.8, 9.9, 6.3, 6.8]}, {"name": "Trois ans après", "values": [10.2, 10.6, 6.9, 7.4]}]}</script>
+  <figcaption class="note">193 rues datées de 2012 à novembre 2023, hors rues aux écoles ; 3 800 commerces ouverts dans ces rues le jour de l’arrêté, 32 792 à côté (entre 20 et 250 m, hors de toute rue des deux fichiers). Sources : Ville de Paris (ODbL) ; INSEE, répertoire SIRENE (Licence Ouverte 2.0), calcul Pignon.</figcaption>
+</figure>
+
+<p>Les deux séries bougent ensemble. Dans la rue, les ouvertures passent de 9,8 à 10,2 pour 100 commerces et par an ; à côté, de 9,9 à 10,6. Les fermetures montent de 0,6 point des deux côtés. Rue par rue, le résultat est le même : 77 rues ont gagné des commerces plus vite après l’arrêté qu’avant, 75 moins vite.</p>
+<p>Un détail dépasse du lot. Dans ces rues, les nouvelles boutiques ne sont plus les mêmes : la part des vêtements dans les ouvertures recule de 18,6 % à 14,2 %, celle de la restauration rapide monte de 15,3 % à 20,2 %. Mais le mouvement existe aussi à côté (vêtements de 12,5 % à 10,7 %, restauration rapide de 16,2 % à 18,4 %) : il est plus marqué dans la rue, il n’est pas propre à elle.</p>
+<p>Pour les rues aux écoles, l’écart penche légèrement de l’autre côté : le nombre de commerces y progresse de 6,8 % dans les trois ans après l’arrêté, contre 10,5 % à côté. Mais ce sont 85 rues et 560 commerces, toutes datées de 2020 à 2023 : trop peu, et trop près du Covid, pour en tirer quoi que ce soit.</p>
+
+<h2>Pourquoi ce « rien » ne prouve rien</h2>
+<ul>
+  <li><strong>La date est celle d’un papier, pas d’un chantier.</strong> Le quartier Montorgueil, piéton depuis les années 1990, porte la date de 2013 ; les Halles, piétonnes depuis plus longtemps encore, celle de 2016. Pour ces rues, « avant » et « après » comparent deux périodes où la rue était déjà piétonne.</li>
+  <li><strong>249 rues sur 939 n’ont pas de date,</strong> dont 205 aires piétonnes. Nous avons cherché à les dater autrement, sans succès : aucun autre fichier public ne donne l’année. Ce ne sont pas les grandes rues du centre (12 % sont dans les six premiers arrondissements, contre 31 % des aires datées) mais des rues plus petites, avec quelques rues de marché connues : la rue Daguerre, la rue de Lévis, la rue des Martyrs.</li>
+  <li><strong>Une rue n’est pas choisie au hasard.</strong> La Ville piétonnise souvent une rue déjà commerçante et déjà fréquentée. Comparer avec les rues voisines corrige une partie de ce biais, pas tout.</li>
+  <li><strong>Trois ans, c’est court,</strong> et pour les arrêtés de 2020 à 2023 ces trois ans tombent sur le Covid et ses suites.</li>
+  <li><strong>Le répertoire compte les boutiques, pas leur chiffre d’affaires.</strong> Une rue peut garder le même nombre de commerces et changer de loyers, de clientèle ou de recettes sans que rien n’apparaisse ici.</li>
+  <li><strong>Les fermetures y arrivent tard,</strong> et parfois jamais : celles des dernières années sont sous-comptées, dans la rue comme à côté.</li>
+</ul>
+
+<h2>Ce que les données publiques ne contiennent pas</h2>
+<ul>
+  <li><strong>Le nombre de piétons.</strong> La Ville publie des comptages de voitures, de camions, de vélos et de trottinettes. Aucun fichier ouvert ne compte les piétons : dire qu’une rue piétonne « attire plus de passage » ne peut pas se vérifier avec des données publiques.</li>
+  <li><strong>Les changements de plan de circulation.</strong> Une rue coupée au transit ou mise en sens unique n’est ni une aire piétonne ni une zone de rencontre : elle n’est dans aucun des deux fichiers. Nous avons cherché ainsi une rue du 17<sup>e</sup> arrondissement qu’un lecteur nous signalait comme fermée aux voitures : elle n’y figure pas, et les capteurs de trafic les plus proches sont sur les grands axes voisins, pas dans la rue.</li>
+  <li><strong>Les rues rouvertes aux voitures.</strong> Les fichiers décrivent les rues en vigueur aujourd’hui, pas celles qui ont cessé de l’être.</li>
+  <li><strong>Les opérations sans arrêté permanent :</strong> rues fermées le dimanche, terrasses d’été, travaux.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et autour de votre adresse ?</h2>
+  <p>Pignon indique si une adresse donne sur une rue piétonne, et lit autour d’elle le même répertoire : les commerces de votre type à quelques minutes à pied, les habitants, le passage. Ce sont des signaux, avec le chiffre et la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

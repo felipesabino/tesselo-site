@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Des personnes dans les données publiques : ce que les éditeurs cachent, et ce que nous cachons en plus · Tesselo</title>
+    <meta name="description" content="3,2 millions d’entreprises non diffusées dans SIRENE, des propriétaires anonymisés, des dirigeants nommés dans un registre et cachés dans un autre : comment chaque source protège les personnes, pourquoi le croisement est le vrai risque, et les règles que Tesselo ajoute pour qu’aucun portrait ne puisse être construit." />
+    <meta property="og:title" content="Des personnes dans les données publiques : ce que les éditeurs cachent, et ce que nous cachons en plus · Tesselo" />
+    <meta property="og:description" content="3,2 millions d’entreprises non diffusées dans SIRENE, des propriétaires anonymisés, des dirigeants nommés dans un registre et cachés dans un autre : comment chaque source protège les personnes, pourquoi le croisement est le vrai risque, et les règles que Tesselo ajoute pour qu’aucun portrait ne puisse être construit." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/personal-data-in-public-data/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/personal-data-in-public-data/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 27 novembre 2026</p><h1>Des personnes dans les données publiques : ce que les éditeurs cachent, et ce que nous cachons en plus</h1><p class="lead">3,2 millions d’entreprises non diffusées dans SIRENE, des propriétaires anonymisés, des dirigeants nommés dans un registre et cachés dans un autre : comment chaque source protège les personnes, pourquoi le croisement est le vrai risque, et les règles que Tesselo ajoute pour qu’aucun portrait ne puisse être construit.</p></header>
+        <p>Les données publiques françaises décrivent des entreprises, des bâtiments, des ventes et des contrats. Derrière beaucoup de ces lignes, il y a une personne : un artisan inscrit en nom propre, le dirigeant d’une société, le propriétaire d’un appartement. Chaque éditeur a ses propres règles pour la protéger. Ce billet les passe en revue, puis explique ce que Tesselo fait en plus.</p>
+
+<h2>SIRENE : 3,2 millions d’entreprises « non diffusées »</h2>
+<p>Un entrepreneur individuel peut s’opposer à la diffusion de ses données dans le répertoire SIRENE (Code de commerce, art. R123-232-1, qui renvoie à l’article 21 du RGPD). L’INSEE marque alors la fiche « diffusion partielle » et la publie quand même dans ses fichiers ouverts, mais avec le nom, l’enseigne, l’adresse précise et les coordonnées masqués par <code>[ND]</code>. Restent visibles : le numéro SIREN ou SIRET, les dates, la forme juridique, l’activité, la tranche d’effectif et la commune. Une société peut aussi faire masquer l’adresse de son siège ou d’un établissement, mais son nom reste public.</p>
+
+<figure class="chart">
+  <p class="chart-title">Entreprises en diffusion partielle dans le stock SIRENE, novembre 2026</p>
+  <script type="application/json">{"type": "bars", "labels": ["Personnes physiques (entrepreneurs individuels)", "Personnes morales (sociétés, associations…)"], "series": [{"name": "Entreprises", "values": [3166301, 38767]}]}</script>
+  <figcaption class="note">3 205 068 unités légales en diffusion partielle. Presque toutes sont des personnes physiques. Source : INSEE, stock SIRENE de novembre 2026 (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Presque toutes ces fiches cachées sont donc des personnes. Les conditions d’utilisation de l’INSEE demandent au réutilisateur de prendre en compte le statut de diffusion le plus récent de chaque fiche : une personne qui s’oppose aujourd’hui doit disparaître des réutilisations demain.</p>
+
+<h2>Les autres sources, chacune à sa façon</h2>
+<ul>
+  <li><strong>Ventes immobilières (DVF).</strong> La DGFiP publie le prix, la date et l’adresse de chaque vente, sans le nom des parties. Les conditions de réutilisation interdisent de réidentifier les personnes.</li>
+  <li><strong>Propriétaires de bâtiments (BDNB, fichiers de la DGFiP).</strong> Seules les personnes morales sont nommées, avec leur SIREN. Les propriétaires personnes physiques sont anonymisés par l’éditeur.</li>
+  <li><strong>Diagnostics de performance énergétique (ADEME).</strong> Un DPE par logement, avec son adresse et, en texte libre, l’étage, la porte ou le nom de la résidence. Ce texte libre peut contenir un nom de famille.</li>
+  <li><strong>Registre national des entreprises (INPI).</strong> Il nomme les dirigeants, personnes physiques comprises. Il n’a pas d’équivalent du statut « non diffusé » de SIRENE et peut donc montrer ce que SIRENE cache. Le registre des bénéficiaires effectifs est fermé au public depuis juillet 2024, après un arrêt de la Cour de justice de l’Union européenne.</li>
+  <li><strong>Comptes annuels (INPI).</strong> Environ 45 % des dépôts sont confidentiels. Les petites entreprises peuvent cacher leur compte de résultat, les micro-entreprises tout leur bilan.</li>
+  <li><strong>Marchés publics (DECP, BOAMP).</strong> Les titulaires sont publiés avec leur SIRET et leur nom, entrepreneurs individuels compris. Les avis nomment aussi des personnes à contacter.</li>
+  <li><strong>Hygiène alimentaire (Alim’confiance), copropriétés (RNIC), permis de construire (Sitadel), installations classées (Géorisques).</strong> Ces fichiers peuvent porter le nom d’un artisan ou d’un exploitant agricole quand l’établissement est à son nom.</li>
+</ul>
+<p>Chaque fichier, pris seul, respecte ses règles. Le risque vient du croisement. Un numéro SIRET caché dans SIRENE peut réapparaître avec un nom dans un avis de marché, et un dirigeant absent d’un fichier peut être nommé dans un autre. Un agrégateur qui met tout côte à côte reconstruit ce que chaque éditeur avait pris soin de séparer : le portrait d’une personne.</p>
+
+<h2>Ce que Tesselo fait en plus</h2>
+<p>Tesselo réunit des dizaines de ces sources dans une seule base. Nous appliquons donc des règles plus strictes que celles de chaque éditeur, pour qu’aucune donnée sur une personne ne soit accessible au public et qu’aucun portrait ne puisse être construit.</p>
+<ul>
+  <li><strong>Aucun nom de personne n’est enregistré.</strong> Ni dirigeant, ni entrepreneur individuel, ni contact. Quand un calcul a besoin de rapprocher deux fiches d’un même dirigeant, le nom est réduit à une empreinte en mémoire, puis oublié : il n’est jamais écrit sur disque.</li>
+  <li><strong>Moins que SIRENE pour les fiches cachées.</strong> D’une entreprise non diffusée, nous gardons le numéro seul. Ni la commune, ni l’activité, ni les dates. Elle ne se trouve que par son numéro exact, jamais par un nom, un lieu ou un numéro partiel, et elle s’affiche comme une « entreprise dont les informations ne sont pas diffusées ». Le statut est relu à chaque mise à jour.</li>
+  <li><strong>Une personne cachée n’a aucun lien.</strong> Pour un entrepreneur individuel non diffusé, nous ne montrons aucun contrat, aucune annonce, aucun lien vers une autre entreprise ou une adresse, même quand une autre source publique les donne. Mettre côte à côte des fiches publiques sous le numéro d’une personne, c’est déjà dresser son profil.</li>
+  <li><strong>Un nom d’entreprise seulement s’il s’agit d’une société.</strong> Dans chaque autre fichier (marchés publics, hygiène, copropriétés, permis, installations classées), une colonne de nom n’est gardée que si son SIREN est une personne morale ouverte dans SIRENE. Sinon, elle est vide.</li>
+  <li><strong>Des liens entre sociétés, jamais entre personnes.</strong> Du registre de l’INPI, nous ne lisons que les sociétés qui dirigent d’autres sociétés. Les dirigeants personnes physiques ne sont jamais lus, et la copie du registre est effacée après lecture.</li>
+  <li><strong>Des chiffres à la bonne échelle.</strong> Les ventes immobilières restent agrégées : jamais une vente seule avec son adresse et sa date exactes. Un DPE reste lié à l’adresse du bâtiment, sans étage, porte ni nom de résidence. Un compte confidentiel reste confidentiel.</li>
+  <li><strong>Pas de note sur une personne.</strong> Nous évaluons des lieux et des sociétés, jamais un entrepreneur individuel (Cour de justice de l’UE, arrêt SCHUFA, décembre 2023). Un graphe qui relierait des personnes à leurs entreprises n’est pas construit : il demanderait d’abord une analyse juridique.</li>
+</ul>
+<p>Ces règles ont un coût. Certaines recherches restent sans réponse, et certains graphes sont plus pauvres que ceux d’autres services. C’est un choix : une base de données publiques doit rester une base sur des lieux et des entreprises, pas sur des gens.</p>
+
+<div class="post-cta">
+  <h2>D’où viennent nos données ?</h2>
+  <p>Chaque source que nous utilisons est listée, avec son éditeur, sa licence et sa date de mise à jour.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="../../sources/">Voir nos sources</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

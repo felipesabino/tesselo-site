@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lire un quartier pour une boulangerie : deux quartiers de Paris, chiffre par chiffre · Tesselo</title>
+    <meta name="description" content="Un quartier d’habitants dans le 17e, un quartier de bureaux dans le 2e : ce que sept sources publiques disent de chacun pour une boulangerie, facteur par facteur, et pourquoi la lecture s’inverse pour un bar." />
+    <meta property="og:title" content="Lire un quartier pour une boulangerie : deux quartiers de Paris, chiffre par chiffre · Tesselo" />
+    <meta property="og:description" content="Un quartier d’habitants dans le 17e, un quartier de bureaux dans le 2e : ce que sept sources publiques disent de chacun pour une boulangerie, facteur par facteur, et pourquoi la lecture s’inverse pour un bar." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/reading-a-neighbourhood-bakery/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/reading-a-neighbourhood-bakery/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Lire un quartier pour une boulangerie : deux quartiers de Paris, chiffre par chiffre</h1><p class="lead">Un quartier d’habitants dans le 17e, un quartier de bureaux dans le 2e : ce que sept sources publiques disent de chacun pour une boulangerie, facteur par facteur, et pourquoi la lecture s’inverse pour un bar.</p></header>
+        <p>Un quartier ne se lit pas de la même façon selon ce qu’on veut y vendre. Pour le montrer, prenons un seul type de commerce, la boulangerie, et deux quartiers parisiens que tout oppose : <strong>Épinettes 8</strong>, dans le 17e, autour de la station Guy Môquet, et <strong>Gaillon 1</strong>, dans le 2e, à 300 m de la station Opéra. Voici ce que les sources publiques disent de chacun, facteur par facteur, tel que Pignon l’affiche.</p>
+
+<p>Une précision de méthode : chaque quartier est mesuré depuis son centre, à pied. Ce qui est près compte plus que ce qui est loin, et les quartiers voisins comptent aussi. « À proximité » veut donc dire « accessible à pied depuis le centre du quartier », pas « dans les limites du quartier ».</p>
+
+<h2>Qui passe devant la vitrine : habitants et actifs</h2>
+
+<figure class="chart">
+  <p class="chart-title">Habitants et personnes qui travaillent à proximité</p>
+  <script type="application/json">{"type": "bars", "labels": ["Épinettes 8 (17e)", "Gaillon 1 (2e)", "Médiane de Paris"], "series": [{"name": "Habitants", "values": [10749, 2357, 5909]}, {"name": "Personnes qui y travaillent (estimation)", "values": [2477, 17255, 3292]}], "unit": ""}</script>
+  <figcaption class="note">Totaux pondérés par la distance à pied depuis le centre du quartier. Habitants : INSEE, recensement 2022 et carreaux de 200 m (2021). Actifs en journée : estimation à partir des emplois au lieu de travail par arrondissement (INSEE, recensement 2023), répartis selon les effectifs des employeurs du répertoire SIRENE. Licence Ouverte 2.0.</figcaption>
+</figure>
+
+<p>Autour d’Épinettes 8, environ <strong>10 749 habitants</strong> sont à portée de marche, près du double de la médiane parisienne (5 909). Autour de Gaillon 1, ils sont 2 357. Pour les actifs en journée, c’est l’inverse : environ 2 477 d’un côté, <strong>17 255</strong> de l’autre, cinq fois la médiane (3 292).</p>
+<p>Pour une boulangerie, Pignon compte un actif en journée pour un demi-habitant : il achète un sandwich le midi, rarement la baguette du soir et jamais celle du dimanche. Avec cette règle, les deux quartiers offrent presque le même nombre de clients potentiels : environ 11 988 autour d’Épinettes 8, 10 985 autour de Gaillon 1. Mais les habitants en font 90 % dans le premier et 21 % dans le second. Le total est le même, la semaine ne l’est pas.</p>
+<p><strong>Pour un autre type :</strong> dans le profil d’un bar, les habitants pèsent 4 % de la lecture, contre 23 % pour une boulangerie. Le même chiffre de 10 749 habitants compte donc cinq fois moins.</p>
+
+<h2>Qui habite là</h2>
+
+<figure class="chart">
+  <p class="chart-title">Âge des habitants du quartier</p>
+  <script type="application/json">{"type": "bars", "labels": ["Moins de 18 ans", "18 à 24 ans", "25 à 39 ans", "40 à 64 ans", "65 ans et plus"], "series": [{"name": "Épinettes 8", "values": [10, 11, 40, 26, 12]}, {"name": "Gaillon 1", "values": [16, 8, 29, 32, 14]}], "unit": " %"}</script>
+  <figcaption class="note">Part des habitants du quartier lui-même (2 598 à Épinettes 8, 923 à Gaillon 1). Arrondis : le total peut faire 99 %. Source : INSEE, recensement 2022 (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>À Épinettes 8, un habitant sur deux a entre 18 et 39 ans (52 %, contre 38 % à Gaillon 1). L’âge n’entre pas dans la lecture d’une boulangerie : tout le monde achète du pain. Il change tout pour d’autres types.</p>
+<ul>
+  <li><strong>Un bar</strong> regarde les 18–39 ans : c’est un de ses facteurs.</li>
+  <li><strong>Une crèche</strong> regarde les moins de 3 ans : 4,3 % des habitants à Gaillon 1 contre 2,5 % à Épinettes 8. Mais en nombre, cela fait 40 enfants d’un côté et 66 de l’autre. Une part élevée dans un quartier peu habité reste un petit nombre.</li>
+  <li><strong>Une pharmacie</strong> regarde les 65 ans et plus : 12 % et 14 %, peu d’écart ici.</li>
+</ul>
+
+<figure class="chart">
+  <p class="chart-title">Logements et ménages du quartier</p>
+  <script type="application/json">{"type": "bars", "labels": ["Logements de moins de 40 m²", "Ménages d’une seule personne", "Logements loués", "Ménages sans voiture", "Résidences secondaires"], "series": [{"name": "Épinettes 8", "values": [67, 67, 67, 82, 7]}, {"name": "Gaillon 1", "values": [32, 56, 63, 71, 25]}], "unit": " %"}</script>
+  <figcaption class="note">Petits logements et logements loués : part des résidences principales. Résidences secondaires et occasionnelles : part de tous les logements. Source : INSEE, recensement 2022 (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Deux tiers des logements d’Épinettes 8 font moins de 40 m², et deux tiers des ménages sont des personnes seules (1,56 personne par ménage). 82 % des ménages n’ont pas de voiture, contre 69 % pour la médiane parisienne : un indice d’achats faits à pied, près de chez soi, sans le mesurer directement.</p>
+<p>À Gaillon 1, un logement sur quatre (25 %) est une résidence secondaire ou occasionnelle, contre 8,5 % pour la médiane parisienne. Ces logements comptent dans les immeubles, pas dans les habitants : la rue est moins habitée toute l’année que ses façades ne le laissent penser.</p>
+<p><strong>Pour un autre type :</strong> les petits logements sont un facteur pour une laverie, parce qu’on y a rarement la place d’un lave-linge. Pour une boulangerie, c’est du contexte : des ménages d’une personne achètent une demi-baguette, pas trois.</p>
+
+<h2>Le pouvoir d’achat</h2>
+
+<p>Le revenu médian autour d’Épinettes 8 est de <strong>29 956 € par an</strong> (29 830 € pour le quartier lui-même), sous la médiane parisienne de 32 492 €. Autour de Gaillon 1, il est de <strong>37 892 €</strong>. Ce second chiffre demande une précaution : l’INSEE ne publie pas de revenu médian pour Gaillon 1, qui compte trop peu de ménages. La valeur affichée est une moyenne des quartiers voisins accessibles à pied, pondérée par leurs habitants, et l’application le signale.</p>
+<p>Pour une boulangerie, ce facteur pèse peu (5 %) : le pain s’achète à tous les revenus. Il pèse plus du double dans le profil d’un bar (12 %).</p>
+
+<h2>Les concurrents à quelques minutes à pied</h2>
+
+<figure class="chart">
+  <p class="chart-title">Boulangeries à moins de 400 m à pied</p>
+  <script type="application/json">{"type": "bars", "labels": ["Épinettes 8 (17e)", "Gaillon 1 (2e)", "Médiane de Paris"], "series": [{"name": "Indépendantes", "values": [15, 8, 6]}, {"name": "De chaîne", "values": [2, 8, 1]}], "unit": ""}</script>
+  <figcaption class="note">Depuis le centre du quartier. Source : INSEE, répertoire SIRENE, via l’API Recherche d’entreprises (Licence Ouverte 2.0). Une chaîne est une enseigne connue ou une société qui exploite plusieurs boutiques.</figcaption>
+</figure>
+
+<p>Épinettes 8 compte <strong>15 boulangeries indépendantes</strong> à moins de 400 m à pied, plus du double de la médiane parisienne (6), et 2 boulangeries de chaîne. Gaillon 1 en compte 8 indépendantes et <strong>8 de chaîne</strong>, quand la médiane est de 1.</p>
+<p>Rapporté aux clients potentiels, le résultat surprend : environ 1 059 par boulangerie autour d’Épinettes 8, 1 035 autour de Gaillon 1. Presque le même chiffre, pour deux marchés différents. Le premier est un marché d’habitants que se partagent beaucoup d’artisans. Le second est un marché de bureaux où une boulangerie sur deux est une chaîne.</p>
+<p><strong>Pour un autre type :</strong> il y a 15 bars, pubs et cafés à moins de 400 m à pied d’Épinettes 8, et 29 autour de Gaillon 1. Pour une boulangerie, 29 concurrents seraient un marché encombré. Pour un bar, la lecture s’inverse : d’après les pondérations calibrées de Pignon, les bars ouverts depuis 2019 ont duré plus longtemps là où le même métier était déjà présent. Une rue de bars attire les clients des bars.</p>
+
+<h2>Les transports</h2>
+
+<figure class="chart">
+  <p class="chart-title">Métro, RER et tramway à moins de 600 m</p>
+  <script type="application/json">{"type": "bars", "labels": ["Arrêts à moins de 600 m", "Arrêt le plus proche : entrées par an (millions)", "Tous ces arrêts : entrées par an (millions)"], "series": [{"name": "Épinettes 8", "values": [4, 3.99, 8.6]}, {"name": "Gaillon 1", "values": [8, 1.6, 43.2]}], "unit": ""}</script>
+  <figcaption class="note">Distances à vol d’oiseau depuis le centre du quartier. La fréquentation des deux arrêts de tramway proches d’Épinettes 8 est estimée. Le total par quartier est une somme faite pour cet article. Source : Île-de-France Mobilités, validations des quatre derniers trimestres publiés (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>L’arrêt le plus proche d’Épinettes 8, Guy Môquet, est à 250 m et compte environ 4 millions d’entrées par an. Celui de Gaillon 1, Quatre Septembre, est à 149 m et n’en compte que 1,6 million. S’arrêter là donnerait une image fausse : Gaillon 1 a 8 arrêts à moins de 600 m, dont Opéra, Auber et Pyramides, pour 43,2 millions d’entrées par an au total. C’est cinq fois les 8,6 millions des 4 arrêts d’Épinettes 8.</p>
+<p>Une entrée dans le métro n’est pas un passage devant une vitrine. Et pour une boulangerie de quartier, ce facteur pèse 5 % : ses clients viennent à pied de chez eux. Il pèse le double dans le profil d’un bar (10 %), où l’on vient de plus loin.</p>
+
+<h2>Les lieux qui amènent des clients</h2>
+
+<p>Chaque type de commerce a les siens. Pour une boulangerie, Pignon retient les écoles maternelles et élémentaires (la sortie d’école) et les supermarchés (les courses). À moins de 400 m à pied : <strong>14 supermarchés et 7 écoles</strong> autour d’Épinettes 8, 7 supermarchés et 3 écoles autour de Gaillon 1. Source : INSEE, base des équipements 2025.</p>
+<p>Les marchés de plein air ne sont pas comptés dans la lecture, mais ils sont affichés : un marché alimentaire à 340 m du centre d’Épinettes 8 (mercredi et samedi), deux près de Gaillon 1, à 230 m (mercredi et samedi) et 410 m (mardi et vendredi). Source : Ville de Paris, liste des marchés (ODbL).</p>
+<p><strong>Pour un autre type :</strong> un bar ne regarde ni les écoles ni les supermarchés, mais les hôtels, les théâtres et les cinémas. Il y a 10 hôtels autour d’Épinettes 8. Autour de Gaillon 1 : 43 hôtels, 7 théâtres et salles de spectacle, 2 cinémas. Le quartier qui a peu de « lieux à boulangerie » déborde de « lieux à bar ».</p>
+
+<h2>Les boulangeries qui ont ouvert, et celles qui ont fermé</h2>
+
+<p>Parmi les boulangeries ouvertes à proximité entre novembre 2018 et novembre 2023, <strong>13 sur 14</strong> ont tenu trois ans autour d’Épinettes 8 (93 %), et 15 sur 17 autour de Gaillon 1 (88 %). Sur tout Paris : 661 sur 809, soit 82 %. Avec 14 ou 17 ouvertures, une seule fermeture déplace le taux de 6 ou 7 points. Pignon rapproche donc ces taux locaux de celui de Paris avant de les utiliser, et les compte pour 88 % et 84 %.</p>
+<p>Depuis novembre 2018, le répertoire a enregistré 23 fermetures de boulangeries près d’Épinettes 8 et 15 près de Gaillon 1. Le BODACC, le bulletin où sont publiées les décisions des tribunaux de commerce et les ventes de fonds, dit ce qu’il y a derrière : 10 des 23 sont des ventes de fonds et 2 des liquidations judiciaires ; à Gaillon 1, 4 ventes et 1 liquidation sur 15. Pour les autres, aucune annonce ou une simple radiation. Beaucoup de « fermetures » de boulangeries sont des changements d’exploitant : la boutique reste, le boulanger change.</p>
+
+<h2>Les prix, pour le contexte</h2>
+
+<figure class="chart">
+  <p class="chart-title">Prix de vente médian au m² dans le quartier</p>
+  <script type="application/json">{"type": "bars", "labels": ["Épinettes 8 (17e)", "Gaillon 1 (2e)"], "series": [{"name": "Toutes ventes (surtout des logements)", "values": [8980, 12040]}, {"name": "Locaux commerciaux seuls", "values": [5880, 10850]}], "unit": " €"}</script>
+  <figcaption class="note">Ventes de 2023 à 2025 dans le quartier lui-même : 148 ventes en tout et 5 ventes de locaux à Épinettes 8, 51 et 11 à Gaillon 1. Les « locaux commerciaux » incluent des bureaux et des ateliers. Médiane parisienne pour ces locaux : 8 410 €/m². Source : DGFiP, Demandes de valeurs foncières, géolocalisées par Etalab (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Ce sont des prix de vente, pas des loyers : aucune source publique ne donne le loyer d’un local commercial. Ils indiquent un niveau, rien de plus. En tenant compte des quartiers voisins, les biens (surtout des logements) se vendent 9 136 €/m² autour d’Épinettes 8, sous la médiane parisienne (9 716 €), et 12 346 €/m² autour de Gaillon 1. Pour les locaux commerciaux, l’écart va presque du simple au double, mais sur 5 ventes à Épinettes 8, le minimum pour qu’un prix soit affiché : un chiffre à lire avec prudence.</p>
+<p>Le prix des fonds de commerce n’existe qu’à l’échelle de l’arrondissement. Dans tout le 17e, 16 boulangeries ont été vendues depuis janvier 2023, pour un prix médian de 400 000 € (la moitié des ventes entre 270 000 et 700 000 €). Dans le 2e, 4 ventes seulement : trop peu pour publier une médiane. Source : BODACC, annonces de ventes.</p>
+
+<h2>Les deux quartiers côte à côte</h2>
+
+<figure class="chart">
+  <p class="chart-title">Position de chaque quartier pour une boulangerie, facteur par facteur (0 à 100)</p>
+  <script type="application/json">{"type": "bars", "labels": ["Habitants à proximité (23 %)", "Concurrents indépendants (18 %)", "Actifs en journée (14 %)", "Pression des chaînes (14 %)", "Survie des commerces (9 %)", "Lieux qui amènent des clients (9 %)", "Transports (5 %)", "Pouvoir d’achat (5 %)", "Prix immobiliers (5 %)"], "series": [{"name": "Épinettes 8", "values": [98, 24, 30, 50, 97, 95, 40, 38, 64]}, {"name": "Gaillon 1", "values": [15, 66, 99, 18, 74, 28, 99, 76, 13]}], "unit": ""}</script>
+  <figcaption class="note">Entre parenthèses, le poids du facteur dans le profil « boulangerie ». 100 = la situation la plus favorable parmi les 992 quartiers de Paris, 50 = la médiane. Pour les concurrents indépendants, la position suit le nombre de clients potentiels par boulangerie indépendante. Pour les prix, un prix bas est compté comme favorable. La pression des chaînes suit une échelle fixe : 100 sans chaîne, moins à chaque chaîne.</figcaption>
+</figure>
+
+<p>Aucun des deux quartiers n’est « bon » partout. Épinettes 8 est très haut sur ce qui pèse le plus pour une boulangerie (les habitants, les écoles et les supermarchés, la tenue des ouvertures récentes) et bas sur la concurrence : beaucoup d’artisans s’y partagent déjà les clients. Gaillon 1 est très haut sur les actifs, les transports et le revenu, et bas sur les habitants, les chaînes et les prix.</p>
+<p>Pignon résume ces positions en une lecture d’ensemble : <strong>62 sur 100</strong> pour Épinettes 8, dans la bande « signaux favorables », et <strong>49</strong> pour Gaillon 1, « signaux mitigés ». Changez de type et l’ordre s’inverse : pour un bar, les mêmes sources donnent 53 à Épinettes 8 (« mitigés ») et 67 à Gaillon 1 (« favorables »). Le quartier n’a pas changé, la question oui.</p>
+<p>Ce chiffre n’est ni un verdict ni un classement. Un projet de boulangerie qui vise le déjeuner des bureaux, fermée le week-end, ne se lit pas avec les poids d’une boulangerie de quartier ; c’est pour cela que chaque facteur reste visible, avec son chiffre et sa source. Pignon est un outil d’aide à la décision, pas un conseil en investissement.</p>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+<ul>
+  <li><strong>Le passage sur le trottoir exact.</strong> Aucune source publique ne compte les piétons devant une adresse. Les habitants, les actifs et les entrées dans le métro en sont des indices.</li>
+  <li><strong>Le loyer et le pas-de-porte.</strong> Les prix affichés sont des prix de vente de murs, et le prix des fonds n’est connu que par arrondissement.</li>
+  <li><strong>La qualité d’un concurrent.</strong> Quinze boulangeries moyennes et quinze boulangeries excellentes comptent pareil. Le répertoire ne connaît ni la file d’attente ni le pain.</li>
+  <li><strong>Le centre du quartier n’est pas votre adresse.</strong> Les chiffres de cet article sont mesurés depuis le centre de chaque quartier. À 200 m de là, sur un autre trottoir, plusieurs changent.</li>
+  <li><strong>Les actifs en journée sont une estimation.</strong> L’INSEE ne publie les emplois que par arrondissement ; leur répartition par quartier vient des effectifs déclarés par les employeurs. Touristes, étudiants et visiteurs ne sont pas comptés, ce qui pèse à Gaillon 1.</li>
+  <li><strong>Les dates ne sont pas les mêmes.</strong> Recensement 2022, revenus 2021, ventes 2023–2025, répertoire des commerces à jour : chaque source a son rythme.</li>
+  <li><strong>Le répertoire a du retard sur la rue.</strong> Une boulangerie peut avoir fermé sans y être radiée, et une reprise y compte pour une fermeture et une ouverture.</li>
+  <li><strong>Deux quartiers ne font pas une règle.</strong> Cet exemple montre une méthode de lecture, pas une loi sur les quartiers résidentiels et les quartiers de bureaux.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et autour de votre adresse ?</h2>
+  <p>Pignon fait cette lecture pour une adresse précise et pour votre type de commerce : les concurrents à quelques minutes à pied, les habitants, les actifs, les lieux qui amènent des clients, ce qui a tenu et ce qui a fermé. Ce sont des signaux, avec le chiffre et la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

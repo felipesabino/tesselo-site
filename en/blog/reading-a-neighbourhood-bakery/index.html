@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reading a neighbourhood for a bakery: two Paris neighbourhoods, number by number · Tesselo</title>
+    <meta name="description" content="A residential neighbourhood in the 17th, an office neighbourhood in the 2nd: what seven public sources say about each for a bakery, factor by factor, and why the reading turns round for a bar." />
+    <meta property="og:title" content="Reading a neighbourhood for a bakery: two Paris neighbourhoods, number by number · Tesselo" />
+    <meta property="og:description" content="A residential neighbourhood in the 17th, an office neighbourhood in the 2nd: what seven public sources say about each for a bakery, factor by factor, and why the reading turns round for a bar." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/lire-un-quartier-boulangerie/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/lire-un-quartier-boulangerie/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>Reading a neighbourhood for a bakery: two Paris neighbourhoods, number by number</h1><p class="lead">A residential neighbourhood in the 17th, an office neighbourhood in the 2nd: what seven public sources say about each for a bakery, factor by factor, and why the reading turns round for a bar.</p></header>
+        <p>A neighbourhood does not read the same way depending on what you want to sell there. To show it, take one type of shop, the bakery, and two Paris neighbourhoods with little in common: <strong>Épinettes 8</strong>, in the 17th arrondissement, around Guy Môquet station, and <strong>Gaillon 1</strong>, in the 2nd, 300 m from Opéra station. Here is what public sources say about each, factor by factor, as Pignon shows it.</p>
+
+<p>One point of method: each neighbourhood is measured from its centre, on foot. What is close counts more than what is far, and the neighbourhoods next door count too. “Nearby” therefore means “within walking reach of the neighbourhood’s centre”, not “inside its borders”.</p>
+
+<h2>Who walks past the window: residents and workers</h2>
+
+<figure class="chart">
+  <p class="chart-title">Residents and people working nearby</p>
+  <script type="application/json">{"type": "bars", "labels": ["Épinettes 8 (17th)", "Gaillon 1 (2nd)", "Paris median"], "series": [{"name": "Residents", "values": [10749, 2357, 5909]}, {"name": "People working there (estimate)", "values": [2477, 17255, 3292]}], "unit": ""}</script>
+  <figcaption class="note">Totals weighted by walking distance from the neighbourhood’s centre. Residents: INSEE, 2022 census and 200 m squares (2021). Daytime workers: estimated from jobs by place of work per arrondissement (INSEE, 2023 census), spread by the headcounts of employers in the SIRENE register. Licence Ouverte 2.0.</figcaption>
+</figure>
+
+<p>Around Épinettes 8, about <strong>10,749 residents</strong> are within walking reach, close to twice the Paris median (5,909). Around Gaillon 1 there are 2,357. For daytime workers it is the reverse: about 2,477 on one side, <strong>17,255</strong> on the other, five times the median (3,292).</p>
+<p>For a bakery, Pignon counts a daytime worker as half a resident: they buy a sandwich at lunch, rarely the evening baguette and never the Sunday one. With that rule the two neighbourhoods offer almost the same number of potential customers: about 11,988 around Épinettes 8, 10,985 around Gaillon 1. But residents make up 90% of them in the first and 21% in the second. The total is the same; the week is not.</p>
+<p><strong>For another type:</strong> in a bar’s profile, residents weigh 4% of the reading, against 23% for a bakery. The same figure of 10,749 residents counts five times less.</p>
+
+<h2>Who lives there</h2>
+
+<figure class="chart">
+  <p class="chart-title">Age of the neighbourhood’s residents</p>
+  <script type="application/json">{"type": "bars", "labels": ["Under 18", "18 to 24", "25 to 39", "40 to 64", "65 and over"], "series": [{"name": "Épinettes 8", "values": [10, 11, 40, 26, 12]}, {"name": "Gaillon 1", "values": [16, 8, 29, 32, 14]}], "unit": "%"}</script>
+  <figcaption class="note">Share of the residents of the neighbourhood itself (2,598 in Épinettes 8, 923 in Gaillon 1). Rounded: the total can be 99%. Source: INSEE, 2022 census (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>In Épinettes 8, one resident in two is aged 18 to 39 (52%, against 38% in Gaillon 1). Age is not part of a bakery’s reading: everyone buys bread. It changes everything for other types.</p>
+<ul>
+  <li><strong>A bar</strong> looks at the 18–39s: it is one of its factors.</li>
+  <li><strong>A nursery</strong> looks at the under-3s: 4.3% of residents in Gaillon 1 against 2.5% in Épinettes 8. But in numbers that is 40 children on one side and 66 on the other. A high share in a thinly populated neighbourhood is still a small number.</li>
+  <li><strong>A pharmacy</strong> looks at the over-65s: 12% and 14%, little difference here.</li>
+</ul>
+
+<figure class="chart">
+  <p class="chart-title">Homes and households in the neighbourhood</p>
+  <script type="application/json">{"type": "bars", "labels": ["Homes under 40 m²", "One-person households", "Rented homes", "Households without a car", "Second homes"], "series": [{"name": "Épinettes 8", "values": [67, 67, 67, 82, 7]}, {"name": "Gaillon 1", "values": [32, 56, 63, 71, 25]}], "unit": "%"}</script>
+  <figcaption class="note">Small homes and rented homes: share of main homes. Second and occasional homes: share of all homes. Source: INSEE, 2022 census (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Two thirds of the homes in Épinettes 8 are under 40 m², and two thirds of households are one person (1.56 people per household). 82% of households have no car, against 69% for the Paris median: a sign of shopping on foot, close to home, not a direct measure of it.</p>
+<p>In Gaillon 1, one home in four (25%) is a second or occasional home, against 8.5% for the Paris median. These homes count in the buildings, not in the residents: fewer people live on the street all year than its façades suggest.</p>
+<p><strong>For another type:</strong> small homes are a factor for a laundromat, because there is rarely room for a washing machine. For a bakery they are context: a one-person household buys half a baguette, not three.</p>
+
+<h2>Spending power</h2>
+
+<p>Median income around Épinettes 8 is <strong>€29,956 a year</strong> (€29,830 for the neighbourhood itself), below the Paris median of €32,492. Around Gaillon 1 it is <strong>€37,892</strong>. That second figure needs care: INSEE does not publish a median income for Gaillon 1, which has too few households. The value shown is an average of the neighbouring neighbourhoods within walking reach, weighted by their residents, and the app says so.</p>
+<p>For a bakery this factor weighs little (5%): bread is bought at every income. It weighs more than twice as much in a bar’s profile (12%).</p>
+
+<h2>Competitors a few minutes’ walk away</h2>
+
+<figure class="chart">
+  <p class="chart-title">Bakeries within 400 m on foot</p>
+  <script type="application/json">{"type": "bars", "labels": ["Épinettes 8 (17th)", "Gaillon 1 (2nd)", "Paris median"], "series": [{"name": "Independent", "values": [15, 8, 6]}, {"name": "Chain", "values": [2, 8, 1]}], "unit": ""}</script>
+  <figcaption class="note">From the neighbourhood’s centre. Source: INSEE, SIRENE register, via the Recherche d’entreprises API (Licence Ouverte 2.0). A chain is a known brand or a company that runs several shops.</figcaption>
+</figure>
+
+<p>Épinettes 8 has <strong>15 independent bakeries</strong> within 400 m on foot, more than twice the Paris median (6), and 2 chain bakeries. Gaillon 1 has 8 independents and <strong>8 chain bakeries</strong>, where the median is 1.</p>
+<p>Set against potential customers, the result is a surprise: about 1,059 per bakery around Épinettes 8, 1,035 around Gaillon 1. Almost the same figure, for two different markets. The first is a residents’ market shared between many artisans. The second is an office market where one bakery in two is a chain.</p>
+<p><strong>For another type:</strong> there are 15 bars, pubs and cafés within 400 m on foot of Épinettes 8, and 29 around Gaillon 1. For a bakery, 29 competitors would be a crowded market. For a bar the reading turns round: according to Pignon’s calibrated weights, bars opened since 2019 lasted longer where the same trade was already present. A street of bars draws the people who go to bars.</p>
+
+<h2>Transport</h2>
+
+<figure class="chart">
+  <p class="chart-title">Metro, RER and tram within 600 m</p>
+  <script type="application/json">{"type": "bars", "labels": ["Stops within 600 m", "Nearest stop: entries a year (millions)", "All these stops: entries a year (millions)"], "series": [{"name": "Épinettes 8", "values": [4, 3.99, 8.6]}, {"name": "Gaillon 1", "values": [8, 1.6, 43.2]}], "unit": ""}</script>
+  <figcaption class="note">Straight-line distances from the neighbourhood’s centre. Ridership at the two tram stops near Épinettes 8 is estimated. The total per neighbourhood is a sum made for this article. Source: Île-de-France Mobilités, validations of the last four published quarters (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>The nearest stop to Épinettes 8, Guy Môquet, is 250 m away and has about 4 million entries a year. Gaillon 1’s nearest, Quatre Septembre, is 149 m away and has only 1.6 million. Stopping there would give a false picture: Gaillon 1 has 8 stops within 600 m, including Opéra, Auber and Pyramides, for 43.2 million entries a year in all. That is five times the 8.6 million of the 4 stops around Épinettes 8.</p>
+<p>An entry into the metro is not a walk past a shop window. And for a neighbourhood bakery this factor weighs 5%: its customers walk from home. It weighs twice as much in a bar’s profile (10%), where people come from further away.</p>
+
+<h2>Places that bring customers</h2>
+
+<p>Each type of shop has its own. For a bakery, Pignon keeps nursery and primary schools (the school run) and supermarkets (the grocery trip). Within 400 m on foot: <strong>14 supermarkets and 7 schools</strong> around Épinettes 8, 7 supermarkets and 3 schools around Gaillon 1. Source: INSEE, facilities file 2025.</p>
+<p>Open-air markets are not counted in the reading, but they are shown: one food market 340 m from the centre of Épinettes 8 (Wednesday and Saturday), two near Gaillon 1, at 230 m (Wednesday and Saturday) and 410 m (Tuesday and Friday). Source: Ville de Paris, list of markets (ODbL).</p>
+<p><strong>For another type:</strong> a bar looks at neither schools nor supermarkets, but at hotels, theatres and cinemas. There are 10 hotels around Épinettes 8. Around Gaillon 1: 43 hotels, 7 theatres and performance venues, 2 cinemas. The neighbourhood short of “bakery places” is full of “bar places”.</p>
+
+<h2>The bakeries that opened, and those that closed</h2>
+
+<p>Of the bakeries opened nearby between November 2018 and November 2023, <strong>13 of 14</strong> lasted three years around Épinettes 8 (93%), and 15 of 17 around Gaillon 1 (88%). Across Paris: 661 of 809, or 82%. With 14 or 17 openings, a single closure moves the rate by 6 or 7 points. So Pignon pulls these local rates toward the Paris rate before using them, and counts them as 88% and 84%.</p>
+<p>Since November 2018 the register has recorded 23 bakery closures near Épinettes 8 and 15 near Gaillon 1. BODACC, the official bulletin where commercial court decisions and sales of businesses are published, says what lies behind them: 10 of the 23 are sales of the business and 2 are court-ordered liquidations; in Gaillon 1, 4 sales and 1 liquidation out of 15. For the rest, no notice or a plain deregistration. Many bakery “closures” are a change of operator: the shop stays, the baker changes.</p>
+
+<h2>Prices, for context</h2>
+
+<figure class="chart">
+  <p class="chart-title">Median sale price per m² in the neighbourhood</p>
+  <script type="application/json">{"type": "bars", "labels": ["Épinettes 8 (17th)", "Gaillon 1 (2nd)"], "series": [{"name": "All sales (mostly homes)", "values": [8980, 12040]}, {"name": "Commercial premises only", "values": [5880, 10850]}], "unit": " €"}</script>
+  <figcaption class="note">Sales from 2023 to 2025 in the neighbourhood itself: 148 sales in all and 5 sales of premises in Épinettes 8, 51 and 11 in Gaillon 1. “Commercial premises” include offices and workshops. Paris median for these premises: €8,410/m². Source: DGFiP, Demandes de valeurs foncières, geolocated by Etalab (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>These are sale prices, not rents: no public source gives the rent of a commercial unit. They show a level, nothing more. Taking the neighbouring neighbourhoods into account, property (mostly homes) sells for €9,136/m² around Épinettes 8, below the Paris median (€9,716), and €12,346/m² around Gaillon 1. For commercial premises the gap is close to double, but on 5 sales in Épinettes 8, the minimum for a price to be shown: a figure to read with caution.</p>
+<p>Sale prices of businesses exist only at arrondissement level. Across the whole 17th, 16 bakeries have been sold since January 2023, for a median price of €400,000 (half of the sales between €270,000 and €700,000). In the 2nd, only 4 sales: too few to publish a median. Source: BODACC, sale notices.</p>
+
+<h2>The two neighbourhoods side by side</h2>
+
+<figure class="chart">
+  <p class="chart-title">Where each neighbourhood stands for a bakery, factor by factor (0 to 100)</p>
+  <script type="application/json">{"type": "bars", "labels": ["Residents nearby (23%)", "Independent competitors (18%)", "Daytime workers (14%)", "Chain pressure (14%)", "Shop survival (9%)", "Places that bring customers (9%)", "Transport (5%)", "Spending power (5%)", "Property prices (5%)"], "series": [{"name": "Épinettes 8", "values": [98, 24, 30, 50, 97, 95, 40, 38, 64]}, {"name": "Gaillon 1", "values": [15, 66, 99, 18, 74, 28, 99, 76, 13]}], "unit": ""}</script>
+  <figcaption class="note">In brackets, the factor’s weight in the “bakery” profile. 100 = the most favourable situation among the 992 neighbourhoods of Paris, 50 = the median. For independent competitors, the position follows the number of potential customers per independent bakery. For prices, a low price counts as favourable. Chain pressure follows a fixed scale: 100 with no chain, less with each chain.</figcaption>
+</figure>
+
+<p>Neither neighbourhood is “good” everywhere. Épinettes 8 stands very high on what weighs most for a bakery (residents, schools and supermarkets, how recent openings held up) and low on competition: many artisans already share the customers. Gaillon 1 stands very high on workers, transport and income, and low on residents, chains and prices.</p>
+<p>Pignon sums these positions up in one overall reading: <strong>62 out of 100</strong> for Épinettes 8, in the “favourable signals” band, and <strong>49</strong> for Gaillon 1, “mixed signals”. Change the type and the order turns round: for a bar, the same sources give 53 to Épinettes 8 (“mixed”) and 67 to Gaillon 1 (“favourable”). The neighbourhood has not changed; the question has.</p>
+<p>That figure is neither a verdict nor a ranking. A bakery built around the office lunch, closed at weekends, does not read with the weights of a neighbourhood bakery; that is why every factor stays visible, with its number and its source. Pignon is a decision-support tool, not investment advice.</p>
+
+<h2>What these figures do not say</h2>
+<ul>
+  <li><strong>Footfall on the exact pavement.</strong> No public source counts pedestrians in front of an address. Residents, workers and metro entries are clues to it.</li>
+  <li><strong>The rent and the key money.</strong> The prices shown are sale prices of property, and the price of businesses is known only per arrondissement.</li>
+  <li><strong>The quality of a competitor.</strong> Fifteen average bakeries and fifteen excellent ones count the same. The register knows neither the queue nor the bread.</li>
+  <li><strong>The neighbourhood’s centre is not your address.</strong> The figures in this article are measured from the centre of each neighbourhood. 200 m away, on another pavement, several of them change.</li>
+  <li><strong>Daytime workers are an estimate.</strong> INSEE publishes jobs only per arrondissement; the split by neighbourhood comes from the headcounts employers declare. Tourists, students and visitors are not counted, which matters in Gaillon 1.</li>
+  <li><strong>The dates differ.</strong> 2022 census, 2021 incomes, 2023–2025 sales, a live register of shops: each source has its own rhythm.</li>
+  <li><strong>The register lags behind the street.</strong> A bakery can have closed without being struck off, and a takeover counts there as one closure and one opening.</li>
+  <li><strong>Two neighbourhoods do not make a rule.</strong> This example shows a way of reading, not a law about residential and office districts.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And around your address?</h2>
+  <p>Pignon does this reading for one precise address and for your type of shop: the competitors a few minutes’ walk away, the residents, the workers, the places that bring customers, what lasted and what closed. These are signals, with the number and the source behind each.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

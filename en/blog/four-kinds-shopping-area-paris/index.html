@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Four kinds of Paris shopping area: what grouping streets by their shops shows · Tesselo</title>
+    <meta name="description" content="Paris cut into 879 squares of 250 metres, grouped from their shops alone: fashion streets, going out, everyday food shopping, neighbourhood services. One map, seven charts, and why four groups hold when six do not." />
+    <meta property="og:title" content="Four kinds of Paris shopping area: what grouping streets by their shops shows · Tesselo" />
+    <meta property="og:description" content="Paris cut into 879 squares of 250 metres, grouped from their shops alone: fashion streets, going out, everyday food shopping, neighbourhood services. One map, seven charts, and why four groups hold when six do not." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/quatre-types-quartiers-commercants-paris/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <link rel="stylesheet" href="../../../assets/vendor/maplibre-gl.css" />
+    <script src="../../../assets/vendor/maplibre-gl.js" defer></script>
+    <script src="../../../assets/postmap.js" defer></script>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/quatre-types-quartiers-commercants-paris/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>Four kinds of Paris shopping area: what grouping streets by their shops shows</h1><p class="lead">Paris cut into 879 squares of 250 metres, grouped from their shops alone: fashion streets, going out, everyday food shopping, neighbourhood services. One map, seven charts, and why four groups hold when six do not.</p></header>
+        <p>A street is called a “shopping street”, as if there were only one kind. We put the question to the data: if Paris is cut into 250-metre squares, and the squares whose shops look alike are grouped together, with the computer told nothing about arrondissements or neighbourhoods, how many kinds come out? The answer is <strong>four groups</strong>, which draw a map any Parisian will recognise. And one warning: beyond four, the groups no longer hold.</p>
+
+<figure class="postmap" data-src="../../../assets/data/shop-areas.json" data-label="Map of Paris: 879 squares of 250 metres, coloured by their group of shops">
+  <p class="chart-title">The four groups, square by square</p>
+  <figcaption class="note">879 squares of 250 m with at least 20 open shops; hover over or tap a square to read its number of shops and its three largest types. A square’s group comes from the mix of its shops and those of its eight neighbouring squares. The names of the groups are ours. Source: INSEE, SIRENE register (Licence Ouverte 2.0), shops open in November 2026.</figcaption>
+</figure>
+
+<p>Nobody drew a border on this map. Each square was classed from its shops alone, and yet the groups form blocks: the centre, the west, the north-east, and, around the centre, a ring running from the Latin Quarter to the 9th and the 11th arrondissements.</p>
+
+<h2>How to read the groups</h2>
+
+<p>Everywhere in Paris, restaurants and fast food dominate: together, four shops in ten. What sets a group apart is therefore not its most frequent type, but <strong>what it has more of, or less of, than the average</strong>. The charts below compare the share of a few types in the group with their share across all squares.</p>
+
+<h2>1. Fashion streets: the centre and the main boulevards</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of the group’s shops, by type: fashion streets</p>
+  <script type="application/json">{"type": "bars", "labels": ["Clothing", "Restaurants", "Opticians", "Dry cleaners and laundromats", "Butchers", "Greengrocers"], "series": [{"name": "Fashion streets", "values": [17.0, 28.0, 2.3, 0.8, 0.4, 0.2]}, {"name": "All squares", "values": [8.9, 24.0, 2.1, 1.9, 1.3, 0.8]}], "unit": "%"}</script>
+  <figcaption class="note">164 squares, 14,705 shops. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>One shop in six sells clothes there (17.0%, against 8.9% on average). It is the densest group, with 81 shops per square (median), and the one where chains weigh most: 24.0% of shops. Everyday food shops are rare: about a third as many butchers and greengrocers as the average.</p>
+<p>All the shops of the 1st and the 3rd arrondissements, or nearly all, are in this group, as are 93% of the shops of the 2nd, 92% of the 4th and 65% of the 6th and of the 8th.</p>
+
+<h2>2. Going out: restaurants, bars, books</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of the group’s shops, by type: going out</p>
+  <script type="application/json">{"type": "bars", "labels": ["Restaurants", "Fast food", "Bars and cafés", "Bookshops", "Clothing", "Dry cleaners and laundromats"], "series": [{"name": "Going out", "values": [28.2, 18.8, 5.4, 1.4, 5.5, 1.5]}, {"name": "All squares", "values": [24.0, 16.5, 4.4, 0.9, 8.9, 1.9]}], "unit": "%"}</script>
+  <figcaption class="note">221 squares, 16,416 shops. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>This is the largest group by number of shops (29.0%). Restaurants, fast food and bars make up more than one shop in two (52.4%). The most over-represented type is less expected: bookshops, one and a half times as present as elsewhere. Clothing, on the other hand, is rarer than average (5.5% against 8.9%): that is what separates this group from the fashion streets, although both have as many restaurants.</p>
+<p>All the shops of the 5th, or nearly all, belong to it, as do 69% of the shops of the 11th, 63% of the 9th and 49% of the 10th.</p>
+
+<h2>3. Everyday food shopping: the north-east and the south-east</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of the group’s shops, by type: everyday food shopping</p>
+  <script type="application/json">{"type": "bars", "labels": ["Grocery shops", "Hairdressers", "Butchers", "Greengrocers", "Restaurants", "Clothing"], "series": [{"name": "Everyday food shopping", "values": [9.9, 7.8, 2.4, 1.3, 19.2, 4.3]}, {"name": "All squares", "values": [5.9, 6.1, 1.3, 0.8, 24.0, 8.9]}], "unit": "%"}</script>
+  <figcaption class="note">287 squares, 14,837 shops. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>One shop in ten there is a grocery shop, and butchers are almost twice as present as elsewhere. It is the group with the most squares (287) and the fewest chains: 10.3% of shops, less than half the share of the fashion streets. Clothing weighs half the average.</p>
+<p>The 19th (97% of its shops) and the 20th (93%) are almost entirely in it, the 18th for two thirds (70%), the 12th and the 13th for half (51%).</p>
+
+<h2>4. Neighbourhood services: the west and the south-west</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of the group’s shops, by type: neighbourhood services</p>
+  <script type="application/json">{"type": "bars", "labels": ["Beauty salons", "Dry cleaners and laundromats", "Florists and pet shops", "Cobblers", "Restaurants", "Bars and cafés"], "series": [{"name": "Neighbourhood services", "values": [11.4, 2.9, 1.9, 0.5, 18.8, 2.5]}, {"name": "All squares", "values": [7.2, 1.9, 1.3, 0.3, 24.0, 4.4]}], "unit": "%"}</script>
+  <figcaption class="note">207 squares, 10,698 shops. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Here, services for the person and the home stand out: beauty salons (11.4% against 7.2%), dry cleaners, cobblers, florists. People go out less there: bars and cafés are almost half as present as the average. Chains are numerous (20.4%), twice the share found in everyday food shopping.</p>
+<p>Three arrondissements hold 70% of the group’s shops: the 15th, the 16th and the 17th. It covers 77% of the shops of the 16th, 67% of the 15th, 61% of the 17th and 59% of the 7th.</p>
+
+<h2>What changes from one group to another, beyond the types</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of shops that belong to a chain, by group</p>
+  <script type="application/json">{"type": "bars", "labels": ["Fashion streets", "Neighbourhood services", "Going out", "Everyday food shopping"], "series": [{"name": "", "values": [24.0, 20.4, 15.4, 10.3]}], "unit": "%"}</script>
+  <figcaption class="note">Chain: a sign recognised by Pignon’s rules (network, franchise or company with several shops). Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<figure class="chart">
+  <p class="chart-title">Open shops per 250 m square, median</p>
+  <script type="application/json">{"type": "bars", "labels": ["Fashion streets", "Going out", "Neighbourhood services", "Everyday food shopping"], "series": [{"name": "", "values": [81, 66, 46, 42]}]}</script>
+  <figcaption class="note">Squares with at least 20 open shops. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Two things, however, do not change. The share of shops opened since 2020 is almost the same everywhere, between 42.6% and 45.8%: no group renews itself clearly faster than the others. And outside the centre no arrondissement is a single block: the 14th splits into three nearly equal thirds between neighbourhood services, everyday food shopping and going out.</p>
+
+<h2>Why four groups, and not six</h2>
+
+<p>The method (k-means, a classic of statistics) always returns the number of groups it is asked for. Nothing in the data imposes a number: Paris is a gradient, not a mosaic. So we looked for the number of groups that <strong>holds when the grid is moved</strong>. If every square is shifted by 125 metres, a shop should stay in the same group.</p>
+
+<figure class="chart">
+  <p class="chart-title">Share of shops that stay in the same group when the grid is shifted by 125 m</p>
+  <script type="application/json">{"type": "bars", "labels": ["2 groups", "3 groups", "4 groups", "5 groups", "6 groups"], "series": [{"name": "Square described with its eight neighbours", "values": [94.2, 91.1, 86.2, 77.0, 74.0]}, {"name": "Square described on its own", "values": [78.9, 66.6, 52.4, 52.7, 44.4]}], "unit": "%"}</script>
+  <figcaption class="note">The groups of the two grids are paired one to one by their largest overlap. Source: INSEE, SIRENE register (Licence Ouverte 2.0), Pignon’s calculation.</figcaption>
+</figure>
+
+<p>Our first attempt classed each square from its own shops alone, into six groups. It gave fine names, and it did not hold: shifted by 125 metres, more than one shop in two changed group (44.4% stayed). A 250-metre square has a few dozen shops spread over 28 types; that is too few for its mix to be anything but partly chance.</p>
+<p>Describing each square with its eight neighbours, about 750 metres across, changes the result: with four groups, 86.2% of shops keep their group when the grid is shifted, 83.6% with 200-metre squares and 87.7% with 300-metre squares. The edges between groups move; the blocks stay.</p>
+<p>What these groups leave out must also be said. They account for 34.6% of the differences in mix between squares. The remaining two thirds belong to each street.</p>
+
+<h2>What these figures do not say</h2>
+<ul>
+  <li><strong>The names are ours.</strong> The computer returns numbered groups; “fashion streets” or “neighbourhood services” are a reading, not a result.</li>
+  <li><strong>A group is an average.</strong> A square of “everyday food shopping” may hold a street of restaurants. The group describes about 750 metres around the square, not an address.</li>
+  <li><strong>The edges are blurred.</strong> About one shop in seven changes group when the grid moves: a square on the border of two blocks may belong to either.</li>
+  <li><strong>The choices are ours:</strong> 250 m squares, at least 20 open shops, eight neighbours, four groups. The squares kept hold 94% of the 60,189 open shops; streets with few shops are not on the map.</li>
+  <li><strong>A shop is “open” according to the register.</strong> Closures reach it late, and sometimes never.</li>
+  <li><strong>The type comes from the activity code the operator declares,</strong> and sole traders with no shop sign are not counted. Same shops and same rules as the <a href="../paris-shops-openings-closures/">animated map</a>.</li>
+  <li><strong>The mix of shops says nothing about customers.</strong> Incomes, footfall, rents: these groups take none of them into account.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And around your address?</h2>
+  <p>A group describes a piece of the city. Pignon reads the same register around one precise address: the shops of your type within a few minutes’ walk, the residents, the footfall. These are signals, with the number and the source behind each.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

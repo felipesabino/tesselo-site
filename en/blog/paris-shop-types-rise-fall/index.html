@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paris, 2009–2025: the types of shop that rise, and those that fall back · Tesselo</title>
+    <meta name="description" content="Fewer shops selling goods, more hair, beauty and fast food, wine shops falling back since 2021: seventeen years of openings and closures by type of shop, and two reasons to read the rises with care." />
+    <meta property="og:title" content="Paris, 2009–2025: the types of shop that rise, and those that fall back · Tesselo" />
+    <meta property="og:description" content="Fewer shops selling goods, more hair, beauty and fast food, wine shops falling back since 2021: seventeen years of openings and closures by type of shop, and two reasons to read the rises with care." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/types-commerce-paris-hausse-baisse/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/types-commerce-paris-hausse-baisse/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>Paris, 2009–2025: the types of shop that rise, and those that fall back</h1><p class="lead">Fewer shops selling goods, more hair, beauty and fast food, wine shops falling back since 2021: seventeen years of openings and closures by type of shop, and two reasons to read the rises with care.</p></header>
+        <p>From 2009 to 2025, INSEE’s SIRENE register recorded <strong>84,038 openings</strong> and <strong>56,983 closures</strong> in Paris for the 28 types of shop we follow. The total rises almost every year. Behind it, the types do not follow the same slope: some open twice as often as before, others now close more than they open, a few have not moved. Here is the series, year by year, and two reasons not to read it too fast.</p>
+
+<h2>Fewer goods, more services</h2>
+
+<figure class="chart">
+  <p class="chart-title">Share of the year’s openings, by family of shops</p>
+  <script type="application/json">{"type": "line", "x": [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "Goods other than food", "values": [20.1, 21.5, 20.5, 19.6, 17.6, 17.2, 17.2, 16.2, 15.3, 14.5, 13.8, 14.9, 12.6, 11.6, 10.7, 9.3, 9.1]}, {"name": "Hair and beauty", "values": [13.6, 14.4, 15.1, 15.3, 15.3, 15.3, 14.1, 13.9, 14.1, 14.4, 14.5, 16.1, 14.9, 16.6, 16.5, 15.6, 15.5]}], "unit": "%"}</script>
+  <figcaption class="note">Goods other than food: clothing, bookshops, stationers, toy shops, hardware stores, bikes and sports, opticians, florists and pet shops. Hair and beauty: hairdressers and beauty salons. Source: INSEE, SIRENE register (Licence Ouverte 2.0). Same shops and same rules as the <a href="../paris-shops-openings-closures/">animated map</a>.</figcaption>
+</figure>
+
+<p>In 2009, one opening in five (20.1%) was a shop that sells goods: clothes, books, toys, glasses, flowers. In 2025 it is one in eleven (9.1%), with 493 openings against 790. Hairdressers and beauty salons moved ahead in 2019: 843 openings in 2025, against 536 in 2009.</p>
+<p>The rest changes less than one might think. Eating and drinking out (restaurants, fast food, bars and cafés, caterers) has been close to half of all openings from the start: 46.8% in 2009, 50.5% in 2025. Food shops stay at around 12 to 15% each year, except in 2021 (17.2%).</p>
+
+<h2>Those that close almost as often as they open</h2>
+
+<figure class="chart">
+  <p class="chart-title">Closures per 100 openings, 2009–2025, by type of shop</p>
+  <script type="application/json">{"type": "bars", "labels": ["Clothing", "Bookshops", "Dry cleaners and laundromats", "Florists and pet shops", "Butchers", "Restaurants", "Bikes and sports", "Opticians", "Greengrocers", "Hairdressers", "Bakeries", "Beauty salons", "Cheese and fine food", "Fast food", "Caterers", "Wine shops", "Grocery shops", "Pharmacies", "Bars and cafés", "Nurseries", "Fitness studios", "Hobby schools"], "series": [{"name": "", "values": [96, 92, 90, 82, 78, 73, 72, 69, 67, 66, 64, 63, 62, 62, 61, 59, 58, 53, 50, 46, 44, 38]}], "unit": ""}</script>
+  <figcaption class="note">Types of shop with at least 500 openings from 2009 to 2025. Closures include those of shops opened before 2009. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Across all types, the register counts 68 closures per 100 openings. That figure is a minimum: some closures are never declared. Its main use is to compare types with one another.</p>
+<ul>
+  <li><strong>Clothing: 96.</strong> 7,650 closures for 7,941 openings. Over seventeen years, the type barely replaces itself.</li>
+  <li><strong>Bookshops (92), dry cleaners and laundromats (90):</strong> the same picture, on smaller numbers.</li>
+  <li><strong>Restaurants: 73, fast food: 62.</strong> Restaurants are the type that opens most (19,618 in seventeen years), with a ratio above the average.</li>
+  <li><strong>At the bottom of the chart,</strong> nurseries, fitness studios and hobby schools. Their place owes something to the way the register is filled in: see below.</li>
+</ul>
+<p>Only one type has more closures than openings over the whole period: stationers, with 553 closures for 440 openings. They are too few for the chart, like hardware stores (234 for 262) and fishmongers (133 for 159).</p>
+
+<h2>Clothing: the lines cross in 2019</h2>
+
+<figure class="chart">
+  <p class="chart-title">Clothing shops in Paris: openings and closures per year</p>
+  <script type="application/json">{"type": "line", "x": [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "Openings", "values": [530, 605, 620, 619, 497, 560, 586, 520, 529, 473, 480, 357, 355, 396, 290, 276, 248]}, {"name": "Closures", "values": [428, 451, 481, 448, 372, 419, 577, 467, 492, 473, 516, 469, 462, 418, 414, 391, 372]}]}</script>
+  <figcaption class="note">Source: INSEE, SIRENE register (Licence Ouverte 2.0). Sole traders without a shop sign and business address providers are left out.</figcaption>
+</figure>
+
+<p>Closures of clothing shops have changed little: between 372 and 577 a year, 372 in 2025. It is the openings that gave way: 620 in 2011, the best year, 248 in 2025, or 60% fewer. The two lines meet in 2018 (473 openings, 473 closures) and the balance turns negative in 2019, before Covid. Since 2023 the register has lost about 120 shops a year (−124, −115, −124).</p>
+<p>The register does not say why. It only shows what registers elsewhere: across every business in Paris, including those declared at a home address, 616 online sellers registered in 2009 and 11,481 in 2025. That is one possible reading, not a proof.</p>
+
+<h2>Those that had their moment</h2>
+
+<figure class="chart">
+  <p class="chart-title">Openings: each type’s best year, and 2025</p>
+  <script type="application/json">{"type": "bars", "labels": ["Wine shops (2009)", "Clothing (2011)", "Cheese and fine food (2021)", "Opticians (2010)", "Bikes and sports (2021)"], "series": [{"name": "Best year", "values": [76, 620, 124, 123, 54]}, {"name": "2025", "values": [23, 248, 56, 60, 30]}]}</script>
+  <figcaption class="note">Types with at least 500 openings from 2009 to 2025 whose 2025 openings are below 60% of those of their best year (in brackets). Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Five types now open clearly less often than at their peak. For two of them, the peak was 2021.</p>
+<ul>
+  <li><strong>Wine shops:</strong> 76 openings in 2009, 71 in 2021, 23 in 2025, the lowest of the series. Closures exceed openings in 2024 and in 2025.</li>
+  <li><strong>Cheese and fine food:</strong> 124 openings in 2021, 56 in 2025. The same switch in 2024 and 2025.</li>
+  <li><strong>Bikes and sports:</strong> 54 openings in 2021, 30 in 2025. The balance is negative in 2023 and in 2025.</li>
+  <li><strong>Opticians:</strong> the peak is older (123 openings in 2010, 60 in 2025) and the decline steadier.</li>
+</ul>
+<p>2021 is also the best year for grocery shops (437 openings), florists and pet shops (85) and nurseries (118), and the second best for wine shops. One can read in it a wave of neighbourhood projects as the lockdowns ended, which did not last for wine, cheese and bikes. That is a reading: the register gives dates, not reasons.</p>
+
+<h2>The balance of the last three years</h2>
+
+<figure class="chart">
+  <p class="chart-title">Openings minus closures, 2023–2025, by type of shop</p>
+  <script type="application/json">{"type": "bars", "labels": ["Fast food", "Restaurants", "Bars and cafés", "Beauty salons", "Grocery shops", "Fitness studios", "Hobby schools", "Hairdressers", "Caterers", "Bakeries", "Pharmacies", "Nurseries", "Opticians", "Butchers", "Dry cleaners and laundromats", "Cheese and fine food", "Bookshops", "Wine shops", "Florists and pet shops", "Clothing"], "series": [{"name": "", "values": [1168, 860, 433, 408, 358, 257, 217, 198, 163, 143, 78, 52, 44, 26, 24, 13, -7, -9, -9, -363]}], "unit": "", "signed": true}</script>
+  <figcaption class="note">Types of shop with at least 100 openings from 2023 to 2025. A positive balance is inflated by undeclared closures. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Over 2023–2025, the register gains 4,129 shops (16,377 openings, 12,248 closures). Fast food alone brings 1,168 of them, more than restaurants (860). Four types are in the red: clothing (−363), wine shops (−9), florists and pet shops (−9), bookshops (−7). Cheese and fine food is just above zero (+13: 193 openings, 180 closures). Bikes and sports (−4) have fewer than 100 openings and are not in the chart.</p>
+<p>Since closures reach the register late, a balance close to zero is probably already negative on the street.</p>
+
+<h2>Those that do not move</h2>
+
+<p>A few types open about as often every year, whatever happens.</p>
+<ul>
+  <li><strong>Bakeries:</strong> between 133 and 171 openings a year over seventeen years. The highest year is 1.3 times the lowest. For wine shops, it is 3.3 times.</li>
+  <li><strong>Butchers:</strong> between 39 and 60 openings a year.</li>
+  <li><strong>Pharmacies:</strong> between 44 and 68. Their number is capped by law: an opening there is almost always a takeover.</li>
+  <li><strong>Restaurants:</strong> 1,129 openings in 2009, 1,091 in 2025. Meanwhile fast food went from 588 to 1,152, and it opens more than restaurants in 2021 and in 2025.</li>
+</ul>
+<p>For these types, an opening is often one operator replacing another, within the same walls. The number of premises changes little, so the number of openings does too.</p>
+
+<h2>Rises to read with care</h2>
+
+<p>Among the strongest rises of the series are caterers (49 openings in 2009, 185 in 2025), fitness studios (45, then 235), hobby schools (44, then 156) and phone repair (3, then 29). Two features of the register magnify rises of this kind. The first is removed from our figures; the second remains in them.</p>
+
+<h3>Business address providers are left out</h3>
+
+<figure class="chart">
+  <p class="chart-title">Share of the year’s openings registered at a business address provider, before they were removed</p>
+  <script type="application/json">{"type": "line", "x": [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "", "values": [2.7, 2.5, 3, 2.8, 2.9, 3, 2.9, 3.9, 3.8, 4.7, 5.1, 6.9, 7.7, 7.7, 7.4, 9.9, 13.5]}], "unit": "%"}</script>
+  <figcaption class="note">Business address providers: the 97 street numbers found by the rule described below (6,326 registrations). These registrations appear in no other chart. Source: INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>A business address provider rents out an administrative address: companies declare their seat there without running a shop there. In the register, these registrations look like shops, and their weight rises fast: 109 of the 4,045 openings of 2009 (2.7%), 851 of the 6,285 openings of 2025 (13.5%).</p>
+<p>We leave them out of every count in the blog, this post included. The rule: a street number that holds 20 registrations or more, of 10 types of shop or more, with under 20% chains. It finds 97 street numbers and 6,326 registrations, or 4.8% of the 131,105 we started from. The busiest holds 763, of 24 different types.</p>
+<p>The effect depends on the type. In 2025 these addresses received 140 of the 325 caterer openings (43%), 25 of the 54 phone repair openings, 69 of the 304 fitness studios (23%), 148 of the 676 beauty salons (22%) and 196 of the 1,348 fast food places (15%). For restaurants it was 37 out of 1,128 (3%). With them, caterer openings were multiplied by 6 between 2009 and 2025; without them, by 3.8.</p>
+<p>The rule has two limits. It keeps shopping centres and railway stations, where the shops exist: 48 street numbers hold 20 registrations or more without being removed (1,331 registrations, 24% of them chains). And it does not see small address providers, under the thresholds: 95 street numbers hold 10 to 19 registrations of 7 types or more, with under 20% chains. The register does not say which of them are administrative addresses. Together they receive 51 of the 5,434 openings of 2025 (0.9%).</p>
+
+<h3>Since 2021, more sole traders declare a shop sign</h3>
+
+<figure class="chart">
+  <p class="chart-title">Share of new registrations that declare a shop sign, every business in Paris</p>
+  <script type="application/json">{"type": "line", "x": [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "series": [{"name": "Cultural teaching", "values": [4.2, 7.1, 2, 3.3, 2.3, 3.3, 2.7, 2.2, 2.6, 3.7, 5.7, 8.4, 33, 29.6, 20.2, 25.4, 22.4]}, {"name": "Sports teaching and fitness centres", "values": [3.6, 3.2, 6.7, 9.9, 6.5, 5, 7.7, 6.9, 12.8, 9.9, 15.1, 12.5, 40.4, 41.1, 36.8, 33.5, 33.4]}], "unit": "%"}</script>
+  <figcaption class="note">Every establishment registered in Paris under the activity codes “cultural teaching” (music, dance and art lessons), “sports teaching” and “fitness centres”. Shop sign: a declared sign or trading name. Source: INSEE, monthly file of the SIRENE register as of 1 October 2026 (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>We leave out sole traders without a shop sign: their address is most often a home. Yet between 2020 and 2021, the share of new registrations that declare a sign goes from 8.4% to 33% for cultural teaching, and from 16% to 22.9% for every business in Paris. We do not know the cause. The jump affects so many activities at once that it looks like a change in the way the register is filled in, not a change on the street.</p>
+<p>The consequence is direct. Our hobby schools go from 94 openings in 2020 to 206 in 2021. Over the same year, total registrations under that activity code, with or without a sign, go from 346 to 455, and the total is lower in 2025 (304) than in 2016 (538). For fitness studios and sports lessons, the total goes from 280 registrations in 2009 to 500 in 2025: almost double, far from the 45 then 235 openings of our series.</p>
+<p>Hairdressers do not show this jump: 41.6% of new registrations declare a sign in 2020, 43.6% in 2021. Nor do beauty salons (41.5%, then 37.5%).</p>
+
+<h2>What these figures do not say</h2>
+<ul>
+  <li><strong>A date in a register is not a cause.</strong> The readings offered here (online selling, post-lockdown projects, business address providers) are hypotheses.</li>
+  <li><strong>Closures reach the register late</strong>, and sometimes never. Balances are therefore too favourable, above all for recent years.</li>
+  <li><strong>A takeover or a move counts as one closure and one opening.</strong> A type with a stable number of shops can show a lot of movement.</li>
+  <li><strong>A registration is not a shop window.</strong> Address providers too small for our rule, kitchens with no dining room, work done at the customer’s home: the register counts them like the others.</li>
+  <li><strong>The type comes from the activity code the operator declares.</strong> It can be imprecise, and several trades share one code.</li>
+  <li><strong>Small numbers move a lot.</strong> The charts keep only the types with at least 500 openings over the period, or 100 over three years.</li>
+  <li><strong>The thresholds are ours:</strong> 20 registrations, 10 types and 20% chains to remove an address, 60% of the peak to speak of a fall-back. Other thresholds would move a few lines, not the overall picture.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And for your type of shop?</h2>
+  <p>Pignon reads this same register around one precise address: the shops of your type within a few minutes’ walk, those that lasted three years, the trend of the type in Paris. These are signals, with the number and the source behind each.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

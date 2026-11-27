@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le blog · Tesselo</title>
+    <meta name="description" content="Ce que les données publiques françaises disent du commerce, et ce qu’elles ne disent pas." />
+    <meta property="og:title" content="Le blog · Tesselo" />
+    <meta property="og:description" content="Ce que les données publiques françaises disent du commerce, et ce qu’elles ne disent pas." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../en/blog/" />
+    <link rel="stylesheet" href="../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../sources/">Nos sources</a>
+          <a href="../blog/">Blog</a>
+          <span class="lang-switch"><a href="../en/blog/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><h1>Le blog</h1><p class="lead">Ce que les données publiques françaises disent du commerce, et ce qu’elles ne disent pas.</p></header>
+        <ul class="post-list"><li><a href="donnees-personnelles-donnees-publiques/"><h2>Des personnes dans les données publiques : ce que les éditeurs cachent, et ce que nous cachons en plus</h2></a><p class="note">27 novembre 2026</p><p>3,2 millions d’entreprises non diffusées dans SIRENE, des propriétaires anonymisés, des dirigeants nommés dans un registre et cachés dans un autre : comment chaque source protège les personnes, pourquoi le croisement est le vrai risque, et les règles que Tesselo ajoute pour qu’aucun portrait ne puisse être construit.</p></li><li><a href="rues-pietonnes-paris-commerces/"><h2>939 rues où la voiture cède la place : ce que les fichiers de la Ville disent de leurs commerces</h2></a><p class="note">13 novembre 2026</p><p>Aires piétonnes, rues aux écoles, zones de rencontre : 939 rues de Paris posées sur le répertoire des commerces. Une carte, six graphiques, près d’un commerce sur cinq, et une comparaison avant-après qui ne montre aucun écart visible.</p></li><li><a href="quatre-types-quartiers-commercants-paris/"><h2>Quatre Paris du commerce : ce que l’on trouve en regroupant les rues par leurs boutiques</h2></a><p class="note">10 novembre 2026</p><p>Paris découpé en 879 carrés de 250 mètres, regroupés d’après leurs seules boutiques : rues de mode, sorties, courses du quotidien, services de quartier. Une carte, sept graphiques, et pourquoi quatre groupes tiennent quand six ne tiennent pas.</p></li><li><a href="lire-un-quartier-boulangerie/"><h2>Lire un quartier pour une boulangerie : deux quartiers de Paris, chiffre par chiffre</h2></a><p class="note">10 novembre 2026</p><p>Un quartier d’habitants dans le 17e, un quartier de bureaux dans le 2e : ce que sept sources publiques disent de chacun pour une boulangerie, facteur par facteur, et pourquoi la lecture s’inverse pour un bar.</p></li><li><a href="duree-de-vie-commerce-paris/"><h2>Combien de temps dure un commerce à Paris ?</h2></a><p class="note">10 novembre 2026</p><p>38,5 % des commerces parisiens ferment dans les cinq ans, mais la première année n’est pas la plus risquée, et une fermeture sur sept est une reprise. Sept graphiques tirés du répertoire SIRENE, par type de commerce et par arrondissement.</p></li><li><a href="types-commerce-paris-hausse-baisse/"><h2>Paris, 2009–2025 : les types de commerce qui montent, ceux qui reculent</h2></a><p class="note">10 novembre 2026</p><p>Moins de boutiques d’objets, plus de coiffure et de restauration rapide, des cavistes en repli depuis 2021 : dix-sept ans d’ouvertures et de fermetures par type de commerce, et deux raisons de lire les hausses avec prudence.</p></li><li><a href="prix-fonds-de-commerce-paris/"><h2>Combien se vend un fonds de commerce à Paris ?</h2></a><p class="note">10 novembre 2026</p><p>De 20 000 € pour un institut de beauté à 800 000 € pour une pharmacie : ce que 5 254 ventes de fonds de commerce publiées au BODACC depuis 2023 disent des prix à Paris, par type de commerce et par arrondissement.</p></li><li><a href="prix-murs-commerciaux-logements-paris/"><h2>Murs de boutique ou appartement : lequel vaut le plus cher à Paris ?</h2></a><p class="note">10 novembre 2026</p><p>À Paris, un local commercial se vend environ 15 % moins cher au mètre carré qu’un appartement, dans les vingt arrondissements. Mais l’écart va de 7 % à 27 %, et les deux prix n’évoluent pas ensemble : six graphiques tirés des ventes immobilières publiées par la DGFiP. Des prix de vente, pas des loyers.</p></li><li><a href="repertoire-sirene-rue-commerces/"><h2>Ce que le répertoire SIRENE sait d’une rue</h2></a><p class="note">10 novembre 2026</p><p>Deux rues du 14e arrondissement, la rue Daguerre et la rue d’Alésia, lues dans le registre public des entreprises : ce qu’une fiche contient, dix-sept ans d’ouvertures et de fermetures, les reprises, les chaînes, et les limites du répertoire.</p></li><li><a href="paris-jour-nuit-habitants-emplois/"><h2>Paris le jour, Paris la nuit : où sont les clients à 13 h et à 20 h</h2></a><p class="note">10 novembre 2026</p><p>Cinq emplois par habitant dans le 8e, moins d’un demi dans le 20e, et plus d’emplois dans le 15e que dans le 8e : six graphiques sur les habitants, les emplois et les stations de Paris, et ce que cela change selon le type de commerce.</p></li><li><a href="regles-rue-paris-commerce-donnees-ouvertes/"><h2>Les règles d’une rue : ce que les données ouvertes de Paris disent avant de signer un bail</h2></a><p class="note">10 novembre 2026</p><p>Rues protégées par le PLU, terrasses, marchés, dossiers d’urbanisme, ouverture le dimanche : deux cartes et sept graphiques tirés de cinq fichiers de la Ville de Paris sur ce qu’un commerce peut faire dans une rue.</p></li><li><a href="covid-paris-commerces-donnees-publiques/"><h2>Covid à Paris : ce que les données publiques en ont gardé</h2></a><p class="note">10 novembre 2026</p><p>Moins de bars, plus de coursiers, des faillites reportées, deux fois plus de vélos : dix graphiques tirés de cinq sources publiques sur le commerce parisien pendant et après le Covid.</p></li><li><a href="commerces-paris-ouvertures-fermetures/"><h2>Paris, 2009–2026 : chaque commerce qui ouvre, chaque commerce qui ferme</h2></a><p class="note">10 novembre 2026</p><p>Une carte animée de 120 000 commerces parisiens, mois par mois, tirée du répertoire SIRENE de l’INSEE. Ce qu’on y voit, d’où viennent les données et où elles s’arrêtent.</p></li></ul>
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

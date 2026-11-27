@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combien de temps dure un commerce à Paris ? · Tesselo</title>
+    <meta name="description" content="38,5 % des commerces parisiens ferment dans les cinq ans, mais la première année n’est pas la plus risquée, et une fermeture sur sept est une reprise. Sept graphiques tirés du répertoire SIRENE, par type de commerce et par arrondissement." />
+    <meta property="og:title" content="Combien de temps dure un commerce à Paris ? · Tesselo" />
+    <meta property="og:description" content="38,5 % des commerces parisiens ferment dans les cinq ans, mais la première année n’est pas la plus risquée, et une fermeture sur sept est une reprise. Sept graphiques tirés du répertoire SIRENE, par type de commerce et par arrondissement." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/how-long-paris-shop-lasts/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/how-long-paris-shop-lasts/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Combien de temps dure un commerce à Paris ?</h1><p class="lead">38,5 % des commerces parisiens ferment dans les cinq ans, mais la première année n’est pas la plus risquée, et une fermeture sur sept est une reprise. Sept graphiques tirés du répertoire SIRENE, par type de commerce et par arrondissement.</p></header>
+        <p>Combien de commerces passent le cap des cinq ans ? Le répertoire SIRENE de l’INSEE, qui enregistre chaque ouverture et chaque fermeture d’établissement, permet de compter pour Paris. Nous avons suivi les <strong>52 812 commerces ouverts entre 2010 et 2020</strong>, les mêmes types que sur la <a href="../commerces-paris-ouvertures-fermetures/">carte animée</a> : 6,6 % ont fermé dans l’année, 23,6 % dans les trois ans, <strong>38,5 % dans les cinq ans</strong>. Et parmi ceux ouverts de 2010 à 2015, 60,4 % avaient fermé avant leurs dix ans ; la moitié avait fermé au bout de 6 ans et 11 mois.</p>
+<p>Ces chiffres demandent une précaution, que vous retrouverez tout au long de l’article : dans le répertoire, une « fermeture » est la fin d’un établissement, pas toujours celle de la boutique. Un changement d’exploitant ou un déménagement comptent aussi.</p>
+
+<h2>La première année n’est pas la plus risquée</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces encore ouverts qui ferment pendant chaque année de vie</p>
+  <script type="application/json">{"type": "bars", "labels": ["1re année", "2e année", "3e année", "4e année", "5e année", "6e année", "7e année", "8e année", "9e année", "10e année"], "series": [{"name": "", "values": [6.8, 9.5, 10.7, 11.1, 10.0, 10.1, 9.0, 7.5, 7.2, 6.5]}], "unit": " %"}</script>
+  <figcaption class="note">27 610 commerces parisiens ouverts de 2010 à 2015, suivis dix ans. Lecture : parmi les commerces encore ouverts à leur troisième anniversaire, 11,1 % ferment pendant la quatrième année. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Parmi les commerces ouverts de 2010 à 2015, 6,8 % ont fermé pendant leur première année. Le risque monte ensuite : 9,5 % de ceux qui restent ferment la deuxième année, 10,7 % la troisième, <strong>11,1 % la quatrième</strong>, le maximum. Il reste autour de 10 % jusqu’à la sixième année et ne redescend nettement qu’après la septième.</p>
+<p>La période délicate n’est donc pas le lancement, mais les années deux à six. Une explication possible : le bail commercial classique, dit 3-6-9, ne permet au locataire de partir qu’à la fin de chaque période de trois ans, et la trésorerie de départ couvre les premiers mois. Le répertoire ne dit pas pourquoi un commerce ferme ; c’est un signal, pas une preuve.</p>
+<p>Passer cinq ans ne met pas à l’abri : parmi les commerces encore ouverts à cinq ans, 34,4 % ont fermé avant dix ans, contre 39,7 % de fermetures pendant les cinq premières années. Le risque baisse avec l’âge, mais lentement.</p>
+
+<h2>Un jour par an : le 31 décembre</h2>
+
+<figure class="chart">
+  <p class="chart-title">Fermetures de commerces à Paris selon le mois inscrit au répertoire, 2010–2025</p>
+  <script type="application/json">{"type": "bars", "labels": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"], "series": [{"name": "", "values": [8.5, 6.3, 7.9, 6.3, 6.9, 10.0, 7.8, 5.0, 9.4, 8.5, 7.8, 15.7]}], "unit": " %"}</script>
+  <figcaption class="note">54 295 fermetures datées de 2010 à 2025. Une répartition égale donnerait 8,3 % par mois. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Décembre porte 15,7 % des fermetures, presque le double d’un mois ordinaire. Un seul jour explique l’écart : <strong>4 514 fermetures, soit 8,3 % du total, sont datées du 31 décembre</strong>, autant qu’un mois entier. Juin et septembre, deux autres fins de trimestre, dépassent aussi la moyenne.</p>
+<p>La date inscrite au répertoire est celle que l’exploitant déclare. Elle suit sans doute la clôture des comptes plus que le dernier jour d’ouverture : le rideau a pu tomber des semaines avant. C’est une raison de plus pour lire ces durées à l’année près, pas au mois près.</p>
+
+<h2>Les types qui durent, ceux qui tournent</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces fermés dans l’année et dans les cinq ans, par type de commerce</p>
+  <script type="application/json">{"type": "bars", "labels": ["Pharmacies", "Pressings, laveries", "Écoles de loisirs", "Crèches", "Boulangeries", "Librairies", "Boucheries", "Coiffeurs", "Bars et cafés", "Cavistes", "Salles de sport", "Opticiens", "Restaurants", "Fromageries, épiceries fines", "Primeurs", "Vélos et sport", "Épiceries", "Restauration rapide", "Fleuristes, animaleries", "Vêtements", "Instituts de beauté", "Traiteurs"], "series": [{"name": "Dans l’année", "values": [2.6, 2.6, 4.1, 5.2, 6.0, 7.3, 4.9, 5.0, 4.4, 8.1, 7.2, 7.2, 5.7, 6.6, 6.5, 6.7, 7.8, 6.8, 6.6, 9.0, 7.6, 9.9]}, {"name": "Dans les cinq ans", "values": [13.7, 24.3, 26.7, 28.2, 30.1, 30.1, 30.7, 31.5, 31.8, 33.6, 35.7, 35.8, 36.1, 37.1, 37.3, 38.4, 41.1, 41.6, 42.9, 45.5, 48.9, 50.9]}], "unit": " %"}</script>
+  <figcaption class="note">Commerces ouverts à Paris de 2010 à 2020 ; types comptant au moins 300 ouvertures sur la période. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0). Mêmes commerces et mêmes règles que la <a href="../commerces-paris-ouvertures-fermetures/">carte animée</a>.</figcaption>
+</figure>
+
+<p>L’écart entre les types est large : de 13,7 % de fermetures en cinq ans pour les pharmacies à 50,9 % pour les traiteurs.</p>
+<ul>
+  <li><strong>Ceux qui durent :</strong> pharmacies (13,7 %), pressings et laveries (24,3 %), écoles de loisirs (26,7 %), crèches (28,2 %), puis un groupe serré entre 30 et 32 % : boulangeries, librairies, boucheries, coiffeurs, bars et cafés. Le nombre de pharmacies est plafonné par la loi, ce qui les met à part.</li>
+  <li><strong>Ceux qui tournent :</strong> traiteurs (50,9 %), instituts de beauté (48,9 %), vêtements (45,5 %), fleuristes et animaleries (42,9 %), restauration rapide (41,6 %).</li>
+  <li><strong>Restaurants et restauration rapide ne se ressemblent pas :</strong> 36,1 % contre 41,6 %. Le restaurant avec service à table ferme moins que la moyenne parisienne (38,5 %).</li>
+  <li><strong>La première année ne prédit pas la suite.</strong> Les cavistes (8,1 %) et les librairies (7,3 %) ferment plus que la moyenne la première année (6,6 %), et moins que la moyenne en cinq ans ; les fleuristes et animaleries sont dans la moyenne la première année (6,6 %) et nettement au-dessus en cinq ans (42,9 %). À trois ans, en revanche, l’ordre est déjà proche de celui de cinq ans : 8,2 % pour les pharmacies, 17,1 % pour les boulangeries, 21,1 % pour les restaurants, 29,9 % pour les vêtements, 30,7 % pour les instituts de beauté, 34,8 % pour les traiteurs.</li>
+</ul>
+<p>À dix ans, pour les commerces ouverts de 2010 à 2015, l’ordre change peu : 23,6 % des pharmacies ont fermé, 52,6 % des boulangeries, 60,2 % des restaurants, 64,8 % des commerces de vêtements, 70,1 % des instituts de beauté, 72,5 % des traiteurs.</p>
+
+<h2>Une fermeture sur sept est une reprise</h2>
+
+<p>Quand un commerce est vendu, l’établissement du vendeur ferme et celui de l’acheteur ouvre : le répertoire compte une fermeture, alors que la boutique n’a pas baissé le rideau. Pour mesurer cet effet, nous avons cherché, pour chaque fermeture avant cinq ans, si un commerce du même type s’était enregistré à la même adresse entre quatre mois avant et un an après. C’est la règle que Pignon applique dans son indicateur de survie à trois ans.</p>
+
+<figure class="chart">
+  <p class="chart-title">Part des fermetures avant cinq ans suivies d’un commerce du même type à la même adresse</p>
+  <script type="application/json">{"type": "bars", "labels": ["Instituts de beauté", "Boulangeries", "Épiceries", "Crèches", "Restaurants", "Boucheries", "Opticiens", "Coiffeurs", "Restauration rapide", "Pressings, laveries", "Pharmacies", "Traiteurs", "Bars et cafés", "Fromageries, épiceries fines", "Vêtements", "Fleuristes, animaleries", "Primeurs", "Cavistes", "Librairies", "Écoles de loisirs", "Salles de sport", "Vélos et sport"], "series": [{"name": "", "values": [25.7, 21.8, 20.4, 18.4, 17.3, 16.7, 15.7, 15.5, 14.9, 13.8, 11.8, 10.5, 9.6, 8.5, 6.8, 5.1, 4.1, 3.4, 3.3, 1.4, 1.4, 0.8]}], "unit": " %"}</script>
+  <figcaption class="note">Commerces ouverts à Paris de 2010 à 2020 et fermés avant cinq ans ; types comptant au moins 300 ouvertures. Reprise : un commerce du même type enregistré à la même adresse de 120 jours avant à 365 jours après la fermeture. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Sur les 20 356 fermetures avant cinq ans, <strong>2 999, soit 14,7 %, sont suivies d’un commerce du même type à la même adresse</strong>. Sans elles, la part de commerces fermés en cinq ans passe de 38,5 % à 32,9 %.</p>
+<p>L’effet dépend beaucoup du type. Une boulangerie se reprend avec son four et sa clientèle : 21,8 % des fermetures y sont des reprises, et la part de fermetures en cinq ans passe de 30,1 % à 23,6 %. Pour les instituts de beauté, elle passe de 48,9 % à 36,3 %. À l’inverse, une librairie, un caviste ou un magasin de vélos qui ferme est très rarement remplacé par un commerce du même type : moins de 4 % des cas.</p>
+
+<h2>Ni mieux ni pire qu’il y a quinze ans</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces fermés dans l’année et dans les cinq ans, selon l’année d’ouverture</p>
+  <script type="application/json">{"type": "line", "x": [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020], "series": [{"name": "Dans les cinq ans", "values": [38.0, 38.4, 39.1, 39.0, 42.7, 40.8, 40.3, 38.1, 35.2, 34.9, 38.3]}, {"name": "Dans l’année", "values": [6.2, 7.1, 6.2, 6.5, 7.5, 7.3, 6.6, 7.0, 6.0, 6.2, 6.3]}], "unit": " %"}</script>
+  <figcaption class="note">Tous les types de commerce de la carte animée, de 4 189 à 5 424 ouvertures par an. Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>La part de commerces fermés en cinq ans oscille entre 34,9 % (ouverts en 2019) et 42,7 % (ouverts en 2014), sans tendance. La première année est encore plus stable : entre 6,0 % et 7,6 % pour toutes les années d’ouverture de 2010 à 2024.</p>
+<p>Les commerces ouverts en 2018 et 2019 ont les meilleurs chiffres. Leurs années deux à cinq, les plus risquées d’habitude, sont tombées pendant le Covid, quand les fermetures ont baissé partout (voir <a href="../covid-paris-commerces-donnees-publiques/">notre article sur la période</a>). C’est un rapprochement de dates, pas une cause établie.</p>
+
+<h2>D’un arrondissement à l’autre</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces fermés dans les cinq ans, par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["7e", "6e", "1er", "14e", "5e", "4e", "3e", "12e", "19e", "9e", "13e", "18e", "17e", "11e", "15e", "20e", "16e", "2e", "10e", "8e"], "series": [{"name": "", "values": [32.5, 33.9, 34.1, 35.7, 36.3, 36.5, 36.9, 37.3, 37.4, 37.5, 37.7, 38.9, 39.2, 39.4, 39.4, 39.9, 40.0, 40.9, 41.6, 43.5]}], "unit": " %"}</script>
+  <figcaption class="note">Commerces ouverts de 2010 à 2020, de 1 185 ouvertures (4e) à 4 341 (11e). Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Du 7e (32,5 %) au 8e (43,5 %), l’écart est de onze points. Seize arrondissements sur vingt tiennent pourtant entre 35 % et 42 %.</p>
+<ul>
+  <li><strong>Les types de commerce n’expliquent presque rien.</strong> Si chaque type fermait partout au rythme parisien, tous les arrondissements se situeraient entre 37,3 % et 39,8 %. Le 7e, le 6e et le 1er font cinq à six points de mieux que ce que leurs types laissaient attendre ; le 8e près de quatre points de moins bien, le 10e trois.</li>
+  <li><strong>Le 8e est en tête, sans être un cas à part.</strong> Il compte 43,5 % de fermetures en cinq ans, deux points de plus que le 10e (41,6 %). 25,0 % de ses ouvertures se font à un numéro de rue qui a vu au moins cinq ouvertures en onze ans, contre 15,1 % pour Paris ; le 10e (21,3 %) et le 9e (20,0 %) en sont proches, et le 9e ferme pourtant moins que la moyenne (37,5 %) : ces adresses qui tournent n’expliquent donc pas tout. Dans le 8e comme dans le 16e, 9,0 % des commerces ferment dès la première année, le chiffre le plus élevé de Paris.</li>
+  <li><strong>Les reprises réduisent l’écart sans le supprimer.</strong> Sans les fermetures suivies d’un commerce du même type à la même adresse, on va de 29,1 % (6e) à 35,5 % (8e).</li>
+</ul>
+
+<h2>Les enseignes connues durent plus longtemps, sauf en épicerie</h2>
+
+<figure class="chart">
+  <p class="chart-title">Part des commerces fermés dans les cinq ans : enseignes connues et autres commerces</p>
+  <script type="application/json">{"type": "bars", "labels": ["Crèches", "Vêtements", "Restauration rapide", "Fromageries, épiceries fines", "Épiceries"], "series": [{"name": "Enseigne connue", "values": [7.7, 30.7, 29.3, 32.0, 48.4]}, {"name": "Autres commerces", "values": [33.2, 46.6, 41.9, 38.1, 39.5]}], "unit": " %"}</script>
+  <figcaption class="note">Commerces ouverts de 2010 à 2020 ; types comptant au moins 100 ouvertures sous une enseigne de notre liste. Enseigne connue : le nom du commerce contient une marque de réseau (liste tenue à la main par Pignon). Source : INSEE, répertoire SIRENE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Dans quatre types sur cinq, les commerces ouverts sous une enseigne de réseau ferment moins en cinq ans que les autres : 30,7 % contre 46,6 % pour les vêtements, 29,3 % contre 41,9 % pour la restauration rapide, 7,7 % contre 33,2 % pour les crèches. L’exception est l’épicerie : 48,4 % sous enseigne, 39,5 % pour les autres. Une piste : les supérettes de réseau changent souvent d’exploitant, et chaque changement est une fermeture au répertoire.</p>
+<p>Deux réserves. Notre liste contient les enseignes actives aujourd’hui : un réseau disparu depuis 2010 n’y figure pas, ce qui avantage les enseignes. Et « autres commerces » mêle les indépendants et les réseaux que nous n’avons pas listés.</p>
+
+<h2>Dans la rue aujourd’hui : quatre commerces sur dix ont plus de dix ans</h2>
+
+<p>Le répertoire compte 60 170 commerces ouverts à Paris début novembre 2026. <strong>42,2 % ont plus de dix ans, 18,6 % plus de vingt ans.</strong> Certains types sont jeunes : 21,3 % des traiteurs et 27,0 % des instituts de beauté ont passé dix ans. Les commerces de vêtements montrent un paradoxe : presque la moitié des ouvertures ferment en cinq ans (45,5 %), et pourtant 60,5 % des boutiques ouvertes aujourd’hui ont plus de dix ans. Un fonds de maisons anciennes, et autour une rotation rapide de nouveaux venus.</p>
+<p>Ces parts sont un plafond : le répertoire garde comme « ouverts » des commerces fermés sans déclaration, et ils sont par nature parmi les plus anciens.</p>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+<ul>
+  <li><strong>Une fermeture au répertoire est la fin d’un établissement, pas toujours d’un commerce.</strong> Une vente, un changement de société ou un déménagement créent une fermeture et une ouverture. Notre recherche de reprises ne trouve que celles du même type à la même adresse écrite de la même façon : un bar repris en restaurant n’est pas compté, et deux commerces d’un même immeuble peuvent être confondus.</li>
+  <li><strong>Les fermetures arrivent tard dans le répertoire, et parfois jamais.</strong> Les années d’ouverture récentes paraissent donc meilleures qu’elles ne le sont, et toutes les parts de fermeture de cet article sont plutôt des minimums.</li>
+  <li><strong>La date de fermeture est déclarée.</strong> Une sur douze tombe un 31 décembre.</li>
+  <li><strong>Le répertoire ne dit pas pourquoi.</strong> Faillite, retraite, vente avec plus-value, fin de bail : tout se ressemble. Les explications proposées ici sont des pistes.</li>
+  <li><strong>Les petits nombres sont écartés.</strong> Les graphiques par type gardent les types comptant au moins 300 ouvertures de 2010 à 2020 ; cordonniers, magasins de jouets, quincailleries, papeteries, poissonneries et réparateurs de téléphones restent en dessous.</li>
+  <li><strong>Les indépendants enregistrés sans enseigne sont laissés de côté</strong>, comme sur la carte animée : leur adresse est le plus souvent un domicile.</li>
+  <li><strong>Les adresses de domiciliation sont laissées de côté</strong> : ces numéros de rue où des centaines d’entreprises sans lien entre elles sont enregistrées sans y exercer, soit 97 adresses et 6 326 enregistrements, sont écartés par une règle fondée sur le nombre d’enregistrements, le nombre de types de commerce différents et la part d’enseignes de réseau à un même numéro.</li>
+  <li><strong>Une moyenne n’est pas une adresse.</strong> Le même type de commerce dure plus ou moins selon la rue, le loyer et les voisins.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et autour de votre adresse ?</h2>
+  <p>Pignon calcule cette survie pour une adresse précise : parmi les commerces de votre type ouverts à quelques minutes à pied, combien ont tenu trois ans, reprises comptées à part, avec le nombre d’ouvertures derrière le chiffre. Ce sont des signaux, avec la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

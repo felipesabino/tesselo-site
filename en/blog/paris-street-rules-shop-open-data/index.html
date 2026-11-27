@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The rules of a street: what Paris open data says before signing a lease · Tesselo</title>
+    <meta name="description" content="Streets protected by the city plan, terraces, markets, planning filings, Sunday opening: two maps and seven charts from five Ville de Paris files on what a shop may do on a street." />
+    <meta property="og:title" content="The rules of a street: what Paris open data says before signing a lease · Tesselo" />
+    <meta property="og:description" content="Streets protected by the city plan, terraces, markets, planning filings, Sunday opening: two maps and seven charts from five Ville de Paris files on what a shop may do on a street." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/regles-rue-paris-commerce-donnees-ouvertes/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <link rel="stylesheet" href="../../../assets/vendor/maplibre-gl.css" />
+    <script src="../../../assets/vendor/maplibre-gl.js" defer></script>
+    <script src="../../../assets/postmap.js" defer></script>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/regles-rue-paris-commerce-donnees-ouvertes/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>The rules of a street: what Paris open data says before signing a lease</h1><p class="lead">Streets protected by the city plan, terraces, markets, planning filings, Sunday opening: two maps and seven charts from five Ville de Paris files on what a shop may do on a street.</p></header>
+        <p>Before signing a lease, founders visit the premises, count passers-by and look at the neighbours. The rules of the street itself get less attention: what the city plan protects there, what the pavement allows, the days a market sets up in front of the window, the works that must be filed, the right to open on Sundays. In Paris, the city publishes all of this as open data. Here are five files, what each one says, and what it does not.</p>
+
+<h2>1. Is the street protected for shops?</h2>
+
+<p>The PLU (plan local d’urbanisme, the city’s planning rules, whose “bioclimatic” version was voted on 20 November 2024) draws lines along certain streets. On those lines, a ground-floor shop cannot be turned into a home or an office. For a founder, it is a signal about the street more than about the premises: the neighbouring shopfronts are meant to stay shopfronts.</p>
+
+<p>The file holds 5,185 lines, or <strong>361 km of protected streets</strong>. It has three levels:</p>
+<ul>
+  <li><strong>shops and crafts</strong>, the general case: 323 km, 89% of the total;</li>
+  <li><strong>craft shops</strong>, lines aimed at crafts in particular: 29.5 km;</li>
+  <li><strong>cultural shops</strong> (bookshops, galleries…): 9.2 km, of which 7.0 km in the 5th and 6th arrondissements alone. Thirteen arrondissements have none.</li>
+</ul>
+
+<figure class="postmap" data-src="../../../assets/data/protected-streets.json" data-label="Map of Paris: the streets where the city plan protects ground-floor shops, by level of protection">
+  <p class="chart-title">The streets where the city plan protects ground-floor shops</p>
+  <figcaption class="note">The 5,185 lines of the file, by level of protection. Published for information. Source: Ville de Paris, PLU bioclimatique, linear prescriptions, file of 3 June 2025 (ODbL).</figcaption>
+</figure>
+
+<p><strong>Protection follows the shopping streets, not the size of the arrondissement.</strong> In kilometres, the large arrondissements lead: 32.5 km in the 15th, 30.7 km in the 11th. Set against area, the order changes.</p>
+
+<figure class="chart">
+  <p class="chart-title">Kilometres of protected streets per km², by arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["6th", "10th", "11th", "9th", "2nd", "1st", "5th", "3rd", "18th", "20th", "8th", "12th", "15th", "17th", "14th", "19th", "13th", "4th", "16th", "7th"], "series": [{"name": "", "values": [10.1, 8.6, 8.5, 7.8, 7.4, 6.8, 6.7, 5.9, 4.7, 4.7, 4.6, 3.9, 3.9, 3.8, 3.2, 2.5, 2.4, 2.3, 1.6, 1.2]}], "unit": " km/km²"}</script>
+  <figcaption class="note">The three levels of protection together, against 4.2 km per km² for Paris as a whole. Each line is counted in the arrondissement that holds its middle. Area: sum of the neighbourhood outlines, without the Bois de Vincennes (12th) and the Bois de Boulogne (16th). Sources: Ville de Paris, PLU bioclimatique, linear prescriptions, file of 3 June 2025 (ODbL); IGN, neighbourhood outlines (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>The 6th has 10.1 km of protected streets per km², ahead of the 10th (8.6) and the 11th (8.5). The 15th, first in kilometres, falls below the Paris average (3.9 against 4.2). At the bottom come the 7th (1.2) and the 16th (1.6): woods aside, the 16th is three and a half times the size of the 6th (7.6 km² against 2.1 km²) and has about half as many protected streets (12.0 km against 21.6 km). The centre is not uniform: 7.4 km per km² in the 2nd, 2.3 in the 4th, which has only 3.7 km of protected streets.</p>
+
+<p>The city publishes this file “for information, without regulatory value”. For a given address, the official city plan and the city’s planning office are the authority.</p>
+
+<h2>2. Can a shop use the pavement?</h2>
+
+<p>A terrace or a display on the pavement needs a permit from the city. Two points matter before taking over premises. First, in Paris this permit is personal and revocable: it does not pass with the business, and the new operator must apply again. Second, it depends on the width of the pavement and on the city’s terrace rules: a terrace next door does not guarantee one for the shop beside it.</p>
+
+<p>The register holds 13,396 year-round terraces, 4,975 summer terraces (spring to autumn, born of Covid: see <a href="../covid-paris-shops-public-data/">our post on that period</a>) and 4,690 displays. What stands out is their size.</p>
+
+<figure class="chart">
+  <p class="chart-title">Area of permitted terraces in Paris</p>
+  <script type="application/json">{"type": "bars", "labels": ["Under 5 m²", "5 to 10 m²", "10 to 20 m²", "20 m² and over"], "series": [{"name": "Year-round terraces", "values": [37, 31, 22, 11]}, {"name": "Summer terraces", "values": [22, 36, 33, 9]}], "unit": "%"}</script>
+  <figcaption class="note">Share of the permits of each category, by declared area (length × width). Source: Ville de Paris, terrace and display permits, file of 25 October 2026 (ODbL).</figcaption>
+</figure>
+
+<p><strong>The typical Paris terrace fits on 6.6 m²</strong>: that is the median for year-round terraces, roughly one row of tables along the window. More than one in three (37%) is under 5 m², and only one in ten is 20 m² or more. Summer terraces are a little larger (median 8.5 m²), displays smaller (3.8 m²).</p>
+
+<figure class="chart">
+  <p class="chart-title">Permitted terraces by arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["10th", "11th", "15th", "17th", "12th", "8th", "9th", "18th", "14th", "20th", "5th", "16th", "13th", "1st", "4th", "19th", "2nd", "6th", "7th", "3rd"], "series": [{"name": "Year-round", "values": [987, 938, 929, 928, 856, 714, 778, 748, 693, 669, 745, 660, 612, 590, 504, 491, 452, 426, 351, 325]}, {"name": "Summer", "values": [390, 382, 294, 287, 270, 397, 319, 344, 262, 254, 160, 235, 228, 129, 191, 154, 152, 167, 214, 146]}]}</script>
+  <figcaption class="note">Source: Ville de Paris, terrace and display permits, file of 25 October 2026 (ODbL).</figcaption>
+</figure>
+
+<p>The 10th (1,377 terraces) and the 11th (1,320) lead. The share of summer terraces varies twofold: 18% in the 1st and the 5th, 36% in the 8th, 38% in the 7th, against 27% for Paris as a whole. The 8th has more summer terraces (397) than any other arrondissement.</p>
+
+<figure class="chart">
+  <p class="chart-title">Shops holding a terrace permit, other than restaurants</p>
+  <script type="application/json">{"type": "bars", "labels": ["Bars and cafés", "Bakeries", "Wine shops", "Cheese and fine food", "Grocery shops", "Butchers", "Bookshops", "Hairdressers"], "series": [{"name": "", "values": [901, 328, 74, 68, 61, 15, 12, 11]}]}</script>
+  <figcaption class="note">Open shops in the SIRENE register whose establishment holds at least one terrace (displays not counted). Restaurants, fast food included, account for 6,905. Sources: Ville de Paris, terrace and display permits, file of 25 October 2026 (ODbL); INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p><strong>Terraces are not only for cafés.</strong> Of the 8,394 shops we could link to a terrace permit, 82% are restaurants. But there are also 328 bakeries, about 17% of the bakeries open in Paris, and more than wine shops, cheese shops and grocery shops put together (203). These figures are floors: a permit filed under the company’s head-office number, or under an old number, escapes us.</p>
+
+<h2>3. Is there a market at the door, and on which days?</h2>
+
+<p>A market is not a rule, but it changes a street on the days it is held: stalls in front of the windows, more customers or more competitors depending on what the shop sells. The city’s file lists 80 open-air markets, 72 of them selling food (4 of those organic), plus flower, flea, stamp and craft markets.</p>
+
+<figure class="chart">
+  <p class="chart-title">Open-air food markets held on each day of the week, in Paris</p>
+  <script type="application/json">{"type": "bars", "labels": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "series": [{"name": "", "values": [0, 24, 27, 22, 23, 31, 25]}]}</script>
+  <figcaption class="note">Out of 72 food markets. Covered markets are not in this file. Source: Ville de Paris, open-air markets, file of 17 April 2024 (ODbL).</figcaption>
+</figure>
+
+<p><strong>No open-air food market is held on a Monday.</strong> Saturday is the busiest day (31 markets), and the other days are close to each other, between 22 and 27. The rhythm is nearly always the same: 56 markets out of 72 are held two days a week. Their stalls laid end to end make 26.8 km, with a median of 289 m per market; the longest is over a kilometre (1,182 m).</p>
+
+<figure class="postmap" data-src="../../../assets/data/street-markets.json" data-label="Map of Paris: the 80 open-air markets, food and other">
+  <p class="chart-title">The open-air markets of Paris</p>
+  <figcaption class="note">One point per market, at the middle of its outline; hover over or tap a point to read its name and days. Covered markets are not in this file. Source: Ville de Paris, open-air markets, file of 17 April 2024 (ODbL).</figcaption>
+</figure>
+
+<p>The spread is uneven: 8 food markets in the 13th, 7 in each of the 12th, 15th and 16th, none in the 3rd or the 7th (covered markets aside).</p>
+
+<h2>4. Which works go through the city, and how long does it take?</h2>
+
+<p>The city publishes the planning filings it receives: decisions of the last six months and filings under review. We keep three kinds, from the words of their description, refused filings left out: 1,199 filings for <strong>shopfront works</strong>, 592 <strong>changes of use</strong> (moving from one use to another, an office to a shop for instance; 271 name a shop) and 531 street-side <strong>façade cleanings</strong>.</p>
+
+<p>What the file records, without our saying here what the law requires: 1,118 of the 1,199 shopfront filings are prior declarations (déclarations préalables), the lightest kind of filing. Changes of use more often go through a building permit (346 of 592). The difference shows in the time it takes.</p>
+
+<figure class="chart">
+  <p class="chart-title">Filings already granted on 9 November 2026, by month of filing</p>
+  <script type="application/json">{"type": "bars", "labels": ["May 2026", "June 2026", "July 2026", "August 2026", "September 2026", "October 2026"], "series": [{"name": "Prior declarations", "values": [100, 99, 94, 78, 32, 2]}, {"name": "Building permits", "values": [46, 34, 11, 0, 0, 0]}], "unit": "%"}</script>
+  <figcaption class="note">Filings for shopfront works, changes of use and street-side façade cleaning, granted or under review; refused filings are not counted. Source: Ville de Paris, recent planning filings, file of 9 November 2026 (ODbL).</figcaption>
+</figure>
+
+<p><strong>Two to three months for most declarations, more than five for most permits.</strong> Of the prior declarations filed in August, 78% were granted by early November; of those filed in July, 94%. For building permits, none of those filed since August is granted, and fewer than half of those filed in May (46%, of 28 filings). Nearly one permit under review in two (48%) has been waiting for more than 90 days, against 5% of declarations.</p>
+
+<p>For a project, the signal is simple: shopfront works and a change of use of the premises do not run on the same calendar. The city’s planning office says which filing applies to an address.</p>
+
+<h2>5. Can a shop open on Sundays?</h2>
+
+<p>Paris has 12 international tourist zones, set by ministerial orders in 2015 and 2016. Shops there are allowed to open on Sundays and in the evening until midnight. The outlines are drawn street by street.</p>
+
+<figure class="chart">
+  <p class="chart-title">Open shops in each international tourist zone</p>
+  <script type="application/json">{"type": "bars", "labels": ["Les Halles", "Le Marais", "Saint-Honoré Vendôme", "Haussmann", "Rennes Saint-Sulpice", "Champs-Élysées Montaigne", "Saint-Germain", "Olympiades", "Montmartre", "Maillot-Ternes", "Beaugrenelle", "Saint-Émilion Bibliothèque"], "series": [{"name": "", "values": [1696, 1459, 1200, 1043, 978, 774, 491, 416, 372, 235, 118, 58]}]}</script>
+  <figcaption class="note">Open shops of the types Pignon follows, sole traders without a shop sign and business address providers left out. Sources: Ville de Paris, international tourist zones, file of 27 July 2016 (ODbL); INSEE, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p><strong>5% of the area of Paris, one shop in seven.</strong> The twelve zones cover 571 hectares, 5.5% of the city, woods included. Yet they hold 8,840 of the 60,189 open shops we count (14.7%), and more than one clothing shop in three (1,748 of 5,158, or 34%). Their sizes do not compare: nearly 1,700 shops at Les Halles, 58 at Saint-Émilion Bibliothèque.</p>
+
+<p>A zone is a legal outline, not a measure of footfall. It says what is allowed, not what the neighbouring shops do or how many visitors come.</p>
+
+<h2>What the figures do not say</h2>
+<ul>
+  <li><strong>The area of an arrondissement</strong> is the sum of IGN’s neighbourhood outlines, without the Bois de Vincennes and the Bois de Boulogne. Parks, railway land and the Seine are still counted.</li>
+  <li><strong>A file is not the rulebook.</strong> The protected-street lines are published for information. For an address, the official city plan and the city’s planning office are the authority.</li>
+  <li><strong>A terrace permit does not prove the terrace is in use</strong>, and the area is the declared one. Terraces are linked to shops through the establishment number (SIRET): the figures by type are floors.</li>
+  <li><strong>The markets file dates from April 2024</strong> and has no covered markets. A market moved or closed since may still be in it.</li>
+  <li><strong>Planning filings are a rolling window</strong> of six months, with no decision date. Times are read backwards: the share of filings already granted by month of filing, refusals left out. The kinds of filing are recognised from the words of their description, and façade cleanings that do not name the street side are missing.</li>
+  <li><strong>The shops counted</strong> are those of the SIRENE register for the types Pignon follows, without sole traders with no shop sign and without the addresses of business address providers, where hundreds of companies share an address without trading there. Bars and cafés form one type.</li>
+  <li><strong>A filing is not a building site</strong>: authorised works are not always carried out.</li>
+  <li><strong>The tourist zones date from 2015 and 2016.</strong> Opening on Sundays also depends on other rules, for employees in particular, which this file does not describe.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And on your street?</h2>
+  <p>Pignon reads these same files for a neighbourhood or an address: the metres of street protected by the city plan, the terrace permits within 20 m, the markets a few minutes’ walk away and their days. These are signals, with the number and the source behind each one.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paris by day and by night: where the customers are at 1 pm and at 8 pm · Tesselo</title>
+    <meta name="description" content="Five jobs per resident in the 8th, under half a job in the 20th, and more jobs in the 15th than in the 8th: six charts on the residents, jobs and stations of Paris, and what it changes by type of shop." />
+    <meta property="og:title" content="Paris by day and by night: where the customers are at 1 pm and at 8 pm · Tesselo" />
+    <meta property="og:description" content="Five jobs per resident in the 8th, under half a job in the 20th, and more jobs in the 15th than in the 8th: six charts on the residents, jobs and stations of Paris, and what it changes by type of shop." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/paris-jour-nuit-habitants-emplois/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/paris-jour-nuit-habitants-emplois/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 10 November 2026</p><h1>Paris by day and by night: where the customers are at 1 pm and at 8 pm</h1><p class="lead">Five jobs per resident in the 8th, under half a job in the 20th, and more jobs in the 15th than in the 8th: six charts on the residents, jobs and stations of Paris, and what it changes by type of shop.</p></header>
+        <p>At 1 pm, a street in the 8th arrondissement is full of people who do not sleep there. At 8 pm, a street in the 20th is full of people who do not work there. The same shop window does not have the same customers at both hours, and the census lets us measure it: it counts residents where they live, and jobs where they are done. Here is what the two counts show side by side, with station ridership.</p>
+
+<h2>Five jobs per resident in the 8th, under half a job in the 20th</h2>
+
+<figure class="chart">
+  <p class="chart-title">Jobs located in the arrondissement per 100 residents</p>
+  <script type="application/json">{"type": "bars", "labels": ["8th", "1st", "2nd", "9th", "7th", "4th", "6th", "10th", "3rd", "5th", "12th", "15th", "16th", "13th", "17th", "14th", "11th", "19th", "18th", "20th"], "series": [{"name": "", "values": [497, 412, 302, 201, 147, 142, 113, 102, 97, 93, 86, 78, 75, 71, 68, 60, 58, 50, 45, 40]}], "unit": ""}</script>
+  <figcaption class="note">Jobs by place of work: 2023 census. Residents: 2022 census. Source: INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Paris has 2,113,705 residents and 1,811,254 jobs, or 86 jobs per 100 residents. But the average looks like no arrondissement. The 8th has 176,116 jobs for 35,418 residents: five people work there for each one who lives there. The 20th has 76,014 jobs for 187,694 residents: the ratio is twelve times lower.</p>
+<p>Eight arrondissements have more jobs than residents: the 1st, 2nd, 4th, 6th, 7th, 8th, 9th and 10th. Together they hold 36% of the jobs in Paris and 16% of its residents. At the other end, the 18th, 19th and 20th house 26% of Parisians and hold 14% of the jobs.</p>
+
+<h2>The surprise: the 15th has more jobs than the 8th</h2>
+
+<p>The ratio does not tell everything. By number of jobs, the first arrondissement of Paris is not the 8th but the 15th: 179,149 jobs against 176,116. Next come the 13th (126,704), the 12th (120,568) and the 16th (120,355). These arrondissements are seen as residential because they are very populated. They are both at once: only the neighbourhood level shows which side a street falls on.</p>
+
+<figure class="chart">
+  <p class="chart-title">Number of “night” and “day” neighbourhoods per arrondissement (estimate)</p>
+  <script type="application/json">{"type": "bars", "labels": ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th"], "series": [{"name": "Under 50 jobs per 100 residents", "values": [0, 1, 2, 1, 7, 2, 6, 0, 8, 7, 30, 34, 42, 35, 54, 43, 34, 51, 53, 60]}, {"name": "Over 100 jobs per 100 residents", "values": [7, 7, 7, 7, 7, 5, 11, 12, 10, 12, 6, 8, 6, 9, 15, 13, 15, 4, 6, 3]}], "unit": ""}</script>
+  <figcaption class="note"><strong>Estimate.</strong> INSEE publishes jobs by place of work per arrondissement only. Pignon spreads each arrondissement’s total across its neighbourhoods according to the headcount of the employers registered there (headcount bands in the SIRENE register). Neighbourhoods with at least 1,000 residents (871 of 992). Sources: INSEE, 2022 and 2023 censuses, SIRENE register (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Of the 871 Paris neighbourhoods with at least 1,000 residents, only 171, one in five, have more estimated jobs than residents. The median neighbourhood has 44 per 100 residents, half the city average: jobs are far more concentrated than homes.</p>
+<ul>
+  <li><strong>The 15th has 15 “day” neighbourhoods,</strong> as many as the 17th and more than the 8th (12 of 14). It also has 54 “night” neighbourhoods. Two cities in one arrondissement.</li>
+  <li><strong>The 9th is split in two:</strong> 201 jobs per 100 residents on average, but 8 of its 26 neighbourhoods have fewer than 50.</li>
+  <li><strong>The 20th has its exceptions:</strong> 60 night neighbourhoods out of 72, and 3 where more people work than live.</li>
+  <li><strong>The extremes:</strong> one neighbourhood of the Madeleine (8th) has 1,368 residents and about 17,000 estimated jobs, twelve jobs per resident. One neighbourhood of Saint-Fargeau (20th) has 1,856 residents and about forty estimated jobs.</li>
+</ul>
+
+<h2>Who comes in, who goes out</h2>
+
+<figure class="chart">
+  <p class="chart-title">People at work in and from Paris on a working day, 2023 census</p>
+  <script type="application/json">{"type": "bars", "labels": ["Work in Paris, live elsewhere", "Live and work in Paris", "Live in Paris, work elsewhere"], "series": [{"name": "", "values": [1095474, 715780, 355118]}], "unit": ""}</script>
+  <figcaption class="note">First line: jobs located in Paris minus the Parisians who work there. Source: INSEE, 2023 census, jobs by place of work and journeys to work (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Six Paris jobs in ten (60%) are held by people who do not live in Paris: 1,095,474 people. The other way, 355,118 Parisians leave the city to work, one employed resident in three (33.2%). That share has hardly moved: 32.0% in the 2012 census, 31.7% in the 2017 one. The balance is 740,356 more workers in Paris on a working day. For a shop, they are lunchtime customers more than evening ones.</p>
+
+<figure class="chart">
+  <p class="chart-title">Share of employed residents who work outside Paris, by arrondissement of residence</p>
+  <script type="application/json">{"type": "bars", "labels": ["14th", "17th", "12th", "13th", "15th", "16th", "19th", "11th", "18th", "20th", "5th", "10th", "8th", "2nd", "4th", "9th", "3rd", "1st", "6th", "7th"], "series": [{"name": "", "values": [38, 37, 36, 35, 35, 33, 33, 32, 32, 32, 31, 31, 30, 29, 29, 29, 28, 27, 27, 26]}], "unit": "%"}</script>
+  <figcaption class="note">Source: INSEE, 2023 census, journeys to work (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>The arrondissements on the edge of Paris send more workers beyond the ring road: 38% in the 14th, 37% in the 17th, against 26% in the 7th. The gap stays modest. Everywhere, at least one employed resident in four is not in Paris at lunchtime. How they travel has changed more than where they go: see <a href="../covid-paris-shops-public-data/">our post on the Covid period</a>.</p>
+
+<h2>Stations follow jobs, not residents</h2>
+
+<figure class="chart">
+  <p class="chart-title">The twelve busiest stations in Paris: entries over one year, in millions</p>
+  <script type="application/json">{"type": "bars", "labels": ["Saint-Lazare (8th)", "Châtelet (1st)", "Gare de Lyon (12th)", "Gare du Nord (10th)", "Montparnasse-Bienvenüe (15th)", "Gare de l’Est (10th)", "Charles de Gaulle-Étoile (17th)", "Saint-Michel (5th)", "Les Halles (1st)", "République (10th)", "Gare d’Austerlitz (13th)", "Nation (12th)"], "series": [{"name": "", "values": [83, 53.4, 50.9, 50.4, 44.8, 32.1, 19.3, 17.7, 17.5, 16.8, 13.8, 13.7]}], "unit": "M"}</script>
+  <figcaption class="note">Ticket and pass validations at the entrance of the metro, RER and trains, July 2025 to June 2026, all lines of a station together. Exits are not counted. Châtelet and Les Halles are counted separately. A station that straddles several arrondissements is placed in the one where its centre falls. Source: Île-de-France Mobilités (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Saint-Lazare records 83 million entries a year, 227,000 a day on average. It is in the 8th, the most “daytime” arrondissement of Paris, and Châtelet is in the 1st. But the rest of the ranking is elsewhere: Gare de Lyon, Gare du Nord, Montparnasse and Gare de l’Est are in arrondissements where the ratio is close to the average (12th: 86, 10th: 102, 15th: 78). The six stations with a main-line terminal add up to 275 million entries, 23% of the entries counted in Paris (235 stations).</p>
+<p>Across arrondissements, entries are spread like jobs rather than like residents. The eight “day” arrondissements hold 42% of entries, for 36% of jobs and 16% of residents. The 18th, 19th and 20th hold 13%, for 14% of jobs and 26% of residents. One possible explanation: someone who lives in the suburbs and works in Paris validates there only once, in the evening, near the office.</p>
+
+<h2>What this changes by type of shop</h2>
+
+<p>A daytime worker is not a customer in the way a resident is. They have lunch, grab a coffee, drop a jacket at the dry cleaner. They do not buy their fish near the office. To compare addresses, Pignon adds residents and daytime workers together, giving the workers a weight that depends on the type of shop.</p>
+
+<figure class="chart">
+  <p class="chart-title">Weight of a daytime worker against a resident, by type of shop (Pignon’s assumptions)</p>
+  <script type="application/json">{"type": "bars", "labels": ["Office supply", "Dry cleaner", "Clothes shop", "Café", "Fast food", "Restaurant", "Gym", "Beauty salon", "Bookshop", "Bakery", "Bar", "Hairdresser", "Florist", "Wine shop", "Greengrocer", "Pharmacy", "Butcher", "Fishmonger", "Laundromat"], "series": [{"name": "", "values": [1.2, 1, 1, 0.9, 0.9, 0.8, 0.8, 0.7, 0.6, 0.5, 0.5, 0.5, 0.5, 0.4, 0.3, 0.25, 0.15, 0.15, 0.1]}], "unit": ""}</script>
+  <figcaption class="note"><strong>Assumptions, not measurements.</strong> These weights are Pignon’s own choices, and will be corrected. Resident = 1. No public source measures the share of customers who work nearby.</figcaption>
+</figure>
+
+<ul>
+  <li><strong>Lunchtime shops:</strong> fast food, café, restaurant, dry cleaner, office supply. In a neighbourhood of the Madeleine, daytime customers weigh far more than residents. The reverse signal counts too: these streets empty in the evening and at the weekend.</li>
+  <li><strong>Evening and Saturday shops:</strong> butcher, fishmonger, greengrocer, laundromat, pharmacy. People shop for these near home. In a night neighbourhood, the number of residents is the figure that counts, and the customers are away at 1 pm on a weekday.</li>
+  <li><strong>Stations blur the ranking.</strong> The neighbourhood of Gare du Nord has 687 residents and about 1,500 estimated jobs, for 50 million entries a year in its station. Travellers appear in neither count.</li>
+</ul>
+
+<h2>What the figures do not say</h2>
+<ul>
+  <li><strong>None of these sources gives the time of day.</strong> “Day” here means “where the jobs are”, “night” means “where the homes are”. Actual presence at 1 pm or 8 pm is not measured.</li>
+  <li><strong>Jobs per neighbourhood are an estimate.</strong> The total is INSEE’s, per arrondissement; its spread comes from employers’ headcount bands. For 21% of the weight, a site’s headcount is derived from the whole company’s, which understates large sites such as hospitals.</li>
+  <li><strong>Tourists, students, visitors and patients are not counted.</strong> A museum or university neighbourhood is fuller by day than these figures show.</li>
+  <li><strong>A job is not a presence.</strong> Part-time work, remote work, shifts, building sites: someone whose job is located in the 8th is not there every day.</li>
+  <li><strong>The two censuses are not from the same year:</strong> 2022 for residents per neighbourhood, 2023 for jobs. And a census is an average of five years of surveys.</li>
+  <li><strong>Station entries count neither exits nor buses.</strong> Tram stops are left out of the station ranking (their validations are published per line only); they are included, with an estimated share, in the arrondissement shares. Stations served by a tram weigh 15% of those entries.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And around your address?</h2>
+  <p>Pignon does this calculation for one precise address: residents and daytime workers within a few minutes’ walk, nearby stations and their ridership, with the weight of each for your type of shop. These are signals, with the number and the source behind each, and the word “estimate” wherever it is one.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

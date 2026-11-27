@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Murs de boutique ou appartement : lequel vaut le plus cher à Paris ? · Tesselo</title>
+    <meta name="description" content="À Paris, un local commercial se vend environ 15 % moins cher au mètre carré qu’un appartement, dans les vingt arrondissements. Mais l’écart va de 7 % à 27 %, et les deux prix n’évoluent pas ensemble : six graphiques tirés des ventes immobilières publiées par la DGFiP. Des prix de vente, pas des loyers." />
+    <meta property="og:title" content="Murs de boutique ou appartement : lequel vaut le plus cher à Paris ? · Tesselo" />
+    <meta property="og:description" content="À Paris, un local commercial se vend environ 15 % moins cher au mètre carré qu’un appartement, dans les vingt arrondissements. Mais l’écart va de 7 % à 27 %, et les deux prix n’évoluent pas ensemble : six graphiques tirés des ventes immobilières publiées par la DGFiP. Des prix de vente, pas des loyers." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/shop-premises-vs-home-prices-paris/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/shop-premises-vs-home-prices-paris/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Murs de boutique ou appartement : lequel vaut le plus cher à Paris ?</h1><p class="lead">À Paris, un local commercial se vend environ 15 % moins cher au mètre carré qu’un appartement, dans les vingt arrondissements. Mais l’écart va de 7 % à 27 %, et les deux prix n’évoluent pas ensemble : six graphiques tirés des ventes immobilières publiées par la DGFiP. Des prix de vente, pas des loyers.</p></header>
+        <p>Dans Pignon, la fiche de chaque quartier affiche deux prix au mètre carré : celui des appartements et celui des locaux commerciaux. La question revient souvent : les murs d’une boutique valent-ils plus cher que ceux d’un logement ? À Paris, la réponse est non, dans aucun arrondissement. Mais l’écart change beaucoup d’un arrondissement à l’autre, et les deux prix n’évoluent pas ensemble.</p>
+<p>Une précision avant les chiffres : ce sont des <strong>prix de vente, pas des loyers</strong>. La plupart des fondateurs louent leur local. Ce que suit cet article, c’est ce que valent les murs autour d’une adresse, pas ce qu’on y paie chaque mois.</p>
+
+<h2>D’où viennent ces prix</h2>
+
+<p>La base DVF (« demandes de valeurs foncières ») est publiée par la Direction générale des finances publiques, deux fois par an, en avril et en octobre. Elle recense les ventes immobilières des cinq dernières années, avec le prix, la surface et la nature du bien. Pignon y lit deux catégories, vente par vente :</p>
+<ul>
+  <li><strong>les appartements ;</strong></li>
+  <li><strong>les « locaux industriels, commerciaux ou assimilés »</strong> : des boutiques, mais aussi des bureaux et des ateliers. La base ne les distingue pas.</li>
+</ul>
+<p>Nous ne gardons que les ventes d’un seul bien (un appartement ou un local, la cave et le parking vendus avec lui ne comptent pas), d’au moins 9 m², à un prix au mètre carré plausible. Cela donne 142 700 ventes d’appartements et 10 334 ventes de locaux à Paris de 2021 à 2025. Tous les prix ci-dessous sont des prix médians au mètre carré : la moitié des ventes s’est conclue en dessous, l’autre moitié au-dessus.</p>
+
+<h2>À Paris, un local se vend environ 15 % moins cher qu’un appartement</h2>
+
+<figure class="chart">
+  <p class="chart-title">Prix de vente médian au m² à Paris, par année de vente</p>
+  <script type="application/json">{"type": "bars", "labels": ["2021", "2022", "2023", "2024", "2025"], "series": [{"name": "Appartements", "values": [10950, 10750, 10250, 9650, 9750]}, {"name": "Locaux commerciaux", "values": [8750, 9250, 8850, 8450, 8250]}], "unit": " €/m²"}</script>
+  <figcaption class="note">Médianes à 50 €/m² près. Source : DGFiP, demandes de valeurs foncières (DVF), fichiers géolocalisés par Etalab (Licence Ouverte 2.0). Prix de vente, pas des loyers.</figcaption>
+</figure>
+
+<p>En 2025, le mètre carré d’appartement s’est vendu <strong>9 750 €</strong> en médiane, celui de local commercial <strong>8 250 €</strong> : 15 % de moins. Sur cinq ans, le local a toujours valu entre 80 % et 88 % du prix de l’appartement.</p>
+<p>Les deux courbes ne racontent pas la même histoire. Les appartements ont baissé chaque année de 2021 à 2024, de 10 950 à 9 650 €/m², avant un léger rebond en 2025. Les locaux, eux, ont d’abord monté : +6 % en 2022, à 9 250 €/m². Puis ils ont perdu 11 % en trois ans. Sur l’ensemble de la période, les appartements reculent de 11 % et les locaux de 6 %.</p>
+
+<h2>Arrondissement par arrondissement</h2>
+
+<figure class="chart">
+  <p class="chart-title">Prix de vente médian au m², par arrondissement, ventes de 2023 à 2025</p>
+  <script type="application/json">{"type": "bars", "labels": ["6e", "7e", "4e", "1er", "8e", "3e", "5e", "2e", "16e", "9e", "17e", "11e", "15e", "10e", "14e", "12e", "18e", "13e", "20e", "19e"], "series": [{"name": "Appartements", "values": [14550, 14050, 12950, 12550, 12250, 12050, 11950, 11350, 11050, 10950, 10350, 10050, 9650, 9550, 9550, 9150, 8950, 8750, 8450, 8150]}, {"name": "Locaux commerciaux", "values": [11250, 10850, 11950, 11650, 10650, 9450, 9150, 9550, 9750, 9450, 9050, 7550, 7350, 7850, 7950, 7750, 6950, 6550, 6450, 5950]}], "unit": " €/m²"}</script>
+  <figcaption class="note">Trois années de ventes réunies : de 153 ventes de locaux (1er et 4e) à 479 (17e) par arrondissement. Médianes à 50 €/m² près. Source : DGFiP, demandes de valeurs foncières (DVF), fichiers géolocalisés par Etalab (Licence Ouverte 2.0). Prix de vente, pas des loyers.</figcaption>
+</figure>
+
+<p>Dans les vingt arrondissements, le local se vend moins cher que l’appartement. Mais les deux classements ne se recouvrent pas. Pour les appartements, le 6e (14 550 €/m²) et le 7e (14 050 €/m²) sont en tête. Pour les locaux, ce sont le 4e (11 950 €/m²) et le 1er (11 650 €/m²). Et l’éventail est plus large pour les locaux : du simple au double entre le 19e (5 950 €/m²) et le 4e, contre 1,8 fois pour les appartements.</p>
+
+<figure class="chart">
+  <p class="chart-title">Prix au m² des locaux commerciaux par rapport à celui des appartements, par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["1er", "4e", "16e", "8e", "17e", "9e", "12e", "2e", "14e", "10e", "3e", "18e", "5e", "6e", "7e", "15e", "20e", "11e", "13e", "19e"], "series": [{"name": "", "values": [-7, -8, -12, -13, -13, -14, -15, -16, -17, -18, -22, -22, -23, -23, -23, -24, -24, -25, -25, -27]}], "unit": " %", "signed": true}</script>
+  <figcaption class="note">Écart entre la médiane des locaux et celle des appartements, ventes de 2023 à 2025. Source : DGFiP, demandes de valeurs foncières (DVF), fichiers géolocalisés par Etalab (Licence Ouverte 2.0). Prix de vente, pas des loyers.</figcaption>
+</figure>
+
+<p>C’est ici que les arrondissements se séparent.</p>
+<ul>
+  <li><strong>Dans le 1er et le 4e, le local vaut presque l’appartement</strong> : 7 à 8 % de moins. Ce sont les deux arrondissements où les murs commerciaux sont les plus chers de Paris.</li>
+  <li><strong>Dans le 6e et le 7e, l’écart est le plus grand en euros</strong> : 3 300 et 3 200 €/m² de moins que les appartements, qui y sont les plus chers de la ville. Le logement y tire les prix, pas le commerce.</li>
+  <li><strong>Dans l’est et le sud (11e, 13e, 19e, 20e, 15e), le local vaut un quart de moins</strong> que l’appartement, jusqu’à −27 % dans le 19e.</li>
+</ul>
+<p>Une lecture possible : là où le passage et les bureaux font la valeur d’une adresse, les murs commerciaux se rapprochent du prix du logement ; là où l’on vient surtout pour habiter, ils décrochent. Les chiffres sont compatibles avec cette lecture, ils ne la prouvent pas.</p>
+
+<h2>Depuis 2021 : là où les deux prix se séparent</h2>
+
+<figure class="chart">
+  <p class="chart-title">Évolution du prix médian au m² entre 2021–2022 et 2024–2025, par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["4e", "1er", "2e", "18e", "5e", "16e", "9e", "12e", "17e", "7e", "15e", "8e", "20e", "3e", "6e", "10e", "19e", "11e", "14e", "13e"], "series": [{"name": "Appartements", "values": [-3, -7, -7, -14, -9, -8, -9, -13, -11, -7, -11, -6, -12, -6, -5, -12, -14, -10, -11, -11]}, {"name": "Locaux commerciaux", "values": [7, -1, -2, -3, -3, -3, -4, -7, -8, -8, -9, -9, -12, -12, -12, -14, -18, -18, -21, -22]}], "unit": " %"}</script>
+  <figcaption class="note">Deux années de ventes réunies de chaque côté, pour compter au moins 97 ventes de locaux par arrondissement et par période. Source : DGFiP, demandes de valeurs foncières (DVF), fichiers géolocalisés par Etalab (Licence Ouverte 2.0). Prix de vente, pas des loyers.</figcaption>
+</figure>
+
+<p>Les appartements ont baissé partout, de 3 % (4e) à 14 % (18e et 19e) : un mouvement d’ensemble. Les locaux bougent en ordre dispersé. Ils ont mieux tenu que les appartements dans dix arrondissements, moins bien dans neuf, autant dans le 20e. Aucune règle générale, donc, mais des écarts nets.</p>
+<ul>
+  <li><strong>13e, 14e, 11e : les locaux ont perdu deux fois plus que les logements.</strong> −22 % dans le 13e, −21 % dans le 14e, −18 % dans le 11e, quand les appartements y reculaient de 10 à 11 %.</li>
+  <li><strong>18e : l’inverse.</strong> Les appartements y ont perdu 14 %, les locaux 3 % seulement.</li>
+  <li><strong>4e : le seul arrondissement où les locaux ont monté</strong> (+7 %), sur une centaine de ventes par période.</li>
+</ul>
+<p>Pour un fondateur, le signal est celui-ci : le prix des logements d’un quartier, que tout le monde connaît, ne renseigne pas sur celui de ses murs commerciaux. Les deux marchés ont leurs propres mouvements.</p>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+
+<figure class="chart">
+  <p class="chart-title">Ventes de locaux commerciaux retenues en 2025, par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["8e", "16e", "11e", "17e", "18e", "15e", "10e", "9e", "3e", "14e", "2e", "6e", "12e", "5e", "19e", "20e", "7e", "1er", "13e", "4e"], "series": [{"name": "", "values": [185, 168, 167, 163, 148, 146, 143, 131, 99, 95, 91, 90, 87, 75, 72, 71, 69, 61, 54, 52]}], "unit": ""}</script>
+  <figcaption class="note">2 167 ventes de locaux à Paris en 2025, contre 28 264 ventes d’appartements. Source : DGFiP, demandes de valeurs foncières (DVF), fichiers géolocalisés par Etalab (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<ul>
+  <li><strong>Peu de ventes.</strong> Il se vend à Paris un local pour treize appartements. Par arrondissement et par an, cela fait de 45 à 204 ventes de locaux sur la période. Avec si peu, une médiane annuelle saute : dans le 4e, elle passe de 10 050 €/m² en 2023 à 12 450 €/m² en 2024, sur 56 puis 45 ventes. C’est pourquoi cet article réunit deux ou trois années.</li>
+</ul>
+
+<figure class="chart">
+  <p class="chart-title">La moitié des ventes se situe entre ces deux prix au m², Paris, 2023 à 2025</p>
+  <script type="application/json">{"type": "bars", "labels": ["Appartements", "Locaux commerciaux"], "series": [{"name": "Un quart des ventes en dessous de", "values": [8350, 5650]}, {"name": "Un quart des ventes au-dessus de", "values": [11650, 11450]}], "unit": " €/m²"}</script>
+  <figcaption class="note">Premier et troisième quartiles, à 50 €/m² près : 79 360 ventes d’appartements, 5 949 ventes de locaux. Source : DGFiP, demandes de valeurs foncières (DVF), fichiers géolocalisés par Etalab (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<ul>
+  <li><strong>Des biens très différents sous une même étiquette.</strong> Les locaux chers valent autant que les appartements chers (11 450 contre 11 650 €/m²). L’écart vient du bas : un quart des locaux s’est vendu moins de 5 650 €/m², contre 8 350 €/m² pour les appartements. Une boutique sur rue, un bureau en étage et un atelier en fond de cour sont comptés ensemble, et la base ne dit pas lequel est lequel.</li>
+  <li><strong>Acheter les murs n’est pas les louer.</strong> Nous n’avons trouvé aucune source publique ouverte sur les loyers commerciaux. Le prix de vente des murs situe un quartier par rapport à un autre. Il ne permet pas d’estimer un loyer, et nous ne le faisons pas.</li>
+  <li><strong>Les murs ne sont pas le fonds.</strong> Reprendre un commerce, c’est acheter son fonds (clientèle, matériel, droit au bail), pas son local. DVF n’en dit rien.</li>
+  <li><strong>Les ventes en bloc sont écartées</strong> (plusieurs lots vendus ensemble, immeubles entiers), ainsi que les prix au mètre carré hors d’une plage plausible : 3 000 à 30 000 €/m² pour un appartement, 1 000 à 40 000 €/m² pour un local.</li>
+  <li><strong>Les données ont du retard.</strong> Chaque publication s’arrête environ six mois avant sa sortie, et la base ne garde que cinq années : impossible de remonter avant 2021.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et dans votre quartier ?</h2>
+  <p>Pignon affiche ces deux prix pour chaque quartier de Paris : le prix des locaux commerciaux quand le quartier compte assez de ventes, celui des appartements, et l’évolution des deux dans l’arrondissement depuis 2021. Toujours avec la mention « prix de vente, pas des loyers ». Ce sont des signaux, avec le chiffre et la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>

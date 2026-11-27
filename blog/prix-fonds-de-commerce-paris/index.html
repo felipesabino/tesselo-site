@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combien se vend un fonds de commerce à Paris ? · Tesselo</title>
+    <meta name="description" content="De 20 000 € pour un institut de beauté à 800 000 € pour une pharmacie : ce que 5 254 ventes de fonds de commerce publiées au BODACC depuis 2023 disent des prix à Paris, par type de commerce et par arrondissement." />
+    <meta property="og:title" content="Combien se vend un fonds de commerce à Paris ? · Tesselo" />
+    <meta property="og:description" content="De 20 000 € pour un institut de beauté à 800 000 € pour une pharmacie : ce que 5 254 ventes de fonds de commerce publiées au BODACC depuis 2023 disent des prix à Paris, par type de commerce et par arrondissement." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="en" href="../../en/blog/business-sale-prices-paris/" />
+    <link rel="stylesheet" href="../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../sources/">Nos sources</a>
+          <a href="../../blog/">Blog</a>
+          <span class="lang-switch"><a href="../../en/blog/business-sale-prices-paris/" hreflang="en" lang="en">English</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">Le blog</a> · 10 novembre 2026</p><h1>Combien se vend un fonds de commerce à Paris ?</h1><p class="lead">De 20 000 € pour un institut de beauté à 800 000 € pour une pharmacie : ce que 5 254 ventes de fonds de commerce publiées au BODACC depuis 2023 disent des prix à Paris, par type de commerce et par arrondissement.</p></header>
+        <p>Reprendre un commerce existant, c’est d’abord payer un prix à celui qui s’en va. Ce prix n’est affiché nulle part dans la rue, mais il est public : chaque vente de fonds de commerce est publiée dans un bulletin officiel, avec son montant. Nous avons lu les annonces parisiennes depuis janvier 2023. Voici ce qu’un fonds se vend à Paris, selon le type de commerce et l’arrondissement.</p>
+
+<h2>Le fonds, les murs, le bail : trois choses différentes</h2>
+
+<ul>
+  <li><strong>Le fonds de commerce</strong>, c’est l’activité elle-même : la clientèle, l’enseigne, le matériel, les autorisations éventuelles et le droit d’occuper le local (le « droit au bail »). C’est ce qu’on achète quand on « reprend » une boulangerie ou un salon de coiffure.</li>
+  <li><strong>Les murs</strong>, c’est le local. Ils appartiennent le plus souvent à quelqu’un d’autre, à qui le commerçant paie un loyer.</li>
+  <li><strong>Le bail</strong>, c’est le contrat qui lie les deux. Il se transmet avec le fonds.</li>
+</ul>
+<p>Tous les prix de cet article sont des prix de fonds : ni les murs, ni le loyer n’y figurent.</p>
+
+<h2>D’où viennent ces prix</h2>
+
+<p>Le BODACC est le bulletin officiel des annonces civiles et commerciales, tenu par l’État. Quand un fonds de commerce est vendu, l’acheteur doit y faire publier une annonce : elle prévient les créanciers du vendeur, qui peuvent ainsi se manifester avant que le prix ne lui soit versé. L’annonce indique le prix, en toutes lettres : « fonds acquis par achat au prix stipulé de 225 000 euros ».</p>
+<p>Nous avons lu <strong>7 436 ventes parisiennes avec un prix</strong>, publiées de janvier 2023 à début novembre 2026. Pour connaître le type de commerce, nous avons rapproché l’acheteur et le vendeur des commerces du répertoire SIRENE de l’INSEE : <strong>5 254 ventes</strong>, soit 71 %, correspondent à l’un des types que Pignon suit. Tout ce qui suit porte sur ces 5 254 ventes. Nous ne gardons que le type, l’arrondissement, le mois et le prix : aucun nom, aucune adresse.</p>
+
+<h2>La moitié des fonds se vend moins de 145 000 €</h2>
+
+<figure class="chart">
+  <p class="chart-title">Répartition des ventes de fonds de commerce à Paris, par tranche de prix</p>
+  <script type="application/json">{"type": "bars", "labels": ["Moins de 20 000 €", "20 000 à 50 000 €", "50 000 à 100 000 €", "100 000 à 200 000 €", "200 000 à 500 000 €", "500 000 € à 1 million", "1 million et plus"], "series": [{"name": "", "values": [9, 14, 16, 21, 26, 9, 5]}], "unit": " %"}</script>
+  <figcaption class="note">5 254 ventes publiées de janvier 2023 à début novembre 2026, tous types de commerce confondus. Source : BODACC (DILA), annonces de vente, rattachées aux commerces du répertoire SIRENE de l’INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Le prix médian est de <strong>145 000 €</strong> : la moitié des fonds s’est vendue moins cher, l’autre moitié plus cher. La moitié du milieu se situe entre 50 000 et 300 000 €. Près d’une vente sur quatre (23 %) s’est conclue à moins de 50 000 €, et 252 ventes (5 %) à un million ou plus. Un tel écart dit surtout qu’un « commerce parisien » moyen n’existe pas : le prix dépend d’abord de ce que l’on vend.</p>
+
+<h2>D’un type de commerce à l’autre : de 1 à 40</h2>
+
+<figure class="chart">
+  <p class="chart-title">Prix médian d’un fonds de commerce à Paris, par type de commerce</p>
+  <script type="application/json">{"type": "bars", "labels": ["Pharmacies", "Boulangeries", "Bars et cafés", "Boucheries", "Restaurants", "Fleuristes, animaleries", "Fromageries, épiceries fines", "Opticiens", "Pressings, laveries", "Vêtements", "Épiceries", "Coiffeurs", "Instituts de beauté"], "series": [{"name": "", "values": [800000, 390000, 300000, 220000, 170000, 145000, 140000, 140000, 80000, 78000, 76000, 46000, 20000]}], "unit": " €"}</script>
+  <figcaption class="note">Types de commerce comptant au moins 30 ventes depuis janvier 2023 ; prix arrondis au millier d’euros. Les restaurants comprennent la restauration rapide ; fleuristes et animaleries sont comptés ensemble. Source : BODACC (DILA), annonces de vente, rattachées aux commerces du répertoire SIRENE de l’INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Une pharmacie se vend 800 000 € en médiane, un institut de beauté 20 000 € : quarante fois moins. Entre les deux, trois groupes se dessinent.</p>
+<ul>
+  <li><strong>Les fonds chers : pharmacies, boulangeries, bars et cafés.</strong> Le nombre de pharmacies est plafonné par la loi, on n’en ouvre presque pas : on en rachète une. Une boulangerie (390 000 €) se vend avec son fournil, un bar ou un café (300 000 €) avec sa licence et souvent sa terrasse.</li>
+  <li><strong>Le milieu : boucheries (220 000 €) et restaurants (170 000 €).</strong> Les restaurants, restauration rapide comprise, pèsent à eux seuls 53 % des ventes rattachées (2 779). Fleuristes et animaleries, fromageries et épiceries fines, opticiens suivent de près, entre 140 000 et 145 000 €.</li>
+  <li><strong>Les fonds accessibles : coiffeurs (46 000 €) et instituts de beauté (20 000 €).</strong> Ce sont aussi des ventes fréquentes : 535 pour les instituts de beauté, le deuxième type le plus vendu. Un quart de ces instituts a changé de main pour 10 000 € ou moins. Peu de matériel, de petits locaux, une clientèle attachée à la personne plus qu’au lieu : le fonds vaut peu, ce qui n’est pas un jugement sur l’activité.</li>
+</ul>
+<p>D’autres types comptent trop peu de ventes pour figurer au graphique. À titre indicatif : 130 000 € pour les cavistes (24 ventes), 100 000 € pour les librairies (25 ventes), 40 000 € pour les cordonneries (16 ventes).</p>
+
+<h2>La médiane ne dit pas tout : l’écart dans un même type</h2>
+
+<figure class="chart">
+  <p class="chart-title">La moitié des ventes se situe entre ces deux prix, par type de commerce</p>
+  <script type="application/json">{"type": "bars", "labels": ["Pharmacies", "Boulangeries", "Bars et cafés", "Boucheries", "Restaurants", "Fleuristes, animaleries", "Fromageries, épiceries fines", "Opticiens", "Pressings, laveries", "Vêtements", "Épiceries", "Coiffeurs", "Instituts de beauté"], "series": [{"name": "Un quart des ventes en dessous de", "values": [350000, 220000, 180000, 100000, 80000, 70000, 50000, 60000, 52000, 50000, 30000, 22000, 10000]}, {"name": "Un quart des ventes au-dessus de", "values": [1550000, 590000, 550000, 400000, 300000, 271000, 300000, 260000, 122000, 200000, 350000, 100000, 40000]}], "unit": " €"}</script>
+  <figcaption class="note">Premier et troisième quartiles, arrondis au millier d’euros. Types de commerce comptant au moins 30 ventes depuis janvier 2023. Source : BODACC (DILA), annonces de vente, rattachées aux commerces du répertoire SIRENE de l’INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Deux lignes méritent qu’on s’y arrête.</p>
+<ul>
+  <li><strong>Les épiceries : de 30 000 à 350 000 €.</strong> Le haut de la fourchette vaut près de douze fois le bas. Sous le même mot, le registre range l’alimentation générale de quartier, la supérette et le supermarché : ce ne sont pas les mêmes marchés. La médiane (76 000 €) ne décrit ni l’un ni l’autre.</li>
+  <li><strong>Les boulangeries : de 220 000 à 590 000 €.</strong> C’est l’un des écarts les plus resserrés du graphique, moins de trois fois ; seuls les pressings et laveries font moins (de 52 000 à 122 000 €). Une boulangerie parisienne se vend rarement pour peu : une sur dix seulement est partie sous 78 000 €.</li>
+</ul>
+<p>Pour un fondateur, le signal est simple : dans certains métiers, la médiane donne un ordre de grandeur fiable ; dans d’autres (épiceries, fromageries et épiceries fines), elle masque des fonds très différents, et seule la fourchette a un sens.</p>
+
+<h2>L’arrondissement compte, mais moins que le métier</h2>
+
+<figure class="chart">
+  <p class="chart-title">Prix médian d’un fonds de commerce, par arrondissement, tous types confondus</p>
+  <script type="application/json">{"type": "bars", "labels": ["1er", "4e", "6e", "2e", "7e", "8e", "13e", "10e", "16e", "5e", "3e", "19e", "20e", "9e", "11e", "14e", "15e", "18e", "17e", "12e"], "series": [{"name": "", "values": [280000, 235000, 220000, 190000, 179000, 175000, 160000, 150000, 150000, 150000, 150000, 145000, 140000, 140000, 135000, 130000, 120000, 110000, 102000, 100000]}], "unit": " €"}</script>
+  <figcaption class="note">Ventes publiées depuis janvier 2023, de 113 (4e) à 475 (11e) par arrondissement ; prix arrondis au millier d’euros. Source : BODACC (DILA), annonces de vente, rattachées aux commerces du répertoire SIRENE de l’INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Du 1er (280 000 €) au 12e (100 000 €), l’écart est de près de 1 à 3 : bien moins que de 1 à 40 entre types. Et ce graphique mélange deux effets, le prix du quartier et les commerces qui s’y vendent. Un arrondissement où l’on cède beaucoup d’instituts de beauté et de petites épiceries aura une médiane basse, même si ses restaurants s’y vendent cher. Le 14e en est un exemple : 130 000 € tous types confondus, parmi les cinq médianes les plus basses, mais 170 000 € pour ses restaurants, autant que le 10e ou le 5e et autant que la médiane parisienne des restaurants.</p>
+<p>Pour séparer les deux effets, il faut regarder un seul type. Les restaurants sont les seuls assez nombreux pour cela.</p>
+
+<figure class="chart">
+  <p class="chart-title">Prix médian d’un fonds de restaurant, par arrondissement</p>
+  <script type="application/json">{"type": "bars", "labels": ["1er", "6e", "4e", "16e", "7e", "2e", "8e", "13e", "14e", "10e", "5e", "9e", "20e", "15e", "11e", "12e", "19e", "3e", "18e", "17e"], "series": [{"name": "", "values": [300000, 230000, 225000, 210000, 200000, 200000, 188000, 180000, 170000, 170000, 170000, 160000, 160000, 150000, 150000, 150000, 150000, 150000, 132000, 125000]}], "unit": " €"}</script>
+  <figcaption class="note">Restaurants, restauration rapide comprise : de 54 ventes (7e) à 287 (9e) par arrondissement depuis janvier 2023. Source : BODACC (DILA), annonces de vente, rattachées aux commerces du répertoire SIRENE de l’INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>À métier égal, l’écart se réduit un peu : de 300 000 € dans le 1er à 125 000 € dans le 17e. Le 1er mis à part, tous les arrondissements se tiennent entre 125 000 et 230 000 €, soit moins du simple au double, et dix sur vingt entre 150 000 et 170 000 €. Le type de commerce pèse donc bien plus sur le prix d’un fonds que l’adresse, du moins à l’échelle de l’arrondissement.</p>
+
+<h2>Environ 1 400 ventes par an, à prix stable</h2>
+
+<figure class="chart">
+  <p class="chart-title">Ventes de fonds de commerce rattachées à un type, de janvier à octobre de chaque année</p>
+  <script type="application/json">{"type": "line", "x": [2023, 2024, 2025, 2026], "series": [{"name": "", "values": [1193, 1172, 1165, 1054]}]}</script>
+  <figcaption class="note">Dix premiers mois de chaque année, pour comparer 2026 aux années complètes. Source : BODACC (DILA), annonces de vente, rattachées aux commerces du répertoire SIRENE de l’INSEE (Licence Ouverte 2.0).</figcaption>
+</figure>
+
+<p>Sur une année entière, on compte 1 416 ventes en 2023, 1 367 en 2024 et 1 380 en 2025. Le prix médian a peu bougé : 140 000 €, 145 000 €, puis 150 000 €. Sur les dix premiers mois de 2026, le nombre de ventes est inférieur de 10 % à celui de 2025 (1 054 contre 1 165), pour une médiane de 150 000 €. C’est un signal à suivre, pas encore une tendance : le recul ne porte que sur dix mois.</p>
+
+<h2>Ce que ces chiffres ne disent pas</h2>
+<ul>
+  <li><strong>Près de trois ventes sur dix manquent.</strong> 29 % des ventes lues ne sont rattachées à aucun type : activités que Pignon ne suit pas (bureaux, services…), sociétés introuvables à l’adresse, ou sociétés qui tiennent au même code postal des commerces de types différents, que nous préférons écarter plutôt que de deviner.</li>
+  <li><strong>Les rachats de société n’apparaissent pas.</strong> Beaucoup de reprises se font en achetant les parts de la société qui exploite le commerce, et non le fonds. Aucune annonce de vente n’est alors publiée, et aucun prix.</li>
+  <li><strong>Les petits commerces sont sous-représentés.</strong> Les entrepreneurs individuels et les artisans publient moins souvent. Les prix réels des plus petits fonds sont sans doute plus bas encore.</li>
+  <li><strong>Certains types partagent leurs ventes.</strong> Le registre ne distingue pas un bar d’un café, un pressing d’une laverie, ni un fleuriste d’une animalerie : ils sont comptés ensemble. Les restaurants comprennent la restauration rapide (881 ventes sur 2 779).</li>
+  <li><strong>Le prix publié n’est pas le coût de la reprise.</strong> Il ne comprend ni le stock, ni les frais, ni les travaux, ni le dépôt de garantie du bail. Et il ne dit rien de la surface, du loyer ou du chiffre d’affaires : deux fonds au même prix peuvent n’avoir rien de commun.</li>
+  <li><strong>Les ventes de moins de 1 000 € et de plus de 10 millions d’euros sont écartées</strong> : prix symboliques entre sociétés liées, ou groupes de commerces vendus d’un bloc.</li>
+  <li><strong>Pas de détail en dessous de l’arrondissement.</strong> Un quartier compte trop peu de ventes, et une vente isolée permettrait de reconnaître un commerçant.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>Et pour votre type de commerce, dans votre arrondissement ?</h2>
+  <p>Pignon affiche ces prix pour chaque adresse : le nombre de ventes de fonds de votre type dans l’arrondissement, le prix médian et la fourchette, à côté des mêmes chiffres pour tout Paris. Ce sont des signaux, avec le chiffre et la source derrière chacun.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/">Essayer la carte gratuite</a>
+    <a class="ts-btn" href="../../pignon/">Découvrir Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · données publiques officielles</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.41 · 77bf5db</small>
+      </div>
+    </footer>
+  </body>
+</html>
