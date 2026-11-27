@@ -18,7 +18,7 @@
       .product { border-top: 4px solid var(--product); display: flex; flex-direction: column; }
       .product p { color: var(--muted); margin: 6px 0 0; flex: 1; }
       .product .ts-actions { justify-content: space-between; align-items: center; }
-      :root { --accent: #1f4fd1; --product: #1f4fd1; }
+      :root { --accent: #c03f1c; --product: #c03f1c; }
       .hero h1 { font-size: 40px; }
       .ts-card p, section .note { color: var(--muted); margin: 6px 0 0; font-size: 14px; }
       .ts-card.stat strong { font-size: 30px; color: var(--accent); }
@@ -81,17 +81,17 @@
   </style>
   <section class="hero">
     <p class="eyebrow">Données publiques · France</p>
-    <h1>Nous utilisons <em>38 sources de données publiques</em></h1>
-    <p class="lead">35 officielles, 3 collaboratives (OpenStreetMap, Overture Maps). Chaque chiffre de nos produits vient de l’une de ces sources. Cliquez sur une source pour voir ce qu’elle contient, qui la publie et quand nous l’avons mise à jour.</p>
+    <h1>Nous utilisons <em>55 sources de données publiques</em></h1>
+    <p class="lead">52 officielles, 3 collaboratives (OpenStreetMap, Overture Maps). Chaque chiffre de nos produits vient de l’une de ces sources. Cliquez sur une source pour voir ce qu’elle contient, qui la publie et quand nous l’avons mise à jour.</p>
   </section>
   <section aria-label="Territoire">
     <div class="filters">
       <div class="chips" role="group" aria-label="Territoire"><span class="group-label">Territoire</span>
-        <button type="button" class="chip" data-level="" aria-pressed="true">Toutes <span class="n">38</span></button><button type="button" class="chip" data-level="country" aria-pressed="false">France entière <span class="n">31</span></button><button type="button" class="chip" data-level="region" aria-pressed="false">Région <span class="n">1</span></button><button type="button" class="chip" data-level="commune" aria-pressed="false">Ville <span class="n">6</span></button></div>
+        <button type="button" class="chip" data-level="" aria-pressed="true">Toutes <span class="n">55</span></button><button type="button" class="chip" data-level="country" aria-pressed="false">France entière <span class="n">48</span></button><button type="button" class="chip" data-level="region" aria-pressed="false">Région <span class="n">1</span></button><button type="button" class="chip" data-level="commune" aria-pressed="false">Ville <span class="n">6</span></button></div>
       <label>Précision<select id="f-resolution"><option value="">Toutes</option><option value="country">Chiffres nationaux</option><option value="region">Par région</option><option value="commune">Par commune</option><option value="iris">Par quartier (environ 2 000 habitants)</option><option value="grid">Carreaux de 200 m</option><option value="parcel">Par parcelle</option><option value="address">À l’adresse</option><option value="point">Lieu précis</option><option value="street">Par tronçon de rue</option><option value="record">Par fiche (entreprise, annonce, marché)</option><option value="list">Liste de référence</option></select></label>
       <label>Produit<select id="f-product"><option value="">Toutes</option><option value="pignon">Pignon</option><option value="search">Recherche</option></select></label>
     </div>
-    <p class="count-line" aria-live="polite"><span id="shown">38</span> sources affichées</p>
+    <p class="count-line" aria-live="polite"><span id="shown">55</span> sources affichées</p>
     <p class="note" id="none" hidden>Aucune source ne correspond à ces filtres.</p>
     <ul class="src-list" id="sources">
 <li data-level="country" data-resolution="address" data-products="search">
@@ -107,6 +107,22 @@
         <span class="src-by">DILA</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par fiche (entreprise, annonce, marché)</span></span></a></li>
 <li data-level="country" data-resolution="point" data-products="pignon">
+        <a class="src" href="#transit-stops" aria-haspopup="dialog"><span class="src-name">Arrêts de transport en commun de France (transport.data.gouv.fr)</span>
+        <span class="src-by">transport.data.gouv.fr, point d’accès national aux données de mobilité</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="search">
+        <a class="src" href="#bdnb" aria-haspopup="dialog"><span class="src-name">Bâtiments : année de construction, hauteur, usage, risques et propriétaires sociétés (BDNB)</span>
+        <span class="src-by">CSTB (Base de données nationale des bâtiments)</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par parcelle</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#libraries" aria-haspopup="dialog"><span class="src-name">Bibliothèques publiques</span>
+        <span class="src-by">Ministère de la Culture, Service du livre et de la lecture</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
+<li data-level="country" data-resolution="commune" data-products="search">
+        <a class="src" href="#insee-tourism-capacity" aria-haspopup="dialog"><span class="src-name">Capacité d’hébergement touristique (INSEE)</span>
+        <span class="src-by">INSEE</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par commune</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="pignon">
         <a class="src" href="#osm-places" aria-haspopup="dialog"><span class="src-name">Commerces et lieux sur OpenStreetMap</span>
         <span class="src-by">Contributeurs OpenStreetMap</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span><span class="ts-tag">collaborative</span></span></a></li>
@@ -114,6 +130,10 @@
         <a class="src" href="#ign-communes" aria-haspopup="dialog"><span class="src-name">Communes et arrondissements (contours)</span>
         <span class="src-by">IGN (ADMIN EXPRESS)</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par commune</span></span></a></li>
+<li data-level="country" data-resolution="record" data-products="">
+        <a class="src" href="#inpi-accounts" aria-haspopup="dialog"><span class="src-name">Comptes annuels des sociétés</span>
+        <span class="src-by">INPI (Registre national des entreprises)</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par fiche (entreprise, annonce, marché)</span></span></a></li>
 <li data-level="country" data-resolution="point" data-products="">
         <a class="src" href="#alimconfiance" aria-haspopup="dialog"><span class="src-name">Contrôles d’hygiène des commerces alimentaires (Alim’confiance)</span>
         <span class="src-by">Ministère de l’Agriculture (DGAL)</span>
@@ -158,6 +178,10 @@
         <a class="src" href="#sirene" aria-haspopup="dialog"><span class="src-name">Établissements et commerces (SIRENE)</span>
         <span class="src-by">INSEE (répertoire SIRENE)</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
+<li data-level="country" data-resolution="record" data-products="search">
+        <a class="src" href="#museum-attendance" aria-haspopup="dialog"><span class="src-name">Fréquentation des Musées de France</span>
+        <span class="src-by">Ministère de la Culture, Patrimostat</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par fiche (entreprise, annonce, marché)</span></span></a></li>
 <li data-level="region" data-resolution="point" data-products="pignon">
         <a class="src" href="#idfm" aria-haspopup="dialog"><span class="src-name">Gares, stations et fréquentation</span>
         <span class="src-by">Île-de-France Mobilités</span>
@@ -170,10 +194,22 @@
         <a class="src" href="#insee-carroye" aria-haspopup="dialog"><span class="src-name">Habitants et revenus par carreau de 200 m</span>
         <span class="src-by">INSEE (Filosofi)</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Carreaux de 200 m</span></span></a></li>
+<li data-level="country" data-resolution="record" data-products="search">
+        <a class="src" href="#sirene-history" aria-haspopup="dialog"><span class="src-name">Historique des entreprises et établissements (SIRENE)</span>
+        <span class="src-by">INSEE, répertoire SIRENE</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par fiche (entreprise, annonce, marché)</span></span></a></li>
 <li data-level="commune" data-resolution="point" data-products="pignon">
         <a class="src" href="#apur-bdcom" aria-haspopup="dialog"><span class="src-name">Inventaire des commerces de Paris (BDCOM)</span>
         <span class="src-by">APUR (Atelier parisien d’urbanisme)</span>
         <span class="src-tags"><span class="ts-tag">Ville : Paris</span><span class="ts-tag">Lieu précis</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#culture-labels" aria-haspopup="dialog"><span class="src-name">Labels du patrimoine : jardins remarquables, maisons des illustres, architecture contemporaine remarquable</span>
+        <span class="src-by">Ministère de la Culture</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#basilic" aria-haspopup="dialog"><span class="src-name">Lieux et équipements culturels (Basilic)</span>
+        <span class="src-by">Ministère de la Culture, département des études (DEPS)</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
 <li data-level="commune" data-resolution="street" data-products="pignon">
         <a class="src" href="#paris-frontages" aria-haspopup="dialog"><span class="src-name">Linéaires commerciaux protégés de Paris</span>
         <span class="src-by">Ville de Paris</span>
@@ -198,13 +234,33 @@
         <a class="src" href="#decp" aria-haspopup="dialog"><span class="src-name">Marchés publics attribués (DECP)</span>
         <span class="src-by">Acheteurs publics, consolidé par decp.info</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par fiche (entreprise, annonce, marché)</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#merimee" aria-haspopup="dialog"><span class="src-name">Monuments historiques (base Mérimée)</span>
+        <span class="src-by">Ministère de la Culture, base Mérimée (POP)</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#museofile" aria-haspopup="dialog"><span class="src-name">Musées de France (Muséofile)</span>
+        <span class="src-by">Ministère de la Culture, Muséofile</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
 <li data-level="country" data-resolution="commune" data-products="pignon">
         <a class="src" href="#insee-births" aria-haspopup="dialog"><span class="src-name">Naissances par commune</span>
         <span class="src-by">INSEE (état civil)</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par commune</span></span></a></li>
 <li data-level="country" data-resolution="parcel" data-products="search">
+        <a class="src" href="#cadastre-parcels" aria-haspopup="dialog"><span class="src-name">Parcelles cadastrales</span>
+        <span class="src-by">DGFiP (plan cadastral), mis en forme par Etalab</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par parcelle</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="pignon">
+        <a class="src" href="#bdtopo" aria-haspopup="dialog"><span class="src-name">Parcs, cimetières, eau, voies ferrées : là où aucun commerce ne peut s’installer (BD TOPO)</span>
+        <span class="src-by">IGN</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par parcelle</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="search">
         <a class="src" href="#sitadel" aria-haspopup="dialog"><span class="src-name">Permis de construire (Sitadel)</span>
         <span class="src-by">SDES, ministère de la Transition écologique</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par parcelle</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="pignon">
+        <a class="src" href="#gpu-zoning" aria-haspopup="dialog"><span class="src-name">Plans locaux d’urbanisme : zones et linéaires commerciaux protégés</span>
+        <span class="src-by">Géoportail de l’Urbanisme (ministère de la Transition écologique, IGN)</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par parcelle</span></span></a></li>
 <li data-level="country" data-resolution="iris" data-products="pignon">
         <a class="src" href="#insee-population-2017" aria-haspopup="dialog"><span class="src-name">Population par quartier en 2017</span>
@@ -226,13 +282,21 @@
         <a class="src" href="#insee-filosofi" aria-haspopup="dialog"><span class="src-name">Revenus par quartier (Filosofi)</span>
         <span class="src-by">INSEE (Filosofi)</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par quartier (environ 2 000 habitants)</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#georisques" aria-haspopup="dialog"><span class="src-name">Risques : installations classées, catastrophes naturelles, plans de prévention, argiles, sols pollués (Géorisques)</span>
+        <span class="src-by">Ministère de la Transition écologique, BRGM</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Lieu précis</span></span></a></li>
 <li data-level="country" data-resolution="street" data-products="pignon">
         <a class="src" href="#osm-walk" aria-haspopup="dialog"><span class="src-name">Rues et chemins à pied (OpenStreetMap)</span>
         <span class="src-by">Contributeurs OpenStreetMap</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par tronçon de rue</span><span class="ts-tag">collaborative</span></span></a></li>
+<li data-level="country" data-resolution="commune" data-products="search">
+        <a class="src" href="#spr" aria-haspopup="dialog"><span class="src-name">Sites patrimoniaux remarquables</span>
+        <span class="src-by">Ministère de la Culture</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par commune</span></span></a></li>
 <li data-level="country" data-resolution="record" data-products="search">
         <a class="src" href="#rne-legal-directors" aria-haspopup="dialog"><span class="src-name">Sociétés dirigeantes d’autres sociétés</span>
-        <span class="src-by">INPI (Registre national des entreprises), via l’API Recherche d’entreprises</span>
+        <span class="src-by">INPI (Registre national des entreprises)</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par fiche (entreprise, annonce, marché)</span></span></a></li>
 <li data-level="commune" data-resolution="point" data-products="pignon">
         <a class="src" href="#paris-terraces" aria-haspopup="dialog"><span class="src-name">Terrasses et étalages autorisés à Paris</span>
@@ -245,6 +309,10 @@
 <li data-level="country" data-resolution="parcel" data-products="search pignon">
         <a class="src" href="#dvf" aria-haspopup="dialog"><span class="src-name">Ventes immobilières (DVF)</span>
         <span class="src-by">DGFiP, géolocalisé par Etalab</span>
+        <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par parcelle</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="">
+        <a class="src" href="#georisques-tri" aria-haspopup="dialog"><span class="src-name">Zones inondables des territoires à risque important d’inondation (TRI 2020)</span>
+        <span class="src-by">Ministère de la Transition écologique, Géorisques</span>
         <span class="src-tags"><span class="ts-tag">France entière</span><span class="ts-tag">Par parcelle</span></span></a></li>
     </ul>
     <p class="note">Liste générée à partir du code de notre chaîne de données ; les dates de copie sont celles connues lors de la publication de cette page.</p>
@@ -291,6 +359,58 @@
         <h3>Territoire et précision</h3><p>France entière · Par fiche (entreprise, annonce, marché)</p>
         <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
       </article>
+<article class="panel-src" id="panel-transit-stops" data-id="transit-stops" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-transit-stops" tabindex="-1">Arrêts de transport en commun de France (transport.data.gouv.fr)</h2>
+        <p>Les arrêts de bus, tram, métro et train de tous les réseaux qui publient leurs horaires, réunis dans un fichier national.</p>
+        <h3>Ce qu’elle contient</h3><p>nom de l’arrêt, position, réseaux qui le desservent, fichiers d’origine</p>
+        <p class="small muted">Tables de données : <code>transit_stops</code></p>
+        <h3>À savoir</h3><p>Fichier expérimental, exporté à la main : un même arrêt y figure une fois par réseau, nous fusionnons ceux de même nom à moins de 50 m. Pas de fréquentation. Rien pour la Guadeloupe, la Guyane et Mayotte dans l’export de janvier 2026.</p>
+        <h3>Producteur</h3><p>transport.data.gouv.fr, point d’accès national aux données de mobilité · <a href="https://transport.data.gouv.fr/datasets/arrets-de-transport-en-france" rel="noopener">transport.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : transport.data.gouv.fr, point d’accès national aux données de mobilité</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Export daté (13 janvier 2026 lors de l’approbation)<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
+        <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-bdnb" data-id="bdnb" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-bdnb" tabindex="-1">Bâtiments : année de construction, hauteur, usage, risques et propriétaires sociétés (BDNB)</h2>
+        <p>Chaque groupe de bâtiments de France avec ses parcelles, ses adresses, son identifiant national de bâtiment et les sociétés propriétaires.</p>
+        <h3>Ce qu’elle contient</h3><p>année de construction, niveaux, logements, hauteur, usage principal, risques (argile, radon, inondation, séisme), parcelles, adresses, propriétaires personnes morales</p>
+        <p class="small muted">Tables de données : <code>buildings</code>, <code>building_parcels</code>, <code>building_addresses</code>, <code>building_rnb</code>, <code>building_dpe</code>, <code>building_owners</code></p>
+        <h3>À savoir</h3><p>Seules les colonnes ouvertes sont reprises. Les propriétaires personnes physiques ne sont jamais gardés.</p>
+        <h3>Producteur</h3><p>CSTB (Base de données nationale des bâtiments) · <a href="https://bdnb.io/" rel="noopener">bdnb.io ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : CSTB (Base de données nationale des bâtiments)</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Millésime 2026-02.b<br/>Vérifiée tous les 6 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par parcelle</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-libraries" data-id="libraries" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-libraries" tabindex="-1">Bibliothèques publiques</h2>
+        <p>Les bibliothèques des collectivités territoriales et leur activité de l’année.</p>
+        <h3>Ce qu’elle contient</h3><p>nom, statut, commune, position, heures d’ouverture par semaine, ouverture le dimanche, surface, livres, emprunteurs, entrées, prêts</p>
+        <p class="small muted">Tables de données : <code>libraries</code></p>
+        <h3>À savoir</h3><p>Activité déclarée par les bibliothèques ; certaines valeurs manquent.</p>
+        <h3>Producteur</h3><p>Ministère de la Culture, Service du livre et de la lecture · <a href="https://www.data.gouv.fr/datasets/adresses-des-bibliotheques-publiques-2/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Culture, Service du livre et de la lecture</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Activité 2023<br/>Vérifiée tous les 6 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-insee-tourism-capacity" data-id="insee-tourism-capacity" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-insee-tourism-capacity" tabindex="-1">Capacité d’hébergement touristique (INSEE)</h2>
+        <p>Le nombre d’hôtels, de campings et d’autres hébergements touristiques de chaque commune, et leur capacité.</p>
+        <h3>Ce qu’elle contient</h3><p>commune, type d’hébergement, étoiles, établissements, chambres, emplacements, lits</p>
+        <p class="small muted">Tables de données : <code>tourism_capacity</code></p>
+        <h3>À savoir</h3><p>Capacité, pas fréquentation : les nuitées ne sont publiées que par département et région. Hors Mayotte.</p>
+        <h3>Producteur</h3><p>INSEE · <a href="https://catalogue-donnees.insee.fr/fr/catalogue/recherche/DS_TOUR_CAP" rel="noopener">catalogue-donnees.insee.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : INSEE</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Au 1er janvier 2026<br/>Vérifiée tous les 6 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par commune</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
 <article class="panel-src" id="panel-osm-places" data-id="osm-places" hidden>
         <p class="eyebrow">collaborative</p>
         <h2 id="title-osm-places" tabindex="-1">Commerces et lieux sur OpenStreetMap</h2>
@@ -316,6 +436,19 @@
         <h3>Mises à jour</h3><p>Période des données : Édition mensuelle<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : 23 novembre 2026</p>
         <h3>Territoire et précision</h3><p>France entière · Par commune</p>
         <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-inpi-accounts" data-id="inpi-accounts" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-inpi-accounts" tabindex="-1">Comptes annuels des sociétés</h2>
+        <p>Les chiffres clés des comptes que les sociétés déposent au greffe.</p>
+        <h3>Ce qu’elle contient</h3><p>chiffre d’affaires, résultat net, total du bilan, date de clôture et de dépôt</p>
+        <p class="small muted">Tables de données : <code>company_accounts</code></p>
+        <h3>À savoir</h3><p>Les comptes déclarés confidentiels n’ont pas de chiffres, comme la loi le prévoit ; les documents PDF ne sont pas repris.</p>
+        <h3>Producteur</h3><p>INPI (Registre national des entreprises) · <a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">data.inpi.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">Licence homologuée de l’INPI : réutilisation libre et gratuite, y compris commerciale, en citant la source et la date de dernière mise à jour.</a><br/><span class="small muted">Crédit : INPI (Registre national des entreprises)</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Comptes déposés depuis 2017<br/>Vérifiée chaque jour<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par fiche (entreprise, annonce, marché)</p>
+        <h3>Utilisée par</h3><p>Aucun produit pour l’instant : gardée pour nos prochains produits.</p>
       </article>
 <article class="panel-src" id="panel-alimconfiance" data-id="alimconfiance" hidden>
         <p class="eyebrow">officielle</p>
@@ -352,7 +485,7 @@
         
         <h3>Producteur</h3><p>INSEE · <a href="https://www.insee.fr/fr/information/8617910" rel="noopener">www.insee.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : INSEE</span></p>
-        <h3>Mises à jour</h3><p>Période des données : Table d’octobre 2026<br/>Vérifiée chaque mois<br/>Notre dernière copie : 24 novembre 2026</p>
+        <h3>Mises à jour</h3><p>Période des données : Table d’octobre 2026<br/>Vérifiée chaque mois<br/>Notre dernière copie : 25 novembre 2026</p>
         <h3>Territoire et précision</h3><p>France entière · Liste de référence</p>
         <h3>Utilisée par</h3><p>Aucun produit pour l’instant : gardée pour nos prochains produits.</p>
       </article>
@@ -413,7 +546,7 @@
         <h2 id="title-sirene-companies" tabindex="-1">Entreprises (SIRENE)</h2>
         <p>Chaque entreprise : forme juridique, taille, activité principale.</p>
         <h3>Ce qu’elle contient</h3><p>SIREN, raison sociale (sociétés seulement), forme juridique, taille, activité, dates</p>
-        <p class="small muted">Tables de données : <code>companies</code></p>
+        <p class="small muted">Tables de données : <code>companies</code>, <code>companies_hidden</code></p>
         <h3>À savoir</h3><p>Le nom d’un entrepreneur individuel n’est jamais lu ; les entreprises non diffusibles sont écartées.</p>
         <h3>Producteur</h3><p>INSEE (répertoire SIRENE) · <a href="https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/" rel="noopener">www.data.gouv.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : INSEE (répertoire SIRENE)</span></p>
@@ -452,13 +585,26 @@
         <h2 id="title-sirene" tabindex="-1">Établissements et commerces (SIRENE)</h2>
         <p>Chaque établissement d’entreprise, ouvert ou fermé, avec sa position.</p>
         <h3>Ce qu’elle contient</h3><p>activité, enseigne, adresse, dates d’ouverture et de fermeture, effectif, position</p>
-        <p class="small muted">Tables de données : <code>establishments</code></p>
+        <p class="small muted">Tables de données : <code>establishments</code>, <code>establishments_hidden</code></p>
         <h3>À savoir</h3><p>Les établissements non diffusibles sont écartés, et le nom d’usage n’est pas publié (pour un entrepreneur individuel, c’est son nom).</p>
         <h3>Producteur</h3><p>INSEE (répertoire SIRENE) · <a href="https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/" rel="noopener">www.data.gouv.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : INSEE (répertoire SIRENE)</span></p>
         <h3>Mises à jour</h3><p>Période des données : Répertoire au 1er du mois<br/>Vérifiée chaque mois<br/>Notre dernière copie : 23 novembre 2026</p>
         <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
         <h3>Utilisée par</h3><p><a href="../search/">Recherche</a>, <a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-museum-attendance" data-id="museum-attendance" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-museum-attendance" tabindex="-1">Fréquentation des Musées de France</h2>
+        <p>Le nombre de visites de chaque Musée de France, chaque année.</p>
+        <h3>Ce qu’elle contient</h3><p>musée, commune, année, entrées payantes, gratuites, totales, scolaires, moins de 18 ans, 18–25 ans, fermeture</p>
+        <p class="small muted">Tables de données : <code>museum_attendance</code></p>
+        <h3>À savoir</h3><p>Le lien avec Muséofile n’existe qu’à partir de 2019 ; certains musées déclarent ensemble ; un zéro sans fermeture signifie non déclaré. Licence Ouverte v1.0 selon data.gouv.fr.</p>
+        <h3>Producteur</h3><p>Ministère de la Culture, Patrimostat · <a href="https://www.data.gouv.fr/datasets/frequentation-des-musees-de-france-1/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Licence_Ouverte.pdf" rel="noopener">Licence Ouverte v1.0 (Etalab, 2011), selon data.gouv.fr : réutilisation libre, y compris commerciale, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Culture, Patrimostat</span></p>
+        <h3>Mises à jour</h3><p>Période des données : 2001 à 2024, par année<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par fiche (entreprise, annonce, marché)</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
       </article>
 <article class="panel-src" id="panel-idfm" data-id="idfm" hidden>
         <p class="eyebrow">officielle</p>
@@ -499,6 +645,19 @@
         <h3>Territoire et précision</h3><p>France entière · Carreaux de 200 m</p>
         <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
+<article class="panel-src" id="panel-sirene-history" data-id="sirene-history" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-sirene-history" tabindex="-1">Historique des entreprises et établissements (SIRENE)</h2>
+        <p>Ce que chaque entreprise et chaque établissement a été dans le temps, et quel établissement en a remplacé un autre.</p>
+        <h3>Ce qu’elle contient</h3><p>périodes, état, activité, enseigne, dénomination des personnes morales, liens de succession</p>
+        <p class="small muted">Tables de données : <code>company_history</code>, <code>establishment_history</code>, <code>establishment_successions</code></p>
+        <h3>À savoir</h3><p>Aucun nom de personne : les entrepreneurs individuels n’ont ni nom ni dénomination ; les fiches non diffusibles n’ont pas d’historique.</p>
+        <h3>Producteur</h3><p>INSEE, répertoire SIRENE · <a href="https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : INSEE, répertoire SIRENE</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Toutes les périodes depuis la création du répertoire<br/>Vérifiée chaque mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par fiche (entreprise, annonce, marché)</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
 <article class="panel-src" id="panel-apur-bdcom" data-id="apur-bdcom" hidden>
         <p class="eyebrow">officielle</p>
         <h2 id="title-apur-bdcom" tabindex="-1">Inventaire des commerces de Paris (BDCOM)</h2>
@@ -511,6 +670,32 @@
         <h3>Mises à jour</h3><p>Période des données : Relevé 2023<br/>Vérifiée tous les 6 mois<br/>Notre dernière copie : 24 novembre 2026</p>
         <h3>Territoire et précision</h3><p>Ville : Paris · Lieu précis</p>
         <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-culture-labels" data-id="culture-labels" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-culture-labels" tabindex="-1">Labels du patrimoine : jardins remarquables, maisons des illustres, architecture contemporaine remarquable</h2>
+        <p>Les lieux qui portent l’un de ces trois labels du ministère.</p>
+        <h3>Ce qu’elle contient</h3><p>nom, types, année du label, accès, commune, position ; personnage illustre pour les maisons</p>
+        <p class="small muted">Tables de données : <code>remarkable_gardens</code>, <code>notable_houses</code>, <code>contemporary_architecture</code></p>
+        <h3>À savoir</h3><p>Le nom de la personne illustre est gardé ; aucun autre nom de personne ni coordonnée de contact.</p>
+        <h3>Producteur</h3><p>Ministère de la Culture · <a href="https://www.culture.gouv.fr/Aides-demarches/Protections-labels-et-appellations" rel="noopener">www.culture.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Culture</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Exports quotidiens et hebdomadaires<br/>Vérifiée chaque mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-basilic" data-id="basilic" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-basilic" tabindex="-1">Lieux et équipements culturels (Basilic)</h2>
+        <p>Cinémas, théâtres, salles de musique, monuments, musées, bibliothèques et autres lieux culturels.</p>
+        <h3>Ce qu’elle contient</h3><p>nom, type, label, commune, quartier (IRIS), écrans et fauteuils de cinéma, jauge des théâtres, position</p>
+        <p class="small muted">Tables de données : <code>cultural_venues</code></p>
+        <h3>À savoir</h3><p>Recoupe les autres fichiers du ministère ; l’éditeur signale des doublons.</p>
+        <h3>Producteur</h3><p>Ministère de la Culture, département des études (DEPS) · <a href="https://www.data.gouv.fr/datasets/base-des-lieux-et-equipements-culturels-basilic/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Culture, département des études (DEPS)</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Fichier du 18 février 2026<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
       </article>
 <article class="panel-src" id="panel-paris-frontages" data-id="paris-frontages" hidden>
         <p class="eyebrow">officielle</p>
@@ -583,11 +768,37 @@
         <p>Chaque marché public attribué : qui achète, à qui, quoi et pour combien.</p>
         <h3>Ce qu’elle contient</h3><p>acheteur, titulaires, objet, montant, durée, date de notification</p>
         <p class="small muted">Tables de données : <code>contracts</code>, <code>contract_holders</code></p>
-        <h3>À savoir</h3><p>Le montant est le montant attribué hors taxes (un plafond pour un accord-cadre) ; les montants suspects sont signalés. Un titulaire non diffusible dans SIRENE est masqué.</p>
+        <h3>À savoir</h3><p>Le montant est le montant attribué hors taxes (un plafond pour un accord-cadre) ; les montants suspects sont signalés. Un titulaire non diffusible dans SIRENE n’est montré que par son numéro (une personne morale) ou masqué (un entrepreneur individuel).</p>
         <h3>Producteur</h3><p>Acheteurs publics, consolidé par decp.info · <a href="https://www.data.gouv.fr/datasets/donnees-essentielles-de-la-commande-publique-consolidees-format-tabulaire/" rel="noopener">www.data.gouv.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Acheteurs publics, consolidé par decp.info</span></p>
         <h3>Mises à jour</h3><p>Période des données : Marchés publiés depuis 2019<br/>Vérifiée chaque semaine<br/>Notre dernière copie : 24 novembre 2026</p>
         <h3>Territoire et précision</h3><p>France entière · Par fiche (entreprise, annonce, marché)</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-merimee" data-id="merimee" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-merimee" tabindex="-1">Monuments historiques (base Mérimée)</h2>
+        <p>Les immeubles classés ou inscrits au titre des monuments historiques.</p>
+        <h3>Ce qu’elle contient</h3><p>référence, nom, type, protection et dates, propriétaire (public ou privé), siècle, commune, position</p>
+        <p class="small muted">Tables de données : <code>monuments</code></p>
+        <h3>À savoir</h3><p>La commune est celle de la date de protection ; environ 5 % des monuments n’ont pas de position.</p>
+        <h3>Producteur</h3><p>Ministère de la Culture, base Mérimée (POP) · <a href="https://www.data.gouv.fr/datasets/immeubles-proteges-au-titre-des-monuments-historiques-2/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Culture, base Mérimée (POP)</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Export hebdomadaire<br/>Vérifiée chaque mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-museofile" data-id="museofile" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-museofile" tabindex="-1">Musées de France (Muséofile)</h2>
+        <p>Les musées qui portent l’appellation « Musée de France ».</p>
+        <h3>Ce qu’elle contient</h3><p>identifiant, nom, ville, thèmes, protection du bâtiment, références Mérimée du bâtiment, position</p>
+        <p class="small muted">Tables de données : <code>museums</code></p>
+        <h3>À savoir</h3><p>Seuls les musées labellisés ; pas de code commune, placés par leur position.</p>
+        <h3>Producteur</h3><p>Ministère de la Culture, Muséofile · <a href="https://www.data.gouv.fr/datasets/musees-de-france-base-museofile/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Culture, Muséofile</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Export hebdomadaire<br/>Vérifiée chaque mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
         <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
       </article>
 <article class="panel-src" id="panel-insee-births" data-id="insee-births" hidden>
@@ -603,6 +814,32 @@
         <h3>Territoire et précision</h3><p>France entière · Par commune</p>
         <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
+<article class="panel-src" id="panel-cadastre-parcels" data-id="cadastre-parcels" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-cadastre-parcels" tabindex="-1">Parcelles cadastrales</h2>
+        <p>Chaque parcelle de France avec son identifiant, sa commune, sa section, sa surface et son contour.</p>
+        <h3>Ce qu’elle contient</h3><p>identifiant de parcelle, commune, section, numéro, surface, contour</p>
+        <p class="small muted">Tables de données : <code>parcels</code></p>
+        <h3>À savoir</h3><p>Aucun propriétaire : le cadastre publié ne les donne pas (les propriétaires personnes morales viennent d’un autre fichier de la DGFiP).</p>
+        <h3>Producteur</h3><p>DGFiP (plan cadastral), mis en forme par Etalab · <a href="https://cadastre.data.gouv.fr/datasets/cadastre-etalab" rel="noopener">cadastre.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : DGFiP (plan cadastral), mis en forme par Etalab</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Édition du 1er septembre 2026<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par parcelle</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-bdtopo" data-id="bdtopo" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-bdtopo" tabindex="-1">Parcs, cimetières, eau, voies ferrées : là où aucun commerce ne peut s’installer (BD TOPO)</h2>
+        <p>Les parcs et jardins publics, cimetières, terrains de sport, plans d’eau, voies ferrées et aérodromes, tels que l’IGN les dessine.</p>
+        <h3>Ce qu’elle contient</h3><p>type de lieu, nature, contour</p>
+        
+        <h3>À savoir</h3><p>France métropolitaine ; les départements d’outre-mer ne sont pas encore lus.</p>
+        <h3>Producteur</h3><p>IGN · <a href="https://geoservices.ign.fr/bdtopo" rel="noopener">geoservices.ign.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : IGN</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Édition du 15 septembre 2026<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par parcelle</p>
+        <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
+      </article>
 <article class="panel-src" id="panel-sitadel" data-id="sitadel" hidden>
         <p class="eyebrow">officielle</p>
         <h2 id="title-sitadel" tabindex="-1">Permis de construire (Sitadel)</h2>
@@ -615,6 +852,19 @@
         <h3>Mises à jour</h3><p>Période des données : Autorisations depuis janvier 2013<br/>Vérifiée chaque mois<br/>Notre dernière copie : 24 novembre 2026</p>
         <h3>Territoire et précision</h3><p>France entière · Par parcelle</p>
         <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
+<article class="panel-src" id="panel-gpu-zoning" data-id="gpu-zoning" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-gpu-zoning" tabindex="-1">Plans locaux d’urbanisme : zones et linéaires commerciaux protégés</h2>
+        <p>Les zones du plan d’urbanisme (urbaines, à urbaniser, agricoles, naturelles) et les rues où il protège les commerces.</p>
+        <h3>Ce qu’elle contient</h3><p>type de zone, nom local, linéaire commercial protégé, contour</p>
+        
+        <h3>À savoir</h3><p>Les communes sans plan local (règlement national) n’ont pas de zones ; les cartes communales n’ont que des secteurs constructibles ou non.</p>
+        <h3>Producteur</h3><p>Géoportail de l’Urbanisme (ministère de la Transition écologique, IGN) · <a href="https://www.geoportail-urbanisme.gouv.fr/services/" rel="noopener">www.geoportail-urbanisme.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Géoportail de l’Urbanisme (ministère de la Transition écologique, IGN)</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Plans en vigueur (export national hebdomadaire)<br/>Vérifiée chaque mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par parcelle</p>
+        <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
 <article class="panel-src" id="panel-insee-population-2017" data-id="insee-population-2017" hidden>
         <p class="eyebrow">officielle</p>
@@ -681,6 +931,19 @@
         <h3>Territoire et précision</h3><p>France entière · Par quartier (environ 2 000 habitants)</p>
         <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
+<article class="panel-src" id="panel-georisques" data-id="georisques" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-georisques" tabindex="-1">Risques : installations classées, catastrophes naturelles, plans de prévention, argiles, sols pollués (Géorisques)</h2>
+        <p>Les installations industrielles classées, les arrêtés de catastrophe naturelle et les plans de prévention par commune, l’exposition aux argiles, et les sols pollués.</p>
+        <h3>Ce qu’elle contient</h3><p>régime et statut Seveso, activité, SIRET, arrêtés CatNat, plans PPRN/PPRT/PPRM, niveau d’exposition aux argiles, position ou contour</p>
+        <p class="small muted">Tables de données : <code>risk_installations</code>, <code>risk_disaster_orders</code>, <code>risk_plans</code>, <code>risk_clay_2020</code>, <code>risk_clay_2026</code>, <code>risk_soil_sectors</code>, <code>risk_polluted_sites</code>, <code>risk_former_industrial_sites</code></p>
+        <h3>À savoir</h3><p>Aucun nom de personne : les noms d’exploitants ne sont gardés que pour les sociétés. Le radon et les anciens sites industriels (CASIAS, licence à confirmer) ne sont pas encore repris.</p>
+        <h3>Producteur</h3><p>Ministère de la Transition écologique, BRGM · <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees" rel="noopener">www.georisques.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Transition écologique, BRGM</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Fichiers du jour ; cartes des argiles 2020 et 2026<br/>Vérifiée chaque mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Lieu précis</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
 <article class="panel-src" id="panel-osm-walk" data-id="osm-walk" hidden>
         <p class="eyebrow">collaborative</p>
         <h2 id="title-osm-walk" tabindex="-1">Rues et chemins à pied (OpenStreetMap)</h2>
@@ -694,16 +957,29 @@
         <h3>Territoire et précision</h3><p>France entière · Par tronçon de rue</p>
         <h3>Utilisée par</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
+<article class="panel-src" id="panel-spr" data-id="spr" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-spr" tabindex="-1">Sites patrimoniaux remarquables</h2>
+        <p>Les communes dotées d’un site patrimonial remarquable et son plan en vigueur.</p>
+        <h3>Ce qu’elle contient</h3><p>commune, numéro du site, régime d’origine, date de création, plan en vigueur et sa date</p>
+        <p class="small muted">Tables de données : <code>heritage_areas</code></p>
+        <h3>À savoir</h3><p>Liste par commune, sans contour du site.</p>
+        <h3>Producteur</h3><p>Ministère de la Culture · <a href="https://www.data.gouv.fr/datasets/liste-des-sites-patrimoniaux-remarquables-spr/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Culture</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Liste mensuelle<br/>Vérifiée tous les 2 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par commune</p>
+        <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
+      </article>
 <article class="panel-src" id="panel-rne-legal-directors" data-id="rne-legal-directors" hidden>
         <p class="eyebrow">officielle</p>
         <h2 id="title-rne-legal-directors" tabindex="-1">Sociétés dirigeantes d’autres sociétés</h2>
         <p>Les liens entre une société et les sociétés qui la dirigent.</p>
-        <h3>Ce qu’elle contient</h3><p>société dirigée, société dirigeante, rôle</p>
+        <h3>Ce qu’elle contient</h3><p>société dirigée, société dirigeante, rôle, date de mise à jour</p>
         <p class="small muted">Tables de données : <code>company_directors</code></p>
         <h3>À savoir</h3><p>Uniquement des liens entre sociétés : les dirigeants personnes physiques ne sont jamais lus ni gardés.</p>
-        <h3>Producteur</h3><p>INPI (Registre national des entreprises), via l’API Recherche d’entreprises · <a href="https://recherche-entreprises.api.gouv.fr/docs/" rel="noopener">recherche-entreprises.api.gouv.fr ↗</a></p>
-        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : INPI (Registre national des entreprises), via l’API Recherche d’entreprises</span></p>
-        <h3>Mises à jour</h3><p>Période des données : Registre en continu<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Producteur</h3><p>INPI (Registre national des entreprises) · <a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">data.inpi.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">Licence homologuée de l’INPI : réutilisation libre et gratuite, y compris commerciale, en citant la source et la date de dernière mise à jour.</a><br/><span class="small muted">Crédit : INPI (Registre national des entreprises)</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Registre en continu<br/>Vérifiée chaque jour<br/>Notre dernière copie : pas encore chargée</p>
         <h3>Territoire et précision</h3><p>France entière · Par fiche (entreprise, annonce, marché)</p>
         <h3>Utilisée par</h3><p><a href="../search/">Recherche</a></p>
       </article>
@@ -745,6 +1021,19 @@
         <h3>Mises à jour</h3><p>Période des données : Ventes des 5 dernières années<br/>Vérifiée tous les 3 mois<br/>Notre dernière copie : 23 novembre 2026</p>
         <h3>Territoire et précision</h3><p>France entière · Par parcelle</p>
         <h3>Utilisée par</h3><p><a href="../search/">Recherche</a>, <a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-georisques-tri" data-id="georisques-tri" hidden>
+        <p class="eyebrow">officielle</p>
+        <h2 id="title-georisques-tri" tabindex="-1">Zones inondables des territoires à risque important d’inondation (TRI 2020)</h2>
+        <p>Les zones inondables de chaque territoire à risque important d’inondation, pour une crue fréquente, moyenne ou extrême.</p>
+        <h3>Ce qu’elle contient</h3><p>type d’inondation, scénario, cours d’eau, territoire, contour</p>
+        <p class="small muted">Tables de données : <code>risk_flood_zones_2020</code>, <code>risk_tri_areas_2020</code></p>
+        <h3>À savoir</h3><p>Seuls les territoires à risque important sont cartographiés : ailleurs, l’absence de zone ne veut pas dire l’absence de risque.</p>
+        <h3>Producteur</h3><p>Ministère de la Transition écologique, Géorisques · <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020" rel="noopener">www.georisques.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab) : réutilisation libre, en citant la source.</a><br/><span class="small muted">Crédit : Ministère de la Transition écologique, Géorisques</span></p>
+        <h3>Mises à jour</h3><p>Période des données : Cartographie de 2020 (directive inondation)<br/>Données d’une année passée, conservées telles quelles<br/>Notre dernière copie : pas encore chargée</p>
+        <h3>Territoire et précision</h3><p>France entière · Par parcelle</p>
+        <h3>Utilisée par</h3><p>Aucun produit pour l’instant : gardée pour nos prochains produits.</p>
       </article>
     </div>
   </dialog>
@@ -804,7 +1093,7 @@
       <div class="wrap">
         <span>Tesselo · données publiques officielles</span>
         
-        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.2 · 7064dc3</small>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.38 · 9333933</small>
       </div>
     </footer>
   </body>

@@ -18,7 +18,7 @@
       .product { border-top: 4px solid var(--product); display: flex; flex-direction: column; }
       .product p { color: var(--muted); margin: 6px 0 0; flex: 1; }
       .product .ts-actions { justify-content: space-between; align-items: center; }
-      :root { --accent: #1f4fd1; --product: #1f4fd1; }
+      :root { --accent: #c03f1c; --product: #c03f1c; }
       .hero h1 { font-size: 40px; }
       .ts-card p, section .note { color: var(--muted); margin: 6px 0 0; font-size: 14px; }
       .ts-card.stat strong { font-size: 30px; color: var(--accent); }
@@ -81,17 +81,17 @@
   </style>
   <section class="hero">
     <p class="eyebrow">Public data · France</p>
-    <h1>We use <em>38 public data sources</em></h1>
-    <p class="lead">35 official, 3 community-made (OpenStreetMap, Overture Maps). Every figure in our products comes from one of these sources. Click a source to see what it holds, who publishes it and when we last updated it.</p>
+    <h1>We use <em>55 public data sources</em></h1>
+    <p class="lead">52 official, 3 community-made (OpenStreetMap, Overture Maps). Every figure in our products comes from one of these sources. Click a source to see what it holds, who publishes it and when we last updated it.</p>
   </section>
   <section aria-label="Area">
     <div class="filters">
       <div class="chips" role="group" aria-label="Area"><span class="group-label">Area</span>
-        <button type="button" class="chip" data-level="" aria-pressed="true">All <span class="n">38</span></button><button type="button" class="chip" data-level="country" aria-pressed="false">All of France <span class="n">31</span></button><button type="button" class="chip" data-level="region" aria-pressed="false">Region <span class="n">1</span></button><button type="button" class="chip" data-level="commune" aria-pressed="false">City <span class="n">6</span></button></div>
+        <button type="button" class="chip" data-level="" aria-pressed="true">All <span class="n">55</span></button><button type="button" class="chip" data-level="country" aria-pressed="false">All of France <span class="n">48</span></button><button type="button" class="chip" data-level="region" aria-pressed="false">Region <span class="n">1</span></button><button type="button" class="chip" data-level="commune" aria-pressed="false">City <span class="n">6</span></button></div>
       <label>Detail<select id="f-resolution"><option value="">All</option><option value="country">National figures</option><option value="region">Per region</option><option value="commune">Per commune</option><option value="iris">Per neighbourhood (about 2,000 residents)</option><option value="grid">200 m squares</option><option value="parcel">Per land parcel</option><option value="address">At the address</option><option value="point">Exact place</option><option value="street">Per street segment</option><option value="record">Per record (company, notice, contract)</option><option value="list">Reference list</option></select></label>
       <label>Product<select id="f-product"><option value="">All</option><option value="pignon">Pignon</option><option value="search">Search</option></select></label>
     </div>
-    <p class="count-line" aria-live="polite"><span id="shown">38</span> sources shown</p>
+    <p class="count-line" aria-live="polite"><span id="shown">55</span> sources shown</p>
     <p class="note" id="none" hidden>No source matches these filters.</p>
     <ul class="src-list" id="sources">
 <li data-level="country" data-resolution="list" data-products="">
@@ -110,6 +110,10 @@
         <a class="src" href="#sitadel" aria-haspopup="dialog"><span class="src-name">Building permits (Sitadel)</span>
         <span class="src-by">SDES, Ministry of Ecological Transition</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per land parcel</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="search">
+        <a class="src" href="#bdnb" aria-haspopup="dialog"><span class="src-name">Buildings: construction year, height, use, risks and company owners (BDNB)</span>
+        <span class="src-by">CSTB (national buildings database)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per land parcel</span></span></a></li>
 <li data-level="country" data-resolution="point" data-products="search pignon">
         <a class="src" href="#sirene" aria-haspopup="dialog"><span class="src-name">Business sites and shops (SIRENE)</span>
         <span class="src-by">INSEE (SIRENE register)</span>
@@ -118,6 +122,10 @@
         <a class="src" href="#insee-esane" aria-haspopup="dialog"><span class="src-name">Businesses and sales per activity (Ésane)</span>
         <span class="src-by">INSEE (Ésane)</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">National figures</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="search">
+        <a class="src" href="#cadastre-parcels" aria-haspopup="dialog"><span class="src-name">Cadastral parcels</span>
+        <span class="src-by">DGFiP (land registry map), prepared by Etalab</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per land parcel</span></span></a></li>
 <li data-level="country" data-resolution="iris" data-products="pignon">
         <a class="src" href="#insee-census-iris" aria-haspopup="dialog"><span class="src-name">Census by neighbourhood</span>
         <span class="src-by">INSEE (population census)</span>
@@ -136,12 +144,24 @@
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per record (company, notice, contract)</span></span></a></li>
 <li data-level="country" data-resolution="record" data-products="search">
         <a class="src" href="#rne-legal-directors" aria-haspopup="dialog"><span class="src-name">Companies directing other companies</span>
-        <span class="src-by">INPI (national business register), through the business search API</span>
+        <span class="src-by">INPI (national business register)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per record (company, notice, contract)</span></span></a></li>
+<li data-level="country" data-resolution="record" data-products="">
+        <a class="src" href="#inpi-accounts" aria-haspopup="dialog"><span class="src-name">Companies’ annual accounts</span>
+        <span class="src-by">INPI (national business register)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per record (company, notice, contract)</span></span></a></li>
+<li data-level="country" data-resolution="record" data-products="search">
+        <a class="src" href="#sirene-history" aria-haspopup="dialog"><span class="src-name">Company and business-site history (SIRENE)</span>
+        <span class="src-by">INSEE, SIRENE register</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per record (company, notice, contract)</span></span></a></li>
 <li data-level="country" data-resolution="record" data-products="search pignon">
         <a class="src" href="#bodacc" aria-haspopup="dialog"><span class="src-name">Company legal notices (BODACC)</span>
         <span class="src-by">DILA</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per record (company, notice, contract)</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#basilic" aria-haspopup="dialog"><span class="src-name">Cultural venues (Basilic)</span>
+        <span class="src-by">French Ministry of Culture, studies department (DEPS)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
 <li data-level="country" data-resolution="address" data-products="search">
         <a class="src" href="#ademe-dpe" aria-haspopup="dialog"><span class="src-name">Energy performance certificates (DPE)</span>
         <span class="src-by">ADEME</span>
@@ -150,9 +170,17 @@
         <a class="src" href="#insee-bpe" aria-haspopup="dialog"><span class="src-name">Facilities and services (BPE)</span>
         <span class="src-by">INSEE (permanent facilities database)</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="">
+        <a class="src" href="#georisques-tri" aria-haspopup="dialog"><span class="src-name">Flood zones of the territories at high flood risk (TRI 2020)</span>
+        <span class="src-by">Ministry of Ecological Transition, Géorisques</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per land parcel</span></span></a></li>
 <li data-level="country" data-resolution="point" data-products="">
         <a class="src" href="#alimconfiance" aria-haspopup="dialog"><span class="src-name">Food hygiene inspections (Alim’confiance)</span>
         <span class="src-by">Ministry of Agriculture (DGAL)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#culture-labels" aria-haspopup="dialog"><span class="src-name">Heritage labels: remarkable gardens, houses of notable people, remarkable modern architecture</span>
+        <span class="src-by">French Ministry of Culture</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
 <li data-level="country" data-resolution="commune" data-products="pignon">
         <a class="src" href="#insee-commuting" aria-haspopup="dialog"><span class="src-name">Home–work commuting</span>
@@ -174,6 +202,18 @@
         <a class="src" href="#geo-regions" aria-haspopup="dialog"><span class="src-name">List of regions</span>
         <span class="src-by">INSEE (official geographic code)</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per region</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="pignon">
+        <a class="src" href="#gpu-zoning" aria-haspopup="dialog"><span class="src-name">Local zoning plans: zones and protected shopping streets</span>
+        <span class="src-by">Géoportail de l’Urbanisme (Ministry of Ecological Transition, IGN)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per land parcel</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#museofile" aria-haspopup="dialog"><span class="src-name">Musées de France (Muséofile)</span>
+        <span class="src-by">French Ministry of Culture, Muséofile</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
+<li data-level="country" data-resolution="record" data-products="search">
+        <a class="src" href="#museum-attendance" aria-haspopup="dialog"><span class="src-name">Musées de France attendance</span>
+        <span class="src-by">French Ministry of Culture, Patrimostat</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per record (company, notice, contract)</span></span></a></li>
 <li data-level="country" data-resolution="iris" data-products="search pignon">
         <a class="src" href="#ign-iris" aria-haspopup="dialog"><span class="src-name">Neighbourhoods (IRIS outlines)</span>
         <span class="src-by">IGN and INSEE</span>
@@ -186,6 +226,10 @@
         <a class="src" href="#paris-markets" aria-haspopup="dialog"><span class="src-name">Paris street markets</span>
         <span class="src-by">City of Paris</span>
         <span class="src-tags"><span class="ts-tag">City: Paris</span><span class="ts-tag">Exact place</span></span></a></li>
+<li data-level="country" data-resolution="parcel" data-products="pignon">
+        <a class="src" href="#bdtopo" aria-haspopup="dialog"><span class="src-name">Parks, cemeteries, water, railways: where no shop can stand (BD TOPO)</span>
+        <span class="src-by">IGN</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per land parcel</span></span></a></li>
 <li data-level="commune" data-resolution="point" data-products="pignon">
         <a class="src" href="#paris-terraces" aria-haspopup="dialog"><span class="src-name">Permitted terraces and displays in Paris</span>
         <span class="src-by">City of Paris</span>
@@ -202,6 +246,10 @@
         <a class="src" href="#dvf" aria-haspopup="dialog"><span class="src-name">Property sales (DVF)</span>
         <span class="src-by">DGFiP, geolocated by Etalab</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per land parcel</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#merimee" aria-haspopup="dialog"><span class="src-name">Protected monuments (Mérimée)</span>
+        <span class="src-by">French Ministry of Culture, Mérimée database (POP)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
 <li data-level="commune" data-resolution="street" data-products="pignon">
         <a class="src" href="#paris-frontages" aria-haspopup="dialog"><span class="src-name">Protected shop frontages in Paris</span>
         <span class="src-by">City of Paris</span>
@@ -214,6 +262,14 @@
         <a class="src" href="#decp" aria-haspopup="dialog"><span class="src-name">Public contracts awarded (DECP)</span>
         <span class="src-by">Public buyers, consolidated by decp.info</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per record (company, notice, contract)</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#libraries" aria-haspopup="dialog"><span class="src-name">Public libraries</span>
+        <span class="src-by">French Ministry of Culture, books and reading service</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="pignon">
+        <a class="src" href="#transit-stops" aria-haspopup="dialog"><span class="src-name">Public transport stops of France (transport.data.gouv.fr)</span>
+        <span class="src-by">transport.data.gouv.fr, the national access point for mobility data</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
 <li data-level="commune" data-resolution="address" data-products="pignon">
         <a class="src" href="#paris-permits" aria-haspopup="dialog"><span class="src-name">Recent planning filings in Paris</span>
         <span class="src-by">City of Paris</span>
@@ -221,6 +277,10 @@
 <li data-level="country" data-resolution="commune" data-products="pignon">
         <a class="src" href="#ssmsi-crime" aria-haspopup="dialog"><span class="src-name">Recorded crime</span>
         <span class="src-by">SSMSI (Ministry of the Interior)</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per commune</span></span></a></li>
+<li data-level="country" data-resolution="commune" data-products="search">
+        <a class="src" href="#spr" aria-haspopup="dialog"><span class="src-name">Remarkable heritage sites</span>
+        <span class="src-by">French Ministry of Culture</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per commune</span></span></a></li>
 <li data-level="country" data-resolution="grid" data-products="pignon">
         <a class="src" href="#insee-carroye" aria-haspopup="dialog"><span class="src-name">Residents and income on 200 m squares</span>
@@ -230,6 +290,10 @@
         <a class="src" href="#overture-places" aria-haspopup="dialog"><span class="src-name">Restaurants, cafés and bars (Overture Maps)</span>
         <span class="src-by">Overture Maps Foundation</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span><span class="ts-tag">community</span></span></a></li>
+<li data-level="country" data-resolution="point" data-products="search">
+        <a class="src" href="#georisques" aria-haspopup="dialog"><span class="src-name">Risks: classified installations, natural disasters, prevention plans, clay, polluted land (Géorisques)</span>
+        <span class="src-by">Ministry of Ecological Transition, BRGM</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Exact place</span></span></a></li>
 <li data-level="commune" data-resolution="record" data-products="pignon">
         <a class="src" href="#pignon-owner-groups" aria-haspopup="dialog"><span class="src-name">Shop companies with the same owners</span>
         <span class="src-by">INSEE and INPI, through the business search API (DINUM)</span>
@@ -246,6 +310,10 @@
         <a class="src" href="#osm-walk" aria-haspopup="dialog"><span class="src-name">Streets and paths on foot (OpenStreetMap)</span>
         <span class="src-by">OpenStreetMap contributors</span>
         <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per street segment</span><span class="ts-tag">community</span></span></a></li>
+<li data-level="country" data-resolution="commune" data-products="search">
+        <a class="src" href="#insee-tourism-capacity" aria-haspopup="dialog"><span class="src-name">Tourist accommodation capacity (INSEE)</span>
+        <span class="src-by">INSEE</span>
+        <span class="src-tags"><span class="ts-tag">All of France</span><span class="ts-tag">Per commune</span></span></a></li>
     </ul>
     <p class="note">List generated from our data pipeline’s code; copy dates are those known when this page was published.</p>
   </section>
@@ -261,7 +329,7 @@
         
         <h3>Publisher</h3><p>INSEE · <a href="https://www.insee.fr/fr/information/8617910" rel="noopener">www.insee.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: INSEE</span></p>
-        <h3>Updates</h3><p>Data period: Table of October 2026<br/>Checked every month<br/>Our last copy: 24 November 2026</p>
+        <h3>Updates</h3><p>Data period: Table of October 2026<br/>Checked every month<br/>Our last copy: 25 November 2026</p>
         <h3>Area and detail</h3><p>All of France · Reference list</p>
         <h3>Used by</h3><p>No product yet: kept for our upcoming products.</p>
       </article>
@@ -304,12 +372,25 @@
         <h3>Area and detail</h3><p>All of France · Per land parcel</p>
         <h3>Used by</h3><p><a href="../search/">Search</a></p>
       </article>
+<article class="panel-src" id="panel-bdnb" data-id="bdnb" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-bdnb" tabindex="-1">Buildings: construction year, height, use, risks and company owners (BDNB)</h2>
+        <p>Every group of buildings in France with its parcels, addresses, national building id and the companies that own it.</p>
+        <h3>What it holds</h3><p>construction year, floors, homes, height, main use, risks (clay, radon, flood, earthquake), parcels, addresses, owners that are legal persons</p>
+        <p class="small muted">Data tables: <code>buildings</code>, <code>building_parcels</code>, <code>building_addresses</code>, <code>building_rnb</code>, <code>building_dpe</code>, <code>building_owners</code></p>
+        <h3>Good to know</h3><p>Only the open columns are kept. Owners who are people are never kept.</p>
+        <h3>Publisher</h3><p>CSTB (national buildings database) · <a href="https://bdnb.io/" rel="noopener">bdnb.io ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: CSTB (national buildings database)</span></p>
+        <h3>Updates</h3><p>Data period: Release 2026-02.b<br/>Checked every 6 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per land parcel</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
 <article class="panel-src" id="panel-sirene" data-id="sirene" hidden>
         <p class="eyebrow">official</p>
         <h2 id="title-sirene" tabindex="-1">Business sites and shops (SIRENE)</h2>
         <p>Every business site, open or closed, with its position.</p>
         <h3>What it holds</h3><p>activity, shop sign, address, opening and closing dates, staff band, position</p>
-        <p class="small muted">Data tables: <code>establishments</code></p>
+        <p class="small muted">Data tables: <code>establishments</code>, <code>establishments_hidden</code></p>
         <h3>Good to know</h3><p>Sites not open for public distribution are left out, and the usual name is not published (for a sole trader, it is their name).</p>
         <h3>Publisher</h3><p>INSEE (SIRENE register) · <a href="https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/" rel="noopener">www.data.gouv.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: INSEE (SIRENE register)</span></p>
@@ -329,6 +410,19 @@
         <h3>Updates</h3><p>Data period: Year 2023<br/>Checked every year<br/>Our last copy: 24 November 2026</p>
         <h3>Area and detail</h3><p>All of France · National figures</p>
         <h3>Used by</h3><p>No product yet: kept for our upcoming products.</p>
+      </article>
+<article class="panel-src" id="panel-cadastre-parcels" data-id="cadastre-parcels" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-cadastre-parcels" tabindex="-1">Cadastral parcels</h2>
+        <p>Every parcel in France with its id, commune, section, area and outline.</p>
+        <h3>What it holds</h3><p>parcel id, commune, section, number, area, outline</p>
+        <p class="small muted">Data tables: <code>parcels</code></p>
+        <h3>Good to know</h3><p>No owners: the published cadastre does not give them (owners that are legal persons come from another DGFiP file).</p>
+        <h3>Publisher</h3><p>DGFiP (land registry map), prepared by Etalab · <a href="https://cadastre.data.gouv.fr/datasets/cadastre-etalab" rel="noopener">cadastre.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: DGFiP (land registry map), prepared by Etalab</span></p>
+        <h3>Updates</h3><p>Data period: Edition of 1 September 2026<br/>Checked every 3 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per land parcel</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
       </article>
 <article class="panel-src" id="panel-insee-census-iris" data-id="insee-census-iris" hidden>
         <p class="eyebrow">official</p>
@@ -374,7 +468,7 @@
         <h2 id="title-sirene-companies" tabindex="-1">Companies (SIRENE)</h2>
         <p>Every company: legal form, size, main activity.</p>
         <h3>What it holds</h3><p>SIREN, company name (companies only), legal form, size, activity, dates</p>
-        <p class="small muted">Data tables: <code>companies</code></p>
+        <p class="small muted">Data tables: <code>companies</code>, <code>companies_hidden</code></p>
         <h3>Good to know</h3><p>A sole trader’s name is never read; companies not open for distribution are left out.</p>
         <h3>Publisher</h3><p>INSEE (SIRENE register) · <a href="https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/" rel="noopener">www.data.gouv.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: INSEE (SIRENE register)</span></p>
@@ -386,12 +480,38 @@
         <p class="eyebrow">official</p>
         <h2 id="title-rne-legal-directors" tabindex="-1">Companies directing other companies</h2>
         <p>The links between a company and the companies that direct it.</p>
-        <h3>What it holds</h3><p>directed company, directing company, role</p>
+        <h3>What it holds</h3><p>directed company, directing company, role, date of update</p>
         <p class="small muted">Data tables: <code>company_directors</code></p>
         <h3>Good to know</h3><p>Company-to-company links only: directors who are people are never read or kept.</p>
-        <h3>Publisher</h3><p>INPI (national business register), through the business search API · <a href="https://recherche-entreprises.api.gouv.fr/docs/" rel="noopener">recherche-entreprises.api.gouv.fr ↗</a></p>
-        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: INPI (national business register), through the business search API</span></p>
-        <h3>Updates</h3><p>Data period: Live register<br/>Checked every 3 months<br/>Our last copy: not loaded yet</p>
+        <h3>Publisher</h3><p>INPI (national business register) · <a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">data.inpi.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">INPI’s approved licence: free reuse, commercial use included, citing the source and the date of last update.</a><br/><span class="small muted">Credit: INPI (national business register)</span></p>
+        <h3>Updates</h3><p>Data period: Live register<br/>Checked every day<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per record (company, notice, contract)</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
+<article class="panel-src" id="panel-inpi-accounts" data-id="inpi-accounts" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-inpi-accounts" tabindex="-1">Companies’ annual accounts</h2>
+        <p>The key figures of the accounts companies file at the court registry.</p>
+        <h3>What it holds</h3><p>turnover, net result, balance-sheet total, closing and filing dates</p>
+        <p class="small muted">Data tables: <code>company_accounts</code></p>
+        <h3>Good to know</h3><p>Accounts filed as confidential have no figures, as the law provides; the PDF documents are not reused.</p>
+        <h3>Publisher</h3><p>INPI (national business register) · <a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">data.inpi.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://data.inpi.fr/content/editorial/licences_reutilisation_donnees_inpi" rel="noopener">INPI’s approved licence: free reuse, commercial use included, citing the source and the date of last update.</a><br/><span class="small muted">Credit: INPI (national business register)</span></p>
+        <h3>Updates</h3><p>Data period: Accounts filed since 2017<br/>Checked every day<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per record (company, notice, contract)</p>
+        <h3>Used by</h3><p>No product yet: kept for our upcoming products.</p>
+      </article>
+<article class="panel-src" id="panel-sirene-history" data-id="sirene-history" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-sirene-history" tabindex="-1">Company and business-site history (SIRENE)</h2>
+        <p>What each company and business site was over time, and which site took over from which.</p>
+        <h3>What it holds</h3><p>periods, state, activity, shop sign, names of legal entities, succession links</p>
+        <p class="small muted">Data tables: <code>company_history</code>, <code>establishment_history</code>, <code>establishment_successions</code></p>
+        <h3>Good to know</h3><p>No names of people: sole traders have no name; records not open for distribution have no history.</p>
+        <h3>Publisher</h3><p>INSEE, SIRENE register · <a href="https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: INSEE, SIRENE register</span></p>
+        <h3>Updates</h3><p>Data period: Every period since the register began<br/>Checked every month<br/>Our last copy: not loaded yet</p>
         <h3>Area and detail</h3><p>All of France · Per record (company, notice, contract)</p>
         <h3>Used by</h3><p><a href="../search/">Search</a></p>
       </article>
@@ -407,6 +527,19 @@
         <h3>Updates</h3><p>Data period: Notices since 1 January 2016<br/>Checked every month<br/>Our last copy: 23 November 2026</p>
         <h3>Area and detail</h3><p>All of France · Per record (company, notice, contract)</p>
         <h3>Used by</h3><p><a href="../search/">Search</a>, <a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-basilic" data-id="basilic" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-basilic" tabindex="-1">Cultural venues (Basilic)</h2>
+        <p>Cinemas, theatres, music venues, monuments, museums, libraries and other cultural venues.</p>
+        <h3>What it holds</h3><p>name, type, label, commune, neighbourhood (IRIS), cinema screens and seats, theatre capacity, position</p>
+        <p class="small muted">Data tables: <code>cultural_venues</code></p>
+        <h3>Good to know</h3><p>Overlaps the ministry’s other files; the publisher warns of duplicates.</p>
+        <h3>Publisher</h3><p>French Ministry of Culture, studies department (DEPS) · <a href="https://www.data.gouv.fr/datasets/base-des-lieux-et-equipements-culturels-basilic/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: French Ministry of Culture, studies department (DEPS)</span></p>
+        <h3>Updates</h3><p>Data period: File of 18 February 2026<br/>Checked every 3 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Exact place</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
       </article>
 <article class="panel-src" id="panel-ademe-dpe" data-id="ademe-dpe" hidden>
         <p class="eyebrow">official</p>
@@ -434,6 +567,19 @@
         <h3>Area and detail</h3><p>All of France · Exact place</p>
         <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
+<article class="panel-src" id="panel-georisques-tri" data-id="georisques-tri" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-georisques-tri" tabindex="-1">Flood zones of the territories at high flood risk (TRI 2020)</h2>
+        <p>The flood zones of each territory at high flood risk, for a frequent, medium or extreme flood.</p>
+        <h3>What it holds</h3><p>flood type, scenario, river, territory, outline</p>
+        <p class="small muted">Data tables: <code>risk_flood_zones_2020</code>, <code>risk_tri_areas_2020</code></p>
+        <h3>Good to know</h3><p>Only the territories at high risk are mapped: elsewhere, no zone does not mean no risk.</p>
+        <h3>Publisher</h3><p>Ministry of Ecological Transition, Géorisques · <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020" rel="noopener">www.georisques.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: Ministry of Ecological Transition, Géorisques</span></p>
+        <h3>Updates</h3><p>Data period: 2020 mapping (EU Floods Directive)<br/>A past year’s data, kept as it is<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per land parcel</p>
+        <h3>Used by</h3><p>No product yet: kept for our upcoming products.</p>
+      </article>
 <article class="panel-src" id="panel-alimconfiance" data-id="alimconfiance" hidden>
         <p class="eyebrow">official</p>
         <h2 id="title-alimconfiance" tabindex="-1">Food hygiene inspections (Alim’confiance)</h2>
@@ -446,6 +592,19 @@
         <h3>Updates</h3><p>Data period: Inspections of the last 12 months<br/>Checked every week<br/>Our last copy: 24 November 2026</p>
         <h3>Area and detail</h3><p>All of France · Exact place</p>
         <h3>Used by</h3><p>No product yet: kept for our upcoming products.</p>
+      </article>
+<article class="panel-src" id="panel-culture-labels" data-id="culture-labels" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-culture-labels" tabindex="-1">Heritage labels: remarkable gardens, houses of notable people, remarkable modern architecture</h2>
+        <p>Places holding one of these three ministry labels.</p>
+        <h3>What it holds</h3><p>name, types, year of label, access, commune, position; the notable person for houses</p>
+        <p class="small muted">Data tables: <code>remarkable_gardens</code>, <code>notable_houses</code>, <code>contemporary_architecture</code></p>
+        <h3>Good to know</h3><p>The notable person’s name is kept; no other person’s name and no contact details.</p>
+        <h3>Publisher</h3><p>French Ministry of Culture · <a href="https://www.culture.gouv.fr/Aides-demarches/Protections-labels-et-appellations" rel="noopener">www.culture.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: French Ministry of Culture</span></p>
+        <h3>Updates</h3><p>Data period: Daily and weekly exports<br/>Checked every month<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Exact place</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
       </article>
 <article class="panel-src" id="panel-insee-commuting" data-id="insee-commuting" hidden>
         <p class="eyebrow">official</p>
@@ -512,6 +671,45 @@
         <h3>Area and detail</h3><p>All of France · Per region</p>
         <h3>Used by</h3><p>No product yet: kept for our upcoming products.</p>
       </article>
+<article class="panel-src" id="panel-gpu-zoning" data-id="gpu-zoning" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-gpu-zoning" tabindex="-1">Local zoning plans: zones and protected shopping streets</h2>
+        <p>The zoning plan’s zones (urban, to be built, agricultural, natural) and the streets where it protects shops.</p>
+        <h3>What it holds</h3><p>zone type, local name, protected shopping street, outline</p>
+        
+        <h3>Good to know</h3><p>Communes without a local plan (national rules) have no zones; cartes communales only have buildable or non-buildable sectors.</p>
+        <h3>Publisher</h3><p>Géoportail de l’Urbanisme (Ministry of Ecological Transition, IGN) · <a href="https://www.geoportail-urbanisme.gouv.fr/services/" rel="noopener">www.geoportail-urbanisme.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: Géoportail de l’Urbanisme (Ministry of Ecological Transition, IGN)</span></p>
+        <h3>Updates</h3><p>Data period: Plans in force (weekly national export)<br/>Checked every month<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per land parcel</p>
+        <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-museofile" data-id="museofile" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-museofile" tabindex="-1">Musées de France (Muséofile)</h2>
+        <p>Museums with the &quot;Musée de France&quot; label.</p>
+        <h3>What it holds</h3><p>id, name, town, themes, building protection, Mérimée references of the building, position</p>
+        <p class="small muted">Data tables: <code>museums</code></p>
+        <h3>Good to know</h3><p>Labelled museums only; no commune code, placed by position.</p>
+        <h3>Publisher</h3><p>French Ministry of Culture, Muséofile · <a href="https://www.data.gouv.fr/datasets/musees-de-france-base-museofile/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: French Ministry of Culture, Muséofile</span></p>
+        <h3>Updates</h3><p>Data period: Weekly export<br/>Checked every month<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Exact place</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
+<article class="panel-src" id="panel-museum-attendance" data-id="museum-attendance" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-museum-attendance" tabindex="-1">Musées de France attendance</h2>
+        <p>The number of visits to each Musée de France, every year.</p>
+        <h3>What it holds</h3><p>museum, commune, year, paid, free and total visits, school groups, under 18, 18–25, closure</p>
+        <p class="small muted">Data tables: <code>museum_attendance</code></p>
+        <h3>Good to know</h3><p>The link to Muséofile exists from 2019 only; some museums report together; a zero without closure means not reported. Licence Ouverte v1.0 per data.gouv.fr.</p>
+        <h3>Publisher</h3><p>French Ministry of Culture, Patrimostat · <a href="https://www.data.gouv.fr/datasets/frequentation-des-musees-de-france-1/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Licence_Ouverte.pdf" rel="noopener">Licence Ouverte v1.0 (Etalab, 2011), per data.gouv.fr: free reuse, commercial use included, crediting the source.</a><br/><span class="small muted">Credit: French Ministry of Culture, Patrimostat</span></p>
+        <h3>Updates</h3><p>Data period: 2001 to 2024, by year<br/>Checked every 3 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per record (company, notice, contract)</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
 <article class="panel-src" id="panel-ign-iris" data-id="ign-iris" hidden>
         <p class="eyebrow">official</p>
         <h2 id="title-ign-iris" tabindex="-1">Neighbourhoods (IRIS outlines)</h2>
@@ -549,6 +747,19 @@
         <h3>Licence</h3><p><a href="https://opendatacommons.org/licenses/odbl/1-0/" rel="noopener">ODbL 1.0: free reuse crediting the source; a database derived from it stays under ODbL.</a><br/><span class="small muted">Credit: City of Paris</span></p>
         <h3>Updates</h3><p>Data period: File last updated in April 2024<br/>Checked every 3 months<br/>Our last copy: 24 November 2026</p>
         <h3>Area and detail</h3><p>City: Paris · Exact place</p>
+        <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-bdtopo" data-id="bdtopo" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-bdtopo" tabindex="-1">Parks, cemeteries, water, railways: where no shop can stand (BD TOPO)</h2>
+        <p>Public parks and gardens, cemeteries, sports grounds, water, railways and airfields, as IGN draws them.</p>
+        <h3>What it holds</h3><p>kind of place, type, outline</p>
+        
+        <h3>Good to know</h3><p>Metropolitan France; overseas départements are not read yet.</p>
+        <h3>Publisher</h3><p>IGN · <a href="https://geoservices.ign.fr/bdtopo" rel="noopener">geoservices.ign.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: IGN</span></p>
+        <h3>Updates</h3><p>Data period: Edition of 15 September 2026<br/>Checked every 3 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per land parcel</p>
         <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
 <article class="panel-src" id="panel-paris-terraces" data-id="paris-terraces" hidden>
@@ -603,6 +814,19 @@
         <h3>Area and detail</h3><p>All of France · Per land parcel</p>
         <h3>Used by</h3><p><a href="../search/">Search</a>, <a href="../pignon/">Pignon</a></p>
       </article>
+<article class="panel-src" id="panel-merimee" data-id="merimee" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-merimee" tabindex="-1">Protected monuments (Mérimée)</h2>
+        <p>Buildings listed or registered as monuments historiques.</p>
+        <h3>What it holds</h3><p>reference, name, type, protection and dates, ownership (public or private), century, commune, position</p>
+        <p class="small muted">Data tables: <code>monuments</code></p>
+        <h3>Good to know</h3><p>The commune is the one at the date of protection; about 5 % of monuments have no position.</p>
+        <h3>Publisher</h3><p>French Ministry of Culture, Mérimée database (POP) · <a href="https://www.data.gouv.fr/datasets/immeubles-proteges-au-titre-des-monuments-historiques-2/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: French Ministry of Culture, Mérimée database (POP)</span></p>
+        <h3>Updates</h3><p>Data period: Weekly export<br/>Checked every month<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Exact place</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
 <article class="panel-src" id="panel-paris-frontages" data-id="paris-frontages" hidden>
         <p class="eyebrow">official</p>
         <h2 id="title-paris-frontages" tabindex="-1">Protected shop frontages in Paris</h2>
@@ -635,12 +859,38 @@
         <p>Every public contract awarded: who buys, from whom, what and for how much.</p>
         <h3>What it holds</h3><p>buyer, contractors, subject, amount, duration, award date</p>
         <p class="small muted">Data tables: <code>contracts</code>, <code>contract_holders</code></p>
-        <h3>Good to know</h3><p>The amount is the awarded amount before tax (a ceiling for a framework agreement); suspect amounts are flagged. A contractor not open for distribution in SIRENE is withheld.</p>
+        <h3>Good to know</h3><p>The amount is the awarded amount before tax (a ceiling for a framework agreement); suspect amounts are flagged. A contractor not open for distribution in SIRENE is shown by its number only (a legal entity) or withheld (a sole trader).</p>
         <h3>Publisher</h3><p>Public buyers, consolidated by decp.info · <a href="https://www.data.gouv.fr/datasets/donnees-essentielles-de-la-commande-publique-consolidees-format-tabulaire/" rel="noopener">www.data.gouv.fr ↗</a></p>
         <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: Public buyers, consolidated by decp.info</span></p>
         <h3>Updates</h3><p>Data period: Contracts published since 2019<br/>Checked every week<br/>Our last copy: 24 November 2026</p>
         <h3>Area and detail</h3><p>All of France · Per record (company, notice, contract)</p>
         <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
+<article class="panel-src" id="panel-libraries" data-id="libraries" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-libraries" tabindex="-1">Public libraries</h2>
+        <p>Libraries run by local authorities and their activity over the year.</p>
+        <h3>What it holds</h3><p>name, status, commune, position, opening hours a week, Sunday opening, surface, books, borrowers, entries, loans</p>
+        <p class="small muted">Data tables: <code>libraries</code></p>
+        <h3>Good to know</h3><p>Activity as reported by the libraries; some values are missing.</p>
+        <h3>Publisher</h3><p>French Ministry of Culture, books and reading service · <a href="https://www.data.gouv.fr/datasets/adresses-des-bibliotheques-publiques-2/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: French Ministry of Culture, books and reading service</span></p>
+        <h3>Updates</h3><p>Data period: 2023 activity<br/>Checked every 6 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Exact place</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
+<article class="panel-src" id="panel-transit-stops" data-id="transit-stops" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-transit-stops" tabindex="-1">Public transport stops of France (transport.data.gouv.fr)</h2>
+        <p>The bus, tram, metro and train stops of every network that publishes its timetables, gathered in one national file.</p>
+        <h3>What it holds</h3><p>stop name, position, networks serving it, source feeds</p>
+        <p class="small muted">Data tables: <code>transit_stops</code></p>
+        <h3>Good to know</h3><p>Experimental file, exported by hand: a stop appears once per network, we merge those of the same name within 50 m. No ridership. Nothing for Guadeloupe, Guyane and Mayotte in the January 2026 export.</p>
+        <h3>Publisher</h3><p>transport.data.gouv.fr, the national access point for mobility data · <a href="https://transport.data.gouv.fr/datasets/arrets-de-transport-en-france" rel="noopener">transport.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: transport.data.gouv.fr, the national access point for mobility data</span></p>
+        <h3>Updates</h3><p>Data period: Dated export (13 January 2026 when approved)<br/>Checked every 3 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Exact place</p>
+        <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
 <article class="panel-src" id="panel-paris-permits" data-id="paris-permits" hidden>
         <p class="eyebrow">official</p>
@@ -668,6 +918,19 @@
         <h3>Area and detail</h3><p>All of France · Per commune</p>
         <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
       </article>
+<article class="panel-src" id="panel-spr" data-id="spr" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-spr" tabindex="-1">Remarkable heritage sites</h2>
+        <p>Communes with a remarkable heritage site and the plan in force.</p>
+        <h3>What it holds</h3><p>commune, site number, original regime, creation date, plan in force and its date</p>
+        <p class="small muted">Data tables: <code>heritage_areas</code></p>
+        <h3>Good to know</h3><p>Per commune, without the site’s outline.</p>
+        <h3>Publisher</h3><p>French Ministry of Culture · <a href="https://www.data.gouv.fr/datasets/liste-des-sites-patrimoniaux-remarquables-spr/" rel="noopener">www.data.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: French Ministry of Culture</span></p>
+        <h3>Updates</h3><p>Data period: Monthly list<br/>Checked every 2 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per commune</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
+      </article>
 <article class="panel-src" id="panel-insee-carroye" data-id="insee-carroye" hidden>
         <p class="eyebrow">official</p>
         <h2 id="title-insee-carroye" tabindex="-1">Residents and income on 200 m squares</h2>
@@ -693,6 +956,19 @@
         <h3>Updates</h3><p>Data period: Monthly release<br/>Checked every month<br/>Our last copy: 24 November 2026</p>
         <h3>Area and detail</h3><p>All of France · Exact place</p>
         <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-georisques" data-id="georisques" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-georisques" tabindex="-1">Risks: classified installations, natural disasters, prevention plans, clay, polluted land (Géorisques)</h2>
+        <p>Classified industrial installations, natural disaster orders and prevention plans per commune, clay exposure and polluted land.</p>
+        <h3>What it holds</h3><p>regime and Seveso status, activity, SIRET, CatNat orders, PPRN/PPRT/PPRM plans, clay exposure level, position or outline</p>
+        <p class="small muted">Data tables: <code>risk_installations</code>, <code>risk_disaster_orders</code>, <code>risk_plans</code>, <code>risk_clay_2020</code>, <code>risk_clay_2026</code>, <code>risk_soil_sectors</code>, <code>risk_polluted_sites</code>, <code>risk_former_industrial_sites</code></p>
+        <h3>Good to know</h3><p>No names of people: operator names are kept for companies only. Radon and former industrial sites (CASIAS, licence to confirm) are not included yet.</p>
+        <h3>Publisher</h3><p>Ministry of Ecological Transition, BRGM · <a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees" rel="noopener">www.georisques.gouv.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: Ministry of Ecological Transition, BRGM</span></p>
+        <h3>Updates</h3><p>Data period: Files of the day; clay maps 2020 and 2026<br/>Checked every month<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Exact place</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
       </article>
 <article class="panel-src" id="panel-pignon-owner-groups" data-id="pignon-owner-groups" hidden>
         <p class="eyebrow">official</p>
@@ -745,6 +1021,19 @@
         <h3>Updates</h3><p>Data period: Map of the day<br/>Checked every month<br/>Our last copy: 24 November 2026</p>
         <h3>Area and detail</h3><p>All of France · Per street segment</p>
         <h3>Used by</h3><p><a href="../pignon/">Pignon</a></p>
+      </article>
+<article class="panel-src" id="panel-insee-tourism-capacity" data-id="insee-tourism-capacity" hidden>
+        <p class="eyebrow">official</p>
+        <h2 id="title-insee-tourism-capacity" tabindex="-1">Tourist accommodation capacity (INSEE)</h2>
+        <p>The number of hotels, campsites and other tourist accommodation in each commune, and their capacity.</p>
+        <h3>What it holds</h3><p>commune, accommodation type, stars, establishments, rooms, pitches, beds</p>
+        <p class="small muted">Data tables: <code>tourism_capacity</code></p>
+        <h3>Good to know</h3><p>Capacity, not occupancy: nights spent are published by département and région only. Mayotte excluded.</p>
+        <h3>Publisher</h3><p>INSEE · <a href="https://catalogue-donnees.insee.fr/fr/catalogue/recherche/DS_TOUR_CAP" rel="noopener">catalogue-donnees.insee.fr ↗</a></p>
+        <h3>Licence</h3><p><a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" rel="noopener">Licence Ouverte 2.0 (Etalab): free reuse, crediting the source.</a><br/><span class="small muted">Credit: INSEE</span></p>
+        <h3>Updates</h3><p>Data period: On 1 January 2026<br/>Checked every 6 months<br/>Our last copy: not loaded yet</p>
+        <h3>Area and detail</h3><p>All of France · Per commune</p>
+        <h3>Used by</h3><p><a href="../search/">Search</a></p>
       </article>
     </div>
   </dialog>
@@ -804,7 +1093,7 @@
       <div class="wrap">
         <span>Tesselo · official public data</span>
         
-        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.2 · 7064dc3</small>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.38 · 9333933</small>
       </div>
     </footer>
   </body>
