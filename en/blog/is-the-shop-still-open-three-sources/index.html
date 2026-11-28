@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Is the shop on the map still open? We asked three sources · Tesselo</title>
+    <meta name="description" content="The SIRENE register learns about closures late. Checked against OpenStreetMap, up to 78% of the shops of one type have no trace on the map; APUR’s street survey finds 20 to 42% of them open. What each source sees, and why “not on the map” does not mean “closed”." />
+    <meta property="og:title" content="Is the shop on the map still open? We asked three sources · Tesselo" />
+    <meta property="og:description" content="The SIRENE register learns about closures late. Checked against OpenStreetMap, up to 78% of the shops of one type have no trace on the map; APUR’s street survey finds 20 to 42% of them open. What each source sees, and why “not on the map” does not mean “closed”." />
+    <meta property="og:type" content="article" />
+    <link rel="alternate" hreflang="fr" href="../../../blog/commerce-encore-ouvert-trois-sources/" />
+    <link rel="stylesheet" href="../../../assets/theme.css" />
+    <style>
+      /* Blog pages (src/blog/): the hub's header and footer, the posts' charts and maps (moved from Pignon's site). */
+      :root { --gold: #c8a24a; --indep: #1c3d5a; --display: var(--font); }
+      .post { max-width: 720px; margin: 0 auto; padding: 48px 0 72px; font-size: 16px; line-height: 1.65; }
+      .post p { margin: 0 0 1em; }
+      .post .lead { font-size: 18px; color: var(--muted); }
+      .post .note { font-size: 13px; color: var(--muted); }
+      .post-head { margin-bottom: 32px; }
+      .post-head h1 { font-size: clamp(28px, 4.2vw, 40px); margin-bottom: 14px; }
+      .post-head .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+      .post-head .eyebrow a { color: inherit; }
+      .post h2 { font-size: clamp(21px, 2.6vw, 26px); margin: 1.8em 0 0.6em; }
+      .post li { margin-bottom: 0.5em; }
+      .post table { width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 15px; }
+      .post th, .post td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+      .post th:first-child, .post td:first-child { text-align: left; }
+      .post thead th { font-weight: 600; color: var(--muted); }
+      .post .table-scroll { overflow-x: auto; }
+      .post-cta { margin-top: 48px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .post-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+      .post-cta .ts-btn { font-size: 15px; padding: 10px 18px; }
+      .post-list { list-style: none; padding: 0; margin: 0; }
+      .post-list li { padding: 24px 0; border-top: 1px solid var(--line); }
+      .post-list a { text-decoration: none; }
+      .post-list h2 { font-size: 22px; margin: 0 0 0.2em; color: var(--accent); }
+      .post-list p { margin: 0 0 0.4em; }
+
+      /* Charts (assets/charts.js) */
+      .chart { margin: 28px 0; padding: 18px 18px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+      .chart-title { font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+      .chart-legend { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 8px; font-size: 13px; }
+      .chart-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 7px; }
+      .chart svg { display: block; width: 100%; }
+      .chart text { font-size: 12px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+      .chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; }
+      .chart circle { stroke: var(--surface); stroke-width: 2; }
+      .chart-axis { stroke: var(--muted); }
+      .chart-grid { stroke: var(--line); }
+      .chart-band { fill: var(--gold); opacity: 0.16; }
+      .chart figcaption { margin: 10px 0 0; }
+
+      /* Maps (assets/postmap.js) */
+      .postmap { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); }
+      .postmap .chart-title { margin-bottom: 10px; }
+      .pm-map { height: clamp(320px, 62vw, 600px); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+      .pm-legend { list-style: none; padding: 0; margin: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+      .pm-legend li { margin: 0; }
+      .pm-legend i { display: inline-block; box-sizing: border-box; width: 24px; border-top: 4px solid; vertical-align: middle; margin-right: 7px; }
+      .pm-legend i.pm-dash { border-top-style: dashed; }
+      .pm-legend i.pm-dot, .pm-legend i.pm-ring { width: 13px; height: 13px; border-radius: 50%; border: 0; background: currentColor; }
+      .pm-legend i.pm-ring { background: #fff; border: 3px solid; }
+      .pm-legend i.pm-sq { border-radius: 2px; }
+      .postmap figcaption { margin: 0; }
+      .pm-popup .maplibregl-popup-content { font: inherit; font-size: 13px; line-height: 1.4; padding: 8px 12px; border-radius: 10px; }
+      .pm-popup span { color: var(--muted); }
+
+      /* Time-lapse map (assets/timelapse.js), wider than the text column on large screens */
+      .timelapse { margin: 32px 0; width: min(1100px, 100vw - 32px); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: 1fr 290px; gap: 16px; }
+      .tl-map { position: relative; height: min(620px, 70vh); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+      .tl-base, .tl-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .tl-map canvas { pointer-events: none; }
+      .tl-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; align-self: start; }
+      .tl-date { font: 600 28px/1.1 var(--display); color: var(--accent); margin: 0; }
+      .tl-date::first-letter { text-transform: uppercase; }
+      .tl-panel dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 16px 0; font-size: 14px; }
+      .tl-panel dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+      .tl-panel dt::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; background: var(--indep); }
+      .tl-panel dt.tl-in::before { background: var(--accent); }
+      .tl-panel dt.tl-out::before { background: #b3261e; }
+      .tl-panel select { width: 100%; font: inherit; font-size: 14px; padding: 9px; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); }
+      .tl-row { display: flex; gap: 10px; align-items: center; }
+      .tl-row .ts-btn { min-width: 92px; justify-content: center; }
+      .tl-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+      .tl-chart { grid-column: 1 / -1; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 8px; }
+      .tl-legend { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0 0 6px; font-size: 14px; }
+      .tl-legend i { display: inline-block; width: 22px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+      .tl-legend i.tl-dash { border-top: 2px dashed #b3261e; }
+      .tl-legend b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+      .tl-chart svg { display: block; width: 100%; height: 170px; cursor: pointer; touch-action: pan-y; }
+      .tl-chart text { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+      .tl-chart polyline { fill: none; stroke-width: 2; stroke-linejoin: round; stroke: var(--accent); }
+      .tl-chart .tl-line-out { stroke: #b3261e; stroke-dasharray: 5 3; } /* dashed: not told apart by colour alone */
+      .tl-covid { fill: var(--gold); opacity: 0.16; }
+      .tl-grid { stroke: var(--line); }
+      .tl-cursor { stroke: var(--ink); stroke-width: 1.5; }
+      .timelapse figcaption { grid-column: 1 / -1; margin: 0; }
+      @media (max-width: 900px) {
+        .timelapse { grid-template-columns: 1fr; }
+        .tl-map { height: 62vh; }
+        .post { padding-top: 32px; }
+      }
+    </style>
+    <script src="../../../assets/charts.js" defer></script>
+  </head>
+  <body>
+    <header class="ts-header">
+      <div class="wrap">
+        <a class="ts-brand" href="../../../en/">
+          <svg class="ts-mark" viewBox="0 0 26 26" aria-hidden="true">
+            <rect x="1" y="1" width="11" height="11" rx="2.5" fill="var(--ink)" />
+            <rect x="14" y="1" width="11" height="11" rx="2.5" fill="var(--accent)" />
+            <rect x="1" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" opacity="0.35" />
+            <rect x="14" y="14" width="11" height="11" rx="2.5" fill="var(--ink)" />
+          </svg>
+          Tesselo
+        </a>
+        <nav>
+          <a href="../../../en/sources/">Our sources</a>
+          <a href="../../../en/blog/">Blog</a>
+          <span class="lang-switch"><a href="../../../blog/commerce-encore-ouvert-trois-sources/" hreflang="fr" lang="fr">Français</a></span>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <article class="post">
+        <header class="post-head"><p class="eyebrow"><a href="../">The blog</a> · 28 November 2026</p><h1>Is the shop on the map still open? We asked three sources</h1><p class="lead">The SIRENE register learns about closures late. Checked against OpenStreetMap, up to 78% of the shops of one type have no trace on the map; APUR’s street survey finds 20 to 42% of them open. What each source sees, and why “not on the map” does not mean “closed”.</p></header>
+        <p>INSEE’s SIRENE register says which shops are open. But it learns about closures late: a shop that shuts without any formality stays “active” for months, sometimes years. To find these ghosts, we checked the register against two other sources: the OpenStreetMap map and the shop survey of the Paris urban planning agency (APUR). What they say together is more nuanced than what each says alone.</p>
+
+<h2>Three sources, three ways of seeing a shop</h2>
+<ul>
+  <li><strong>SIRENE (INSEE)</strong> records declarations: an opening, a closure, a change of activity. Nothing forces anyone to declare a de facto closure quickly.</li>
+  <li><strong>OpenStreetMap</strong> is a map made by volunteers. A shop is on it if someone saw it and added it, and leaves it if someone removes it.</li>
+  <li><strong>APUR’s survey</strong> (BDCOM) lists every ground-floor premises in Paris, street by street, every three years: 60,845 premises in 2023, with the sign seen on the shopfront.</li>
+</ul>
+
+<h2>The rule: not on the map, so maybe closed</h2>
+<p>A shop that is open in the register, opened more than a year ago, with no matching place in OpenStreetMap and no unmatched place within 25 metres, is marked “may have closed”. We do not remove it: it counts as half a competitor.</p>
+
+<figure class="chart">
+  <p class="chart-title">Shops open in the register but missing from the map, Paris, October 2026</p>
+  <script type="application/json">{"type": "bars", "labels": ["Pet shops", "Cheese and fine food", "Sports shops", "Beauty salons", "Bars and restaurants"], "series": [{"name": "Share “may have closed”", "values": [78, 70, 70, 60, 37]}], "unit": "%"}</script>
+  <figcaption class="note">Share of shops open in SIRENE with no match in OpenStreetMap, by type, all of Paris, before the check against APUR. Sources: INSEE, SIRENE register (Licence Ouverte 2.0); OpenStreetMap contributors (ODbL).</figcaption>
+</figure>
+
+<p>The rates are high everywhere. For convenience stores and grocers in Paris and its inner ring, 46% are flagged (2,503 of 5,401), and 55% of corner shops in the strict sense (code 47.11B), against 19% of supermarkets. Undeclared closures do not explain it all. Many registrations are not shopfronts: an online seller, an importer, a dormant company. And many real shops are simply not on the map.</p>
+
+<h2>The third witness: people who walked the street</h2>
+<p>To decide, we looked for every flagged shop in APUR’s survey: same address, an activity of the same type, a single sign, registered before the 2023 survey.</p>
+
+<figure class="chart">
+  <p class="chart-title">Shops flagged “may have closed” that APUR saw open, with their sign</p>
+  <script type="application/json">{"type": "bars", "labels": ["Cobblers", "Opticians", "Hairdressers", "Restaurants", "Bike shops", "Pet shops"], "series": [{"name": "Seen by APUR", "values": [42, 32, 30, 28, 5, 2]}], "unit": "%"}</script>
+  <figcaption class="note">Share of shops flagged by the map rule found in the 2023 survey, all of Paris, October 2026. Sources: APUR, BDCOM 2023 (ODbL); INSEE, SIRENE register; OpenStreetMap.</figcaption>
+</figure>
+
+<ul>
+  <li><strong>Between 20 and 42% of flagged shops were in fact open</strong> for most types. These are real shops that nobody added to the map. We lifted the flag for 5,762 shops.</li>
+  <li><strong>For pet shops, barely 2%.</strong> Here the flag mostly means “not mapped”: OpenStreetMap knows only 66 pet shops in Paris, and the activity code also covers florists. APUR’s survey does not settle it either, because its own categories match that code poorly.</li>
+  <li><strong>The effect on our scores is small:</strong> under one point on average after the check, six at most. The ranking of neighbourhoods hardly changes.</li>
+</ul>
+
+<h2>What to take away</h2>
+<ul>
+  <li><strong>“Not on the map” does not mean “closed”.</strong> The flag is a clue, not a verdict. We show it as one.</li>
+  <li><strong>The register overstates what is open,</strong> and so also how long shops survive, since a shop closed without a formality counts as having lasted.</li>
+  <li><strong>No source is enough alone.</strong> The register knows who is declared, the map what a volunteer saw, the survey what was in the shopfront three years ago. Combining them gives a better picture, never a certain one.</li>
+  <li><strong>APUR’s survey exists only in Paris.</strong> Elsewhere in France, read the flag with even more care.</li>
+</ul>
+
+<div class="post-cta">
+  <h2>And around your address?</h2>
+  <p>Pignon shows the shops of your type around an address. Those that may have closed are drawn apart, with the reason for the doubt.</p>
+  <div class="actions">
+    <a class="ts-btn product" href="https://pignon.tesselo.eu/?lang=en">Try the free map</a>
+    <a class="ts-btn" href="../../../en/pignon/">About Pignon</a>
+  </div>
+</div>
+
+      </article>
+    </main>
+    <footer class="ts-footer">
+      <div class="wrap">
+        <span>Tesselo · official public data</span>
+        <small class="version-note" style="opacity:.55;font-size:11px">v0.2.43 · 29d5dca</small>
+      </div>
+    </footer>
+  </body>
+</html>
